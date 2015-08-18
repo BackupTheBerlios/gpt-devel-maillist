@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] deb's do gpt 1.1
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20deb%27s%20do%20gpt%201.1&In-Reply-To=%3C76152eba0907011959t6b22f37em3053aee9d32c5974%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000029.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] deb's do gpt 1.1</H1>
+    <B>Adorilson Bezerra de Araujo</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20deb%27s%20do%20gpt%201.1&In-Reply-To=%3C76152eba0907011959t6b22f37em3053aee9d32c5974%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] deb's do gpt 1.1">adorilson at gmail.com
+       </A><BR>
+    <I>Thu Jul  2 04:59:18 CEST 2009</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000029.html">[gpt-devel] Lan&#231;amento da vers&#227;o 1.1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#28">[ date ]</a>
+              <a href="thread.html#28">[ thread ]</a>
+              <a href="subject.html#28">[ subject ]</a>
+              <a href="author.html#28">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>2009/6/30 Marcelo Jorge Vieira (metal) &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">marcelometal at gmail.com</A>&gt;
+
+&gt;<i> opa!
+</I>&gt;<i>
+</I>&gt;<i> 2009/6/23 Adorilson Bezerra de Araujo &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">adorilson at gmail.com</A>&gt;:
+</I>&gt;<i> &gt; Opa Metal e demais,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; segue os debs do Gpt 1.1.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Seguindo o Guia do Mantenedor[0] que vc passou deu certinho.
+</I>&gt;<i> &gt; S&#243; deu um pouco de trabalho pra reaproveitar os arquivos que vc tinha
+</I>&gt;<i> &gt; criando anteriormente.
+</I>&gt;<i>
+</I>&gt;<i> porque deu trabalho?
+</I>
+
+Por que n&#227;o tinha os arquivos do pacote da versao anterior, a&#237; fiz isso q
+disse abaixo.
+Basicamente pra reutilizar o control q vc definiu e o changelog
+
+
+&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> &gt; Pra isso eu gerei conforme o guia o .deb do gpt 1.0.2, que era o deb q vc
+</I>&gt;<i> &gt; tinha criado, a&#237; subscrevi o diretorio debian com os seus arquivos e
+</I>&gt;<i> &gt; executei o procedimento de atualiza&#231;&#227;o conforme o guia. Era isso mesmo?
+</I>&gt;<i>
+</I>&gt;<i> Ent&#227;o, ai voc&#234; fez errado...
+</I>&gt;<i> Voc&#234; poderia ter usado o uupdate [0] ou o dch que &#233; um programa no pacote
+</I>&gt;<i> &quot;devscripts&quot;; mas cada um deles tem suas particularidades...
+</I>&gt;<i>
+</I>&gt;<i> [0] <A HREF="http://debian.org/doc/maint-guide/ch-update.pt-br.html">http://debian.org/doc/maint-guide/ch-update.pt-br.html</A>
+</I>
+
+Pois &#233;, mas ele reclamou da falta dos arquivos (posso t&#225; falando besteira pq
+nao lembro exatamente o q foi, mas foi algo relacionado a isso)
+
+
+
+&gt;<i> &lt;<A HREF="http://debian.org/doc/maint-guide/ch-update.pt-br.html">http://debian.org/doc/maint-guide/ch-update.pt-br.html</A>&gt;
+</I>&gt;<i>
+</I>&gt;<i> Essas n&#227;o s&#227;o as melhores maneiras, j&#225; que o gpt t&#225; no SVN e podemos
+</I>&gt;<i> usar o &quot;svn-buildpackage&quot; pra gerar o pacote. D&#225; uma pesquisada e
+</I>&gt;<i> qualquer d&#250;vida me fala..
+</I>
+
+Ok.
+Mas a questao &#233;: como reaproveitar os arquivos q j&#225; est&#227;o em gpt/debian ?
+
+
+
+
+&gt;<i> Eu t&#244; mantendo a vers&#227;o que esta no debian em Git.
+</I>&gt;<i> Porque acho o Git muuuuito melhor que o SVN. Mas posso manter tamb&#233;m
+</I>&gt;<i> no SVN, se for o caso...
+</I>&gt;<i>
+</I>&gt;<i> pra baixar:
+</I>&gt;<i> git clone  <A HREF="git://git.debian.org/git/users/metal-guest/gpt.git">git://git.debian.org/git/users/metal-guest/gpt.git</A>
+</I>&gt;<i>
+</I>&gt;<i> ou via WEB:
+</I>&gt;<i> <A HREF="http://git.debian.org/?p=users/metal-guest/gpt.git;a=summary">http://git.debian.org/?p=users/metal-guest/gpt.git;a=summary</A>
+</I>
+
+E como vc faz a sincronia do Svn para o Git?
+Antes de baixar aqui pensei q fosse somente os arquivos especificos para a
+cria&#231;&#227;o do pacote, e nao todo o gpt.
+
+
+
+&gt;<i> N&#227;o sei se essa, &#233; a lista pra gente discutir essas coisas sobre o pacote;
+</I>&gt;<i> mas podemos?! hehe
+</I>
+
+Acho q eu n&#227;o preciso dizer  q por mim tudo bem :p
+
+Mas teria outra lista mais apropriada?
+
+
+&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> &gt; E como vc pode percebe crie no Ubuntu, caso o 9.04, internamente no
+</I>&gt;<i> pacote
+</I>&gt;<i> &gt; tem alguma coisa que diga isso, ou somente o nome do pacote? Pra jogar
+</I>&gt;<i> pro
+</I>&gt;<i> &gt; Debian s&#243; renomear basta?
+</I>&gt;<i>
+</I>&gt;<i> N&#227;o tem nada interno pra falar isso, mas voc&#234; precisa fazer o pacote pro
+</I>&gt;<i> Debian Sid;
+</I>
+
+Fazer pro Debian qr dizer fazer *no* Debian?
+
+
+
+&gt;<i> Ele vai pro ubuntu automaticamente, por que a galera l&#225; do ubuntu,
+</I>&gt;<i> sincronizou o pacote..
+</I>
+
+humrum.
+
+
+-- 
+Adorilson Bezerra
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/gpt-devel/attachments/20090701/e367c1e8/attachment.html">https://lists.berlios.de/pipermail/gpt-devel/attachments/20090701/e367c1e8/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000029.html">[gpt-devel] Lan&#231;amento da vers&#227;o 1.1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#28">[ date ]</a>
+              <a href="thread.html#28">[ thread ]</a>
+              <a href="subject.html#28">[ subject ]</a>
+              <a href="author.html#28">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

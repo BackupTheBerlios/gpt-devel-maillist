@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Evitar uso de argumentos para os opcodes?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Evitar%20uso%20de%20argumentos%20para%20os%20opcodes%3F&In-Reply-To=%3CAANLkTi%3Dap0bPHqvM68QFyc6QnwqH%3Dtj-24CWNifKBZCH%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000165.html">
+   <LINK REL="Next"  HREF="000169.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Evitar uso de argumentos para os opcodes?</H1>
+    <B>Thiago Silva</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Evitar%20uso%20de%20argumentos%20para%20os%20opcodes%3F&In-Reply-To=%3CAANLkTi%3Dap0bPHqvM68QFyc6QnwqH%3Dtj-24CWNifKBZCH%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Evitar uso de argumentos para os opcodes?">tsilva at sourcecraft.info
+       </A><BR>
+    <I>Tue Oct 26 14:42:22 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000165.html">[gpt-devel] Evitar uso de argumentos para os opcodes?
+</A></li>
+        <LI>Next message: <A HREF="000169.html">[gpt-devel] Evitar uso de argumentos para os opcodes?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#167">[ date ]</a>
+              <a href="thread.html#167">[ thread ]</a>
+              <a href="subject.html#167">[ subject ]</a>
+              <a href="author.html#167">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bom dia!
+
+2010/10/26 Alex Garzao &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">alexgarzaol at gmail.com</A>&gt;:
+&gt;<i> Bom dia senhores :-)
+</I>&gt;<i>
+</I>&gt;<i> Eu tenho uma sugest&#227;o quanto ao formato dos opcodes.
+</I>&gt;<i>
+</I>&gt;<i> Atualmente, para invocarmos um m&#233;todo com um argumento seria algo como:
+</I>&gt;<i>
+</I>&gt;<i> carconst &quot;Oi&quot;
+</I>&gt;<i> invoca meu_metodo
+</I>&gt;<i>
+</I>&gt;<i> Eu teria uma sugest&#227;o. Tentarmos, sempre que poss&#237;vel, evitar passarmos
+</I>&gt;<i> argumentos para os opcodes que n&#227;o manipulam a pilha diretamente. No exemplo
+</I>&gt;<i> acima, seria o opcode &quot;invoca&quot;.
+</I>&gt;<i>
+</I>&gt;<i> A sugest&#227;o seria algo como:
+</I>&gt;<i>
+</I>&gt;<i> carconst &quot;Oi&quot;
+</I>&gt;<i> carconst &quot;meu_metodo&quot;
+</I>&gt;<i> invoca
+</I>&gt;<i>
+</I>&gt;<i> O que ganhamos com esta aborgadem &#233; que deixamos os opcodes mais flex&#237;veis.
+</I>&gt;<i>
+</I>&gt;<i> No exemplo original, como o &quot;invoca&quot; recebe como argumento o nome do m&#233;todo,
+</I>&gt;<i> n&#227;o temos como invocar um m&#233;todo que n&#227;o seja conhecido em tempo de
+</I>&gt;<i> compila&#231;&#227;o, at&#233; porque &quot;meu_metodo&quot; vai ter que constar na tabela de
+</I>&gt;<i> s&#237;mbolos do bytecode gerado.
+</I>&gt;<i>
+</I>&gt;<i> No outro exemplo proposto, como invoca busca na pilha o nome do m&#233;todo a ser
+</I>&gt;<i> invocado, nada impede que at&#233; o usu&#225;rio (via teclado) informe o nome do
+</I>&gt;<i> m&#233;todo a ser invocado. Algo como:
+</I>&gt;<i>
+</I>&gt;<i> .vari&#225;vel nome_m&#233;todo
+</I>&gt;<i> .vari&#225;vel valor
+</I>&gt;<i>
+</I>&gt;<i> carconst &quot;Digite o nome do m&#233;todo: &quot;
+</I>&gt;<i> carconst leia
+</I>&gt;<i> invoca
+</I>&gt;<i> armvar nome_m&#233;todo
+</I>&gt;<i>
+</I>&gt;<i> carconst &quot;Digite um valor: &quot;
+</I>&gt;<i> carconst leia
+</I>&gt;<i> invoca
+</I>&gt;<i> armvar valor
+</I>&gt;<i>
+</I>&gt;<i> carvar valor
+</I>&gt;<i> carvar nome_m&#233;todo
+</I>&gt;<i> invoca
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Ok, estou assumindo que o m&#233;todo realmente existe, e que recebe um
+</I>&gt;<i> argumento, mas como um exemplo, serve :-)
+</I>&gt;<i>
+</I>&gt;<i> Abra&#231;os!
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i> []'s
+</I>&gt;<i> Alex Sandro Garz&#227;o
+</I>&gt;<i>
+</I>
+J&#243;ia! muito bom!
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000165.html">[gpt-devel] Evitar uso de argumentos para os opcodes?
+</A></li>
+	<LI>Next message: <A HREF="000169.html">[gpt-devel] Evitar uso de argumentos para os opcodes?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#167">[ date ]</a>
+              <a href="thread.html#167">[ thread ]</a>
+              <a href="subject.html#167">[ subject ]</a>
+              <a href="author.html#167">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

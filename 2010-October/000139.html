@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Como%20funcionaria%20o%20%22imprima%22%20na%20VM%3F&In-Reply-To=%3CAANLkTinvpSTFn1HSb%2B-EUr0_7kaBNU%2B6BQGWu88MTrG_%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000136.html">
+   <LINK REL="Next"  HREF="000128.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?</H1>
+    <B>Alex Garzao</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Como%20funcionaria%20o%20%22imprima%22%20na%20VM%3F&In-Reply-To=%3CAANLkTinvpSTFn1HSb%2B-EUr0_7kaBNU%2B6BQGWu88MTrG_%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?">alexgarzaol at gmail.com
+       </A><BR>
+    <I>Tue Oct 19 03:20:36 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000136.html">[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?
+</A></li>
+        <LI>Next message: <A HREF="000128.html">[gpt-devel] Como implementar estruturas de controle
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#139">[ date ]</a>
+              <a href="thread.html#139">[ thread ]</a>
+              <a href="subject.html#139">[ subject ]</a>
+              <a href="author.html#139">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;&gt;<i> N&#227;o se &quot;invoca_lib&quot; possui uma sem&#226;ntica distinta de execu&#231;&#227;o, que
+</I>&gt;&gt;<i> acho que &#233; a preocupa&#231;&#227;o do alex.
+</I>&gt;<i>
+</I>&gt;<i> N&#227;o entendi. O que quiz dizer com termos duas fun&#231;&#245;es para fazer a mesma
+</I>&gt;<i> opera&#231;&#227;o &#233; uma invoca_Y para para os metodos de objetos e invoca_X para as
+</I>&gt;<i> chamadas de sistemas. O valor de Y e X n&#227;o importa muita.
+</I>
+Para a VM importa. Ela tem que saber se est&#225; invocando um m&#233;todo de
+uma classe ou uma fun&#231;&#227;o de uma lib externa, porque s&#227;o implementa&#231;&#245;es
+distintas internamente na VM.
+
+Se a VM n&#227;o souber (atrav&#233;s de mnem&#244;nicos diferentes) o que deve ser
+feito, ela ter&#225; que deduzir durante a execu&#231;&#227;o. Claro que isto pode
+ser feito, e pelo visto &#233; isto que iremos adotar. S&#243; ressalto que,
+quanto mais &quot;esperta&quot; a VM (quanto maior o n&#250;mero de dedu&#231;&#245;es), mais
+lenta ela fica e, na teoria, menos precisa.
+
+Ela fica mais lenta porque busca por uma implementa&#231;&#227;o interna, e se
+n&#227;o encontra, busca na classe. Como desempenho n&#227;o &#233; meta do projeto,
+isto indifere. At&#233; digo que n&#227;o deve impactar muito no desempenho
+provavelmente.
+
+Ela fico menos precisa porque nunca vai ter certeza do que realmente
+seria para ser feito. Se algu&#233;m realmente quer definir o m&#233;todo
+imprima na classe, como isto ser&#225; feito? Ao encontrar um &quot;invoca
+imprima&quot;, como a VM vai saber se deve chamar o imprima da
+implementa&#231;&#227;o interna ou o da classe? Se ela optar por primeiro buscar
+por uma implementa&#231;&#227;o interna, ent&#227;o n&#227;o ser&#225; poss&#237;vel definir o
+imprima na classe. Se ela buscar primeiro na classe, como vamos dizer
+para ela que deve ser invocada a implementa&#231;&#227;o interna? Ok, at&#233;
+podemos ter algum tipo de namespace ou similar (tipo &quot;invoca
+es.imprima&quot;, como existia em alguns exemplos anteriores), mas n&#227;o sei
+dizer se &#233; uma solu&#231;&#227;o elegante.
+
+Entendo a quest&#227;o de &quot;quero invocar X, e a VM que se vire&quot;. Eu mesmo
+coloquei isto em outro e-mail. S&#243; n&#227;o vamos esquecer que GptAssembly &#233;
+para ser um assembly de m&#225;quina, o que, na teoria, poucos devem se
+interessar em utilizar.
+
+Quantos j&#225; programaram em JASM? Eu n&#227;o preciso de JASM (utilizo java
+se neces&#225;rio). Eu s&#243; programei em JASM porque tinha que gerar um
+arquivo class (trabalho de aula) e ent&#227;o tinha que aprender como
+funciona os opcodes da JVM.
+
+Mas, voltando a quest&#227;o. Acredito que, por enquanto, deixamos como
+implementa&#231;&#227;o interna. Posteriormente, quando tivermos libs do SO, a
+gente rev&#234; esta quest&#227;o. Pode ser?
+
+Abra&#231;os!
+
+-- 
+[]'s
+Alex Sandro Garz&#227;o
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000136.html">[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?
+</A></li>
+	<LI>Next message: <A HREF="000128.html">[gpt-devel] Como implementar estruturas de controle
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#139">[ date ]</a>
+              <a href="thread.html#139">[ thread ]</a>
+              <a href="subject.html#139">[ subject ]</a>
+              <a href="author.html#139">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

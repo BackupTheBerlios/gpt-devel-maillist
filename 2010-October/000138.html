@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Como ser&#225; identificada a fun&#231;&#227;o principal em GptAssembly
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%0A%09%3D%3Fiso-8859-1%3Fq%3FComo_ser%3DE1_identificada_a_fun%3DE7%3DE3o_%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Fprincipal_em_GptAssembly%3F%3D&In-Reply-To=%3CAANLkTinytgUOtFGTqpFz5C_hU%2BbGm4qvqRDgdF%2Bpth8s%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000130.html">
+   <LINK REL="Next"  HREF="000140.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Como ser&#225; identificada a fun&#231;&#227;o principal em GptAssembly</H1>
+    <B>Thiago Silva</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%0A%09%3D%3Fiso-8859-1%3Fq%3FComo_ser%3DE1_identificada_a_fun%3DE7%3DE3o_%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Fprincipal_em_GptAssembly%3F%3D&In-Reply-To=%3CAANLkTinytgUOtFGTqpFz5C_hU%2BbGm4qvqRDgdF%2Bpth8s%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Como ser&#225; identificada a fun&#231;&#227;o principal em GptAssembly">tsilva at sourcecraft.info
+       </A><BR>
+    <I>Mon Oct 18 16:56:22 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000130.html">[gpt-devel] Como ser&#225; identificada a fun&#231;&#227;o principal em GptAssembly
+</A></li>
+        <LI>Next message: <A HREF="000140.html">[gpt-devel] Como ser&#225; identificada a fun&#231;&#227;o principal em GptAssembly
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#138">[ date ]</a>
+              <a href="thread.html#138">[ thread ]</a>
+              <a href="subject.html#138">[ subject ]</a>
+              <a href="author.html#138">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bom dia :)
+
+2010/10/17 Alex Garzao &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">alexgarzaol at gmail.com</A>&gt;:
+&gt;<i> Bom dia :-)
+</I>&gt;<i>
+</I>&gt;<i> J&#225; conversamos sobre isso em outra thread. Apenas quero confirmar para
+</I>&gt;<i> colocar as resolu&#231;&#245;es no wiki corretamente, at&#233; porque alguns
+</I>&gt;<i> &quot;detalhes&quot; mudaram desde que conversamos sobre isso.
+</I>&gt;<i>
+</I>&gt;<i> Como j&#225; foi comentado anteriormente, quanto ao ponto de entrada, temos
+</I>&gt;<i> as seguintes op&#231;&#245;es:
+</I>&gt;<i>
+</I>&gt;<i> a) Uma simples &#233; fazer como em C, onde a VM procuraria por uma fun&#231;&#227;o
+</I>&gt;<i> com nome especifico (como &quot;principal&quot;) no m&#243;dulo e executaria ela.
+</I>&gt;<i>
+</I>&gt;<i> b) Outra abordagem seria marcar um m&#233;todo de um objeto como principal
+</I>&gt;<i> (a forma mais simples, usando um nome padr&#227;o, novamente, como
+</I>&gt;<i> &quot;principal&quot;).
+</I>&gt;<i>
+</I>&gt;<i> c) Outra op&#231;&#227;o seria a gente identificar apenas a classe que deve
+</I>&gt;<i> iniciar a execu&#231;&#227;o. Desta forma o construtor seria o ponto de partida
+</I>&gt;<i> da aplica&#231;&#227;o. A VM, ao iniciar, instanciaria um objeto a partir desta
+</I>&gt;<i> classe e o construtor faria o resto.
+</I>&gt;<i>
+</I>&gt;<i> Pelo que andamos conversando (at&#233; estou questionando isto em outra
+</I>&gt;<i> thread), n&#227;o vamos ter obrigatoriamente objetos. Com isso, podemos ter
+</I>&gt;<i> fun&#231;&#245;es que n&#227;o pertencem &#224; nenhum objeto.
+</I>
+Bom, se fun&#231;&#245;es s&#227;o valores e existem fun&#231;&#245;es que n&#227;o pertencem a
+nenhum objeto -- mas elas s&#227;o objetos -- ent&#227;o todos os valores
+continuam sendo obrigatoriamente objetos.
+
+&gt;<i> Ent&#227;o, acho que a op&#231;&#227;o 'a'
+</I>&gt;<i> &#233; a mais correta, porque tanto a op&#231;&#227;o 'b' como a 'c' obrigam a
+</I>&gt;<i> exist&#234;ncia de um objeto.
+</I>
+Acho que a &quot;a&quot; &#233; a mais simples. Uma forma que vejo de fazer a 'b'
+funcionar, por exemplo, &#233; fazer o compilador identificar um m&#233;todo no
+c&#243;digo cujo nome seja &quot;principal&quot;, por exemplo, em alguma
+declara&#231;&#227;o...ao achar este m&#233;todo, ele escreveria em alguma entrada do
+arquivo bin&#225;rio indicando o endere&#231;o deste m&#233;todo como o m&#233;todo
+principal e o respectivo objeto. A&#237; seria uma quest&#227;o da VM criar este
+objeto e chamar este m&#233;todo. Eu vejo a 'c' fazendo algo similar.
+
+Pela simplicidade, a &quot;a&quot; me &#233; favorita
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000130.html">[gpt-devel] Como ser&#225; identificada a fun&#231;&#227;o principal em GptAssembly
+</A></li>
+	<LI>Next message: <A HREF="000140.html">[gpt-devel] Como ser&#225; identificada a fun&#231;&#227;o principal em GptAssembly
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#138">[ date ]</a>
+              <a href="thread.html#138">[ thread ]</a>
+              <a href="subject.html#138">[ subject ]</a>
+              <a href="author.html#138">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

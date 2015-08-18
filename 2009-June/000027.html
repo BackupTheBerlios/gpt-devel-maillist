@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] deb's do gpt 1.1
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2009-June/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20deb%27s%20do%20gpt%201.1&In-Reply-To=%3C59f4e150906301117rd8ef19elff6c8d7d2137d0db%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000026.html">
+   <LINK REL="Next"  HREF="000025.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] deb's do gpt 1.1</H1>
+    <B>Marcelo Jorge Vieira (metal)</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20deb%27s%20do%20gpt%201.1&In-Reply-To=%3C59f4e150906301117rd8ef19elff6c8d7d2137d0db%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] deb's do gpt 1.1">marcelometal at gmail.com
+       </A><BR>
+    <I>Tue Jun 30 20:17:05 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000026.html">[gpt-devel] deb's do gpt 1.1
+</A></li>
+        <LI>Next message: <A HREF="000025.html">[gpt-devel] Lan&#231;amento da vers&#227;o 1.1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#27">[ date ]</a>
+              <a href="thread.html#27">[ thread ]</a>
+              <a href="subject.html#27">[ subject ]</a>
+              <a href="author.html#27">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>opa!
+
+2009/6/23 Adorilson Bezerra de Araujo &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">adorilson at gmail.com</A>&gt;:
+&gt;<i> Opa Metal e demais,
+</I>&gt;<i>
+</I>&gt;<i> segue os debs do Gpt 1.1.
+</I>&gt;<i>
+</I>&gt;<i> Seguindo o Guia do Mantenedor[0] que vc passou deu certinho.
+</I>&gt;<i> S&#243; deu um pouco de trabalho pra reaproveitar os arquivos que vc tinha
+</I>&gt;<i> criando anteriormente.
+</I>
+porque deu trabalho?
+
+&gt;<i> Pra isso eu gerei conforme o guia o .deb do gpt 1.0.2, que era o deb q vc
+</I>&gt;<i> tinha criado, a&#237; subscrevi o diretorio debian com os seus arquivos e
+</I>&gt;<i> executei o procedimento de atualiza&#231;&#227;o conforme o guia. Era isso mesmo?
+</I>
+Ent&#227;o, ai voc&#234; fez errado...
+Voc&#234; poderia ter usado o uupdate [0] ou o dch que &#233; um programa no pacote
+&quot;devscripts&quot;; mas cada um deles tem suas particularidades...
+
+[0] <A HREF="http://debian.org/doc/maint-guide/ch-update.pt-br.html">http://debian.org/doc/maint-guide/ch-update.pt-br.html</A>
+
+Essas n&#227;o s&#227;o as melhores maneiras, j&#225; que o gpt t&#225; no SVN e podemos
+usar o &quot;svn-buildpackage&quot; pra gerar o pacote. D&#225; uma pesquisada e
+qualquer d&#250;vida me fala.. Eu t&#244; mantendo a vers&#227;o que esta no debian em Git.
+Porque acho o Git muuuuito melhor que o SVN. Mas posso manter tamb&#233;m
+no SVN, se for o caso...
+
+pra baixar:
+git clone  <A HREF="git://git.debian.org/git/users/metal-guest/gpt.git">git://git.debian.org/git/users/metal-guest/gpt.git</A>
+
+ou via WEB:
+<A HREF="http://git.debian.org/?p=users/metal-guest/gpt.git;a=summary">http://git.debian.org/?p=users/metal-guest/gpt.git;a=summary</A>
+
+N&#227;o sei se essa, &#233; a lista pra gente discutir essas coisas sobre o pacote;
+mas podemos?! hehe
+
+&gt;<i> E como vc pode percebe crie no Ubuntu, caso o 9.04, internamente no pacote
+</I>&gt;<i> tem alguma coisa que diga isso, ou somente o nome do pacote? Pra jogar pro
+</I>&gt;<i> Debian s&#243; renomear basta?
+</I>
+N&#227;o tem nada interno pra falar isso, mas voc&#234; precisa fazer o pacote pro
+Debian Sid; Ele vai pro ubuntu automaticamente, por que a galera l&#225; do ubuntu,
+sincronizou o pacote..
+
+abra&#231;os,
+
+-- 
+Marcelo Jorge Vieira (metal)
+poesias/rascunhos - <A HREF="http://metal.alucinados.com">http://metal.alucinados.com</A>
+fotos - <A HREF="http://flickr.com/photos/marcelometal/">http://flickr.com/photos/marcelometal/</A>
+blog tecnico - <A HREF="http://metaldot.alucinados.com">http://metaldot.alucinados.com</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000026.html">[gpt-devel] deb's do gpt 1.1
+</A></li>
+	<LI>Next message: <A HREF="000025.html">[gpt-devel] Lan&#231;amento da vers&#227;o 1.1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#27">[ date ]</a>
+              <a href="thread.html#27">[ thread ]</a>
+              <a href="subject.html#27">[ subject ]</a>
+              <a href="author.html#27">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

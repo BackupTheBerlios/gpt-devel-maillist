@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Fwd:  Como implementar estruturas de controle
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Fwd%3A%20%20Como%20implementar%20estruturas%20de%20controle&In-Reply-To=%3CAANLkTimYYBqEdB5twXuHu65_brgsx1bnnu7OAHLWFJa-%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000144.html">
+   <LINK REL="Next"  HREF="000146.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Fwd:  Como implementar estruturas de controle</H1>
+    <B>Thiago Silva</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Fwd%3A%20%20Como%20implementar%20estruturas%20de%20controle&In-Reply-To=%3CAANLkTimYYBqEdB5twXuHu65_brgsx1bnnu7OAHLWFJa-%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Fwd:  Como implementar estruturas de controle">tsilva at sourcecraft.info
+       </A><BR>
+    <I>Wed Oct 20 16:02:39 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000144.html">[gpt-devel] Fwd:  Como implementar estruturas de controle
+</A></li>
+        <LI>Next message: <A HREF="000146.html">[gpt-devel] Fwd:  Como implementar estruturas de controle
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#145">[ date ]</a>
+              <a href="thread.html#145">[ thread ]</a>
+              <a href="subject.html#145">[ subject ]</a>
+              <a href="author.html#145">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>---------- Forwarded message ----------
+From: Alex Garzao &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">alexgarzaol at gmail.com</A>&gt;
+Date: 2010/10/19
+Subject: Re: [gpt-devel] Como implementar estruturas de controle
+To: Thiago Silva &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">tsilva at sourcecraft.info</A>&gt;
+
+
+Boa noite :-)
+
+&gt;<i> &gt; Acho que &#233; este o ponto sim. Para ler o c&#243;digo acima (meu exemplo) j&#225; &#233;
+</I>&gt;<i> &gt; tortuoso (pelo n&#250;mero de closures). Imagina um exemplo mais real, com v&#225;rias
+</I>&gt;<i> &gt; fun&#231;&#245;es com in&#250;meros blocos de c&#243;digo?
+</I>&gt;<i> &gt;
+</I>&gt;<i>
+</I>&gt;<i> Agora eis que pergunto: qual a import&#226;ncia que vc atribui para uma
+</I>&gt;<i> leitura mais &quot;fluente&quot; e edi&#231;&#227;o de gptassembly?
+</I>
+Pensei em lhe fazer a mesma pergunta :-)
+Bom, se a id&#233;ia &#233; que os usu&#225;rios consigam ver o c&#243;digo em gptassembly
+para entender como as coisas funcionam, ent&#227;o acredito que ela deve
+ser de &quot;f&#225;cil leitura&quot;, dentro das possibilidades claro (acredito que
+milagre n&#227;o &#233; bem a nossa praia hehehe). Se ela n&#227;o deve ser para
+usu&#225;rios, bom, a&#237; questiono o porque de termos a possibilidade de
+programar neste assembly.
+&gt;<i>
+</I>&gt;<i> Eu vejo alguns aspectos nesta quest&#227;o. Eu acho que o gptassembly deve
+</I>&gt;<i> ser &quot;entend&#237;vel&quot;.
+</I>
+Isso. Se &#233; para facilitar para que entendam como as coisas funcionam
+internamente, acredito que temos que investir mais entende?
+
+&gt;<i>
+</I>&gt;<i> &gt;&gt; Sei que h&#225; formas de gerar um c&#243;digo mais tradicional com condicionais
+</I>&gt;<i> &gt;&gt; e jumps (sei que isso &#233; feito como otimiza&#231;&#227;o em m&#225;quinas OO puras)
+</I>&gt;<i> &gt;&gt; sem violar o modelo, mas n&#227;o &#233; algo que eu investiguei muito...
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Eu nunca investiguei m&#225;quinas OO puras. Ok, sei que voc&#234; mandou at&#233; o link
+</I>&gt;<i> &gt; de um livro, mas como eu ainda n&#227;o li, lhe pergunto: voc&#234; sabe dar mais
+</I>&gt;<i> &gt; informa&#231;&#245;es sobre como estas m&#225;quinas implementam estes recursos? Como seria
+</I>&gt;<i> &gt; o assembly de uma VM de smalltalk, por exemplo?
+</I>&gt;<i>
+</I>&gt;<i> O assembly do smalltalk &#233; bem parecido com estamos discutindo aqui.
+</I>&gt;<i> Ela s&#243; tem opcodes de push, pop, envio de mensagens e retorno, mais
+</I>&gt;<i> opcodes de popAndJump que s&#243; checam pelos valores &quot;true&quot; e &quot;false&quot; na
+</I>&gt;<i> pilha.
+</I>
+Interessante...
+
+&gt;<i>
+</I>&gt;<i> Com otimiza&#231;&#227;o &#233; outra hist&#243;ria pois em tempo de execu&#231;&#227;o se faz
+</I>&gt;<i> inlining das fun&#231;&#245;es, criando blocos de c&#243;digo para casos
+</I>&gt;<i> particulares, compilando-as novamente e, em seguida, rodando um JIT.
+</I>&gt;<i> Ent&#227;o, nas particularidades, certamente podemos utilizar opcodes mais
+</I>&gt;<i> especificos, mas sempre h&#225; o fallback para o envio de mensagens. Acho
+</I>&gt;<i> que n&#227;o h&#225; nada a ganhar em termos de simplicidade fazendo isso.
+</I>
+Otimiza&#231;&#227;o n&#227;o &#233; algo que nos interessa atualmente, creio eu.
+&gt;<i>
+</I>&gt;<i> O que mais me preocupa, neste momento, &#233; o encapsulamento. Se vc tiver
+</I>&gt;<i> id&#233;ias para opcodes que n&#227;o violem o encapsulamento, pode sugerir.
+</I>
+Para meu entendimento, me esclarece uma coisa. Naquele exemplo
+&quot;tradicional&quot; de la&#231;o, porque os opcodes violam o encapsulamento?
+De qualquer forma, a minha proposta n&#227;o &#233; abandonarmos as id&#233;ias
+propostas, mas sim investir mais nelas para que o gptassembly fique
+mais &quot;alto n&#237;vel&quot;. Lembra quando eu queria colocar opcodes para
+&quot;adicionar&quot; os m&#233;todos aos objetos, e voc&#234; sugeriu deixar isso
+expl&#237;cito na sintaxe com algo como &quot;.fun&#231;&#227;o nome_objeto:nome_fun&#231;&#227;o&quot;?
+&#201; neste sentido que devemos investir, na minha opini&#227;o.
+Vou tentar rever o exemplo gerado a partir do G-Portugol abaixo:
+fun&#231;&#227;o principal
+&#160;&#160;&#160; para cada X de 1 at&#233; 10 fa&#231;a
+&#160;&#160;&#160;&#160;&#160;&#160;&#160; se X &lt;= 5 ent&#227;o
+&#160; &#160;&#160; &#160;&#160;&#160;&#160;&#160;&#160; imprima(X, &quot;eh &lt;= 5&quot;);
+&#160;&#160; &#160; &#160; &#160;sen&#227;o
+&#160;&#160; &#160; &#160; &#160; &#160; &#160;imprima(X, &quot;eh &gt;= 6&quot;);
+&#160;&#160;&#160;&#160;&#160;&#160;&#160; fim
+&#160;&#160;&#160; fim
+fim
+
+Equivalente em GptAssembly, tentando colocar as fun&#231;&#245;es &quot;an&#244;nimas&quot;
+digamos assim &quot;embutidas&quot; na fun&#231;&#227;o original:
+.fun&#231;&#227;o principal
+&#160;&#160; &#160;.vari&#225;vel X
+&#160;&#160; &#160;carvar X
+&#160;&#160; &#160;carconst 1
+&#160;&#160; &#160;carconst 10
+&#160;&#160; &#160;carfun&#231;&#227;o (X) // era corpo_for
+&#160;&#160; &#160; &#160; &#160;carpar X
+&#160;&#160; &#160; &#160; &#160;carconst 5
+&#160;&#160; &#160; &#160; &#160;carfun&#231;&#227;o (X) // era se_verdadeiro
+&#160;&#160; &#160; &#160; &#160; &#160; &#160;carpar X
+&#160;&#160; &#160; &#160; &#160;&#160;&#160; &#160;carconst &quot;eh &lt;= 5&quot;
+&#160;&#160; &#160; &#160; &#160;&#160;&#160; &#160;carconst 2
+&#160;&#160; &#160; &#160; &#160;&#160;&#160; &#160;invoca imprima
+&#160;&#160; &#160; &#160; &#160;fimcarfun&#231;&#227;o
+&#160;&#160; &#160; &#160; &#160;carfun&#231;&#227;o (X) // era se_falso
+&#160;&#160; &#160; &#160; &#160; &#160; &#160;carpar X
+&#160;&#160; &#160; &#160; &#160;&#160;&#160; &#160;carconst &quot;eh &gt;= 6&quot;
+&#160;&#160; &#160; &#160; &#160;&#160;&#160; &#160;carconst 2
+&#160;&#160; &#160; &#160; &#160;&#160;&#160; &#160;invoca imprima
+&#160;&#160; &#160; &#160; &#160;fimcarfun&#231;&#227;o
+&#160;&#160; &#160; &#160; &#160;meoi
+&#160;&#160; &#160;fimcarfun&#231;&#227;o
+&#160;&#160; &#160;invoca at&#233;
+.fim_fun&#231;&#227;o
+Ok, acho que n&#227;o ficou o &quot;&#243;&quot; do &quot;bor&#243;&quot;, mas vamos tentando evoluir na id&#233;ia :-)
+--
+[]'s
+Alex Sandro Garz&#227;o
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000144.html">[gpt-devel] Fwd:  Como implementar estruturas de controle
+</A></li>
+	<LI>Next message: <A HREF="000146.html">[gpt-devel] Fwd:  Como implementar estruturas de controle
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#145">[ date ]</a>
+              <a href="thread.html#145">[ thread ]</a>
+              <a href="subject.html#145">[ subject ]</a>
+              <a href="author.html#145">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

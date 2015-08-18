@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Como%20funcionaria%20o%20%22imprima%22%20na%20VM%3F&In-Reply-To=%3CAANLkTikhxTi%2BNo1WkqMBrqojVYYSO3tSv4tOgpLGjsQf%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000127.html">
+   <LINK REL="Next"  HREF="000126.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?</H1>
+    <B>Adorilson Bezerra de Araujo</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Como%20funcionaria%20o%20%22imprima%22%20na%20VM%3F&In-Reply-To=%3CAANLkTikhxTi%2BNo1WkqMBrqojVYYSO3tSv4tOgpLGjsQf%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?">adorilson at gmail.com
+       </A><BR>
+    <I>Sat Oct 16 00:43:20 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000127.html">[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?
+</A></li>
+        <LI>Next message: <A HREF="000126.html">[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#124">[ date ]</a>
+              <a href="thread.html#124">[ thread ]</a>
+              <a href="subject.html#124">[ subject ]</a>
+              <a href="author.html#124">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Em 15 de outubro de 2010 16:52, Alex Garzao &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">alexgarzaol at gmail.com</A>&gt;escreveu:
+
+&gt;<i> Boa tarde senhores :-)
+</I>&gt;<i>
+</I>
+Boa noite.
+
+
+&gt;<i>
+</I>&gt;<i> Hoje de manh&#227; estava refletindo sobre como funcionaria a invoca&#231;&#227;o de um
+</I>&gt;<i> m&#233;todo qualquer na nossa VM.
+</I>&gt;<i>
+</I>&gt;<i> Conforme j&#225; hav&#237;amos conversado, seria, em GptAssembly, algo como:
+</I>&gt;<i>
+</I>&gt;<i> .objeto X:Objeto
+</I>&gt;<i>
+</I>&gt;<i> .m&#233;todo X:imprime_oi
+</I>&gt;<i>     carstr &quot;oi&quot;
+</I>&gt;<i>    carconst_1
+</I>&gt;<i>    invoca imprima
+</I>&gt;<i> .fim_m&#233;todo
+</I>&gt;<i>
+</I>&gt;<i> .m&#233;todo principal // &#233; a fun&#231;&#227;o principal onde inicia a execu&#231;&#227;o das
+</I>&gt;<i> aplica&#231;&#245;es
+</I>&gt;<i>    .var obj
+</I>&gt;<i>     carobj X
+</I>&gt;<i>    invoca novo //novo() &#233; definido em Objeto
+</I>&gt;<i>     armobj obj
+</I>&gt;<i>    carobj obj
+</I>&gt;<i>     invoca imprime_oi
+</I>&gt;<i>    sai_0
+</I>&gt;<i> .fim_m&#233;todo
+</I>&gt;<i>
+</I>&gt;<i> Ressalto que n&#227;o me preocupei quanto a quest&#227;o de como ser&#225; identificada a
+</I>&gt;<i> fun&#231;&#227;o (ou m&#233;todo) principal. Tamb&#233;m n&#227;o me preocupei com a quest&#227;o se vamos
+</I>&gt;<i> (ou n&#227;o) termos m&#233;todos, ou tudo ser&#227;o fun&#231;&#245;es.  Fica a discuss&#227;o para uma
+</I>&gt;<i> pr&#243;xima thread :-)
+</I>&gt;<i>
+</I>&gt;<i> O &quot;invoca novo&quot; e o &quot;invoca imprime_oi&quot; eu imagino como iram funcionar. O
+</I>&gt;<i> invoca executar&#225; um lookup, que busca o nome do m&#233;todo na vtable. O &quot;novo&quot;,
+</I>&gt;<i> que far&#225; parte da classe &quot;pai de todas&quot; (Objeto), ser&#225; encontrado e
+</I>&gt;<i> executado. O &quot;imprime_oi&quot; ser&#225; encontrado na vtable do objeto. Ok, posso ter
+</I>&gt;<i> esquecido de detalhes, mas acho que seria algo assim. Se eu estiver errado,
+</I>&gt;<i> corrijam :-)
+</I>&gt;<i>
+</I>&gt;<i> A d&#250;vida que eu tenho &#233; quanto ao invoca &quot;imprima&quot;. O imprima, na teoria,
+</I>&gt;<i> faz parte da biblioteca do gpt, assim como o leia e outras do g&#234;nero. Como a
+</I>&gt;<i> VM saber&#225; onde est&#225; imprima, visto que ela n&#227;o faz parte da vtable do
+</I>&gt;<i> Objeto?
+</I>&gt;<i>
+</I>&gt;<i> Eu pensei (rapidamente) em duas possibilidades:
+</I>&gt;<i>
+</I>&gt;<i> 1) &quot;imprima&quot; ser&#225; um m&#233;todo est&#225;tico de uma classe que ser&#225; invocado, algo
+</I>&gt;<i> como &quot;es.imprima&quot;, onde es poderia ser a classe de &quot;entrada/sa&#237;da&quot; com todas
+</I>&gt;<i> as rotinas que necessitamos.
+</I>&gt;<i>
+</I>&gt;<i> 2) Ao inv&#233;s de invoca, poder&#237;amos utilizar outro mnem&#244;nico, que este sim
+</I>&gt;<i> saberia que n&#227;o &#233; um m&#233;todo da classe.
+</I>&gt;<i>
+</I>&gt;<i> Se poss&#237;vel gostaria de ler suas considera&#231;&#245;es :-)
+</I>&gt;<i>
+</I>&gt;<i> Acrescento que, vendo agora, achei muito estranho utilizarmos invoca tanto
+</I>&gt;<i> para m&#233;todos como para fun&#231;&#245;es do SO. &#201; bem prov&#225;vel que teremos que
+</I>&gt;<i> diferenciar, ou seja, um mnem&#244;nico para cada.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>Estranho em que sentido? Do ponto de vista do usu&#225;rio (abstraindo qualquer
+aspectos da implementa&#231;&#227;o disso) eu acho bastante natural que seja dessa
+forma. &#201; muito mais simples voc&#234; ter de aprender uma &#250;nica fun&#231;&#227;o (no caso o
+invoca) do que duas, por exemplo, invoca_funcao e invoca_metodo.
+
+Voltando a uma aspecto que vi em outras discussoes era um
+escreva_arquivo(...) e abra_arquivo(...), acho esse sufixo desnecess&#225;rio. A
+fun&#231;ao que se vire pra tratar o parametro da forma correta. Este &#233; um dos
+aspectos que gosto muito em Python, e nas linguagens dinamicas de forma
+geral. Talvez isso nao tenha muito a ver com essa thread, mas serve com
+ilustra&#231;&#227;o do que quero dizer.
+
+
+
+&gt;<i> Abra&#231;os!!!!
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i> []'s
+</I>&gt;<i> Alex Sandro Garz&#227;o
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Gpt-devel mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">Gpt-devel at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">https://lists.berlios.de/mailman/listinfo/gpt-devel</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>
+
+-- 
+Adorilson Bezerra
+IV ENSL / IV EPSL - <A HREF="http://www.ensl.org.br">http://www.ensl.org.br</A>
+Natal/Rio Grande do Norte, 05 e 06 de Novembro/2010
+<A HREF="http://identi.ca/ensl">http://identi.ca/ensl</A>  <A HREF="http://twitter.com/ensl_oficial">http://twitter.com/ensl_oficial</A>
+
+Aten&#231;&#227;o: Este e-mail pode conter anexos no formato ODF (Open Document
+Format)/ABNT (extens&#245;es odt, ods, odp, odb, odg). Antes de pedir os anexos
+em outro formato, voc&#234; pode instalar gratuita e livremente o BrOffice (
+<A HREF="http://www.broffice.org">http://www.broffice.org</A>) ou o seguinte Plugin para Microsoft Office (
+<A HREF="http://www.sun.com/software/star/odf_plugin/get.jsp">http://www.sun.com/software/star/odf_plugin/get.jsp</A>).
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/gpt-devel/attachments/20101015/bcddb006/attachment.html">https://lists.berlios.de/pipermail/gpt-devel/attachments/20101015/bcddb006/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000127.html">[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?
+</A></li>
+	<LI>Next message: <A HREF="000126.html">[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#124">[ date ]</a>
+              <a href="thread.html#124">[ thread ]</a>
+              <a href="subject.html#124">[ subject ]</a>
+              <a href="author.html#124">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

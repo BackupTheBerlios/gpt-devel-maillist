@@ -1,0 +1,228 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Ordem de empilhamento dos argumentos
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Ordem%20de%20empilhamento%20dos%20argumentos&In-Reply-To=%3CAANLkTikPfc1%2Bwkk3oGFqY6yHH1Sq06qJy391o28Qx%3Ddq%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000161.html">
+   <LINK REL="Next"  HREF="000163.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Ordem de empilhamento dos argumentos</H1>
+    <B>Alex Garzao</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Ordem%20de%20empilhamento%20dos%20argumentos&In-Reply-To=%3CAANLkTikPfc1%2Bwkk3oGFqY6yHH1Sq06qJy391o28Qx%3Ddq%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Ordem de empilhamento dos argumentos">alexgarzaol at gmail.com
+       </A><BR>
+    <I>Sat Oct 23 14:51:57 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000161.html">[gpt-devel] Ordem de empilhamento dos argumentos
+</A></li>
+        <LI>Next message: <A HREF="000163.html">[gpt-devel] Ordem de empilhamento dos argumentos
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#162">[ date ]</a>
+              <a href="thread.html#162">[ thread ]</a>
+              <a href="subject.html#162">[ subject ]</a>
+              <a href="author.html#162">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bom dia :-)
+
+&gt;<i> A pergunta &#233;: algu&#233;m v&#234; algum problema em investir nesta abordagem?
+</I>&gt;<i> &gt;
+</I>&gt;<i>
+</I>&gt;<i> S&#243; pra ficar claro pra mim, a posi&#231;&#227;o do receptor na pilha &#233; sempre no
+</I>&gt;<i> topo da pilha, ou ele fica enterrado abaixo dos argumentos?
+</I>&gt;<i>
+</I>
+Se eu entendi a sua pergunta, sim, acho bem prov&#225;vel que o receptor tem que
+ficar no topo, porque &#233; ele que, ap&#243;s receber a mensagem, &quot;sabe&quot; quantos
+argumentos devem ser retirados da pilha conforme o prot&#243;tipo da fun&#231;&#227;o
+invocada.
+
+No caso especificamente dos par&#226;metros, eu acho que em ordem inversa
+&gt;<i> facilita a vida em alguns aspectos (mas n&#227;o sei em que dificulta)
+</I>&gt;<i>
+</I>
+Em que aspecto que facilitaria? Como no exemplo que voc&#234; colocou abaixo,
+onde &#233; poss&#237;vel utilizar diretamente os valores na pilha com &#237;ndices
+negativos?
+
+O &quot;dificulta&quot; que coloquei n&#227;o seria para a VM, mas para compilar. O que
+acontece &#233; que, como o parser reconhece da esquerda para a direita, e a
+gera&#231;&#227;o deve ser da direita para a esquerda, o c&#243;digo que deve ser emitido
+para cada argumento tem que ser postergado. Ok, bolando algumas rotinas
+legais no parser isso se torna algo bem f&#225;cil, mas da esquerda para direita
+fica bem mais claro :-)
+
+Vou colocar um um exemplo empilhando da esquerda para a direita:
+
+1) x = f1( a + b, f2(c, d))
+
+carvar a
+carvar b
++
+carvar c
+carvar d
+invoca f2
+invoca f1
+
+F&#225;cil gera&#231;&#227;o porque o parser gera os argumentos na ordem em que s&#227;o
+reconhecidos (esquerda para direita). Com isso, a emiss&#227;o dos opcodes n&#227;o &#233;
+postergada.
+
+O mesmo exemplo, por&#233;m na ordem inversa seria:
+
+carvar d
+carvar c
+invoca f2
+carvar b
+carvar a
++
+invoca f1
+
+C&#243;digo mais chatinho de ser gerado. Mas, como disse antes, com boas rotinas
+isso &#233; facilmente resolvido.
+
+Uma op&#231;&#227;o (que eu n&#227;o gosto muito) seria gerar vari&#225;veis tempor&#225;rias (uma
+para cada argumento que n&#227;o seja um terminal), mas isto tende a deixar o
+c&#243;digo gerado BEM maior, sem contar que compiladores que fazem isso tem uma
+etapa de otimiza&#231;&#227;o, coisa que n&#243;s n&#227;o temos nem como meta :-)
+
+Com tempor&#225;rias seria algo como:
+
+carvar b
+carvar a
++
+armvar t1
+
+carvar d
+carvar c
+invoca f2
+armvar t2
+
+carvar t2
+carvar t1
+invoca f1
+
+armvar x
+
+
+Uma pergunta. Ao gerarmos a AST, nada impede que os nodos sejam colocados na
+mesma ordem em que foram lidos pelo parser (esquerda para direita), e na
+hora de emitir c&#243;digo a partir da AST, o c&#243;digo seja gerado dos nodos da
+direita para a esquerda. Ou voc&#234; v&#234; algum impedimento?
+
+Se n&#227;o existe nenhuma restri&#231;&#227;o, perfeito, a quest&#227;o de gerar na ordem
+inversa &#233; facilmente resolvida.
+
+
+&gt;<i> Fazendo um exemplo, considere a suponha a gera&#231;&#227;o do codigo &quot;x =
+</I>&gt;<i> r.f(a,b) + c - d&quot;  (considere que TOS seja &quot;Top of the Stack&quot;, e FP
+</I>&gt;<i> seja frame pointer), onde o receptor seja o &#250;ltimo camarada a ser
+</I>&gt;<i> empilhado:
+</I>&gt;<i>
+</I>&gt;<i> carobj b
+</I>&gt;<i> carobj a
+</I>&gt;<i> carobj r
+</I>&gt;<i> invoca f
+</I>&gt;<i>
+</I>&gt;<i> (at&#233; aqui, &quot;invoca&quot; sabe que TOS[0] &#233; sempre o receptor. No caso, r.
+</I>&gt;<i> Quando o registro de ativa&#231;&#227;o &#233; montado, poderiamos acessar o &quot;this&quot; e
+</I>&gt;<i> os argumentos usando indices negativos no FP, e as vars locais nos
+</I>&gt;<i> indices positivos. Ent&#227;o, algo mais ou menos como FP[-1] = this,
+</I>&gt;<i> FP[-2] = arg1, FP[-3] = arg2, .... FP[-n] = argn-1. Ou seja, FP[-1] =
+</I>&gt;<i> r, FP[-2] = a, FP[-3] = b. Se &quot;f&quot; tem variaveis locais, ent&#227;o FP[0] =
+</I>&gt;<i> local1, FP[1] = local2, ...FP[n] = localn-1)
+</I>&gt;<i>
+</I>
+Pelo que eu saiba, esta &#233; a abordagem mais utilizada, e me parece ok para a
+nossa VM.
+
+ao fim da invoca&#231;&#227;o, o topo da pilha apontar&#225; para o resultado de
+&gt;<i> r.f(a,b). Ent&#227;o, n&#227;o podemos ter a continua&#231;&#227;o do c&#243;digo sendo:
+</I>&gt;<i>
+</I>&gt;<i> carobj c
+</I>&gt;<i> invoca +
+</I>&gt;<i>
+</I>&gt;<i> afinal, invoca vai considerar que &quot;c&quot; &#233; o receptor da mensagem &quot;+&quot;, e
+</I>&gt;<i> n&#227;o &#233; o caso. O receptor deve ser o resultado de r.f(a,b). Ent&#227;o,
+</I>&gt;<i> talvez o receptor deva ser o primeiro objeto a ser empilhado em uma
+</I>&gt;<i> chamada.
+</I>&gt;<i>
+</I>
+Se eu entendi o que voc&#234; colocou, voc&#234; imagina algo como:
+
+x = r.f(a,b) + c - d
+
+carobj r
+carobj b
+carobj a
+invoca f
+...
+
+Se for isso, acho que n&#227;o vai funcionar. O &quot;invoca f&quot; precisa saber quem &#233; o
+receptor para poder buscar &quot;f&quot; corretamente. No exemplo acima, como o invoca
+vai saber que tem que retirar dois argumentos para depois encontrar o
+receptor? Como ela sabe que &quot;f&quot; (prot&#243;tipo desconhecido) tem dois
+argumentos?
+
+No seu exemplo, eu acho que o receptor tem que ser o &#250;ltimo a ser empilhado.
+O que faltou (minha opini&#227;o) &#233; que o c&#243;digo tem que ser gerado na ordem
+inversa. &quot;a + b&quot; pode ser visto como um m&#233;todo &quot;+&quot; que recebe dois
+argumentos. S, ent&#227;o estes argumentos tamb&#233;m devem ser empilhados na ordem
+inversa.
+
+Seguindo o exemplo &quot;x = r.f(a,b) + c - d&quot;, eu acredito que o c&#243;digo gerado
+deveria ser:
+
+carobj d
+carobj c
+-
+carobj b
+carobj a
+carobj r
+invoca f
++
+armobj x
+
+Acho que &#233; isso...
+
+-- 
+[]'s
+Alex Sandro Garz&#227;o
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/gpt-devel/attachments/20101023/42fad4f5/attachment.html">https://lists.berlios.de/pipermail/gpt-devel/attachments/20101023/42fad4f5/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000161.html">[gpt-devel] Ordem de empilhamento dos argumentos
+</A></li>
+	<LI>Next message: <A HREF="000163.html">[gpt-devel] Ordem de empilhamento dos argumentos
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#162">[ date ]</a>
+              <a href="thread.html#162">[ thread ]</a>
+              <a href="subject.html#162">[ subject ]</a>
+              <a href="author.html#162">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

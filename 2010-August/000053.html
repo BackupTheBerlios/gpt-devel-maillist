@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Metas da V2
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Metas%20da%20V2&In-Reply-To=%3CAANLkTi%3DMk-894eXXmDQh0tDZcdyDdbMckv2c%2BSKDb_pH%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000045.html">
+   <LINK REL="Next"  HREF="000054.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Metas da V2</H1>
+    <B>Alex Garzao</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Metas%20da%20V2&In-Reply-To=%3CAANLkTi%3DMk-894eXXmDQh0tDZcdyDdbMckv2c%2BSKDb_pH%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Metas da V2">alexgarzaol at gmail.com
+       </A><BR>
+    <I>Wed Aug 11 14:25:43 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000045.html">[gpt-devel] Compilando para o Windows
+</A></li>
+        <LI>Next message: <A HREF="000054.html">[gpt-devel] Metas da V2
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#53">[ date ]</a>
+              <a href="thread.html#53">[ thread ]</a>
+              <a href="subject.html#53">[ subject ]</a>
+              <a href="author.html#53">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bom dia senhores :-)
+
+Colo abaixo o coment&#225;rio do Eleandro:
+
+&quot;Sugiro de criar-mos um road-map provis&#243;rio para balizarmos nossas id&#233;ias e
+objetivos, para que possamos ir avan&#231;ando em pontos aonde j&#225; temos seguran&#231;a
+de como e o que ser&#225; feito. E tamb&#233;m agregar a este road-map uma descri&#231;&#227;o
+detalhada das id&#233;ias e objetivos em cada etapa, al&#233;m de definirmos algumas
+datas para termos uma id&#233;ia de metas.&quot;
+
+Como comentou o Thiago, s&#243; &#233; complicado colocarmos datas.
+
+Para criarmos o road-map, vamos fechar o escopo/expectativas da V2. Dentro
+deste escopo, priorizamos o que ser&#225; feito, e ai sim poderemos definir
+alguns milestones &quot;entreg&#225;veis&quot;.
+
+Revisando ent&#227;o a outra thread, o que temos &#233;:
+- Sintaxe para novas instru&#231;&#245;es (repita, escolha, fa&#231;a enquanto, sair, etc)
+- Sintaxe para declara&#231;&#227;o e utiliza&#231;&#227;o de estruturas heterog&#234;neas (aka
+struct)
+- Sintaxe para passagem de par&#226;metros por refer&#234;ncia
+- Revis&#227;o geral da sintaxe
+- Revis&#227;o geral da sem&#226;ntica dos tipos
+- Revis&#227;o na GptAssembly: (late binding, restri&#231;&#227;o de tipos, polimorfismo,
+etc..)
+- Arrays unidimensionais e multidimensionais
+- Suporte a n&#250;mero de par&#226;metros vari&#225;veis
+- Uso de m&#243;dulos (aka import/include/use/require/load)
+- Unicode
+- Uso de bibliotecas de sistema
+- M&#243;dulos parametrizados
+- Source level debugging
+
+Eu tenho algumas pondera&#231;&#245;es:
+
+1) Manteremos o GptC e a GptVM. Por&#233;m, acho que, apesar de termos o
+GptAssembly, n&#227;o precisamos de um assemblador (GptASM). O GptC pode compilar
+G-Portugol, gerar GptAssembly internamente e assemblar para gerar o bytecode
+diretamente.
+
+Claro que, para estudo e visualiza&#231;&#227;o, o GptAssembly pode ser visto, tanto
+durante a compila&#231;&#227;o bem como o bytecode pode ser &quot;desassemblado&quot;. E caso
+seja necess&#225;rio programar em GptAssembly, o pr&#243;rpio GptC pode assemblar
+isto, tipo a cl&#225;usula &quot;asm&quot; do C.
+
+Algu&#233;m v&#234; algum problema em n&#227;o termos o GptASM?
+
+2) Como foi comentado na outra thread, nada impede que, a partir do
+GptAssembly, seja gerado c&#243;digo para outras linguagens ou VMs. Isso
+facilitaria um pouco as coisas para n&#243;s porque, nas primeiras vers&#245;es, n&#227;o
+precisamos ter a GptVM funcional.
+
+De qualquer forma, como o nosso foco &#233; termos o nosso runtime (GptVM), n&#227;o
+vamos investir muito tempo nesta tradu&#231;&#227;o. Ser&#225; uma tradu&#231;&#227;o simples e pura,
+sem se preocupar com libs de sistema, debug interativo e coisas do g&#234;nero.
+Como eu disse, seria bem para tirarmos (inicialmente) a depend&#234;ncia que
+temos da GptVM para executar aplicativos em G-Portugol.
+
+S&#243; saliento que, talvez, o &quot;custo&quot; de fazer um tradutor para outra linguagem
+seja similar a fazer uma vers&#227;o b&#225;sica da GptVM. Al&#233;m da vers&#227;o anterior da
+GptVm, eu tenho duas VMs acad&#234;micas &quot;funcionais&quot;, que s&#227;o GPL, ent&#227;o n&#227;o
+estaria come&#231;ando a GptVM &quot;do zero&quot;. Vou rever isto com calma.
+
+3) Thiago, voc&#234; comentou na outra thread: &quot;Por isso que eu acharia
+interessante criarmos uma plataforma que seja gen&#233;rica, que n&#227;o assuma quase
+nada sobre a(s) linguagen(s) de alto n&#237;vel que ser&#227;o criadas por cima dela.&quot;
+
+Concordo com voc&#234;. Mas relendo a thread, para mim n&#227;o ficou claro se essa
+sua observa&#231;&#227;o &#233; um argumento quanto a quest&#227;o de termos a GptVM com (ou
+sem) restri&#231;&#227;o de tipos.
+
+Academicamente, eu fiz uma VM simb&#243;lica e uma (+-) tipada. O que eu notei &#233;
+que tanto o assembly quanto a VM tipada ficaram &quot;mais claras&quot;. Eu
+sinceramente n&#227;o tenho uma opini&#227;o formada se devemos seguir uma abordagem
+tipada (ou n&#227;o). O que voc&#234;s acham???
+
+Abra&#231;os!
+
+-- 
+[]'s
+Alex Sandro Garz&#227;o
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/gpt-devel/attachments/20100811/d14e3b95/attachment.html">https://lists.berlios.de/pipermail/gpt-devel/attachments/20100811/d14e3b95/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000045.html">[gpt-devel] Compilando para o Windows
+</A></li>
+	<LI>Next message: <A HREF="000054.html">[gpt-devel] Metas da V2
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#53">[ date ]</a>
+              <a href="thread.html#53">[ thread ]</a>
+              <a href="subject.html#53">[ subject ]</a>
+              <a href="author.html#53">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

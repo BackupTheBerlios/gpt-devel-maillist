@@ -1,0 +1,199 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Como%20funcionaria%20o%20%22imprima%22%20na%20VM%3F&In-Reply-To=%3CAANLkTinc5FkKQro41w%2B9uEi%3DzVQvHW5cyvpcoT9Sbi3M%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000123.html">
+   <LINK REL="Next"  HREF="000127.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?</H1>
+    <B>Alex Garzao</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Como%20funcionaria%20o%20%22imprima%22%20na%20VM%3F&In-Reply-To=%3CAANLkTinc5FkKQro41w%2B9uEi%3DzVQvHW5cyvpcoT9Sbi3M%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?">alexgarzaol at gmail.com
+       </A><BR>
+    <I>Sat Oct 16 04:56:37 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000123.html">[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?
+</A></li>
+        <LI>Next message: <A HREF="000127.html">[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#125">[ date ]</a>
+              <a href="thread.html#125">[ thread ]</a>
+              <a href="subject.html#125">[ subject ]</a>
+              <a href="author.html#125">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Oi,
+
+&gt;<i> A d&#250;vida que eu tenho &#233; quanto ao invoca &quot;imprima&quot;. O imprima, na teoria,
+</I>&gt;<i> &gt; faz parte da biblioteca do gpt, assim como o leia e outras do g&#234;nero.
+</I>&gt;<i> Como a
+</I>&gt;<i> &gt; VM saber&#225; onde est&#225; imprima, visto que ela n&#227;o faz parte da vtable do
+</I>&gt;<i> &gt; Objeto?
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Eu pensei (rapidamente) em duas possibilidades:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; 1) &quot;imprima&quot; ser&#225; um m&#233;todo est&#225;tico de uma classe que ser&#225; invocado,
+</I>&gt;<i> algo
+</I>&gt;<i> &gt; como &quot;es.imprima&quot;, onde es poderia ser a classe de &quot;entrada/sa&#237;da&quot; com
+</I>&gt;<i> todas
+</I>&gt;<i> &gt; as rotinas que necessitamos.
+</I>&gt;<i> &gt;
+</I>&gt;<i>
+</I>&gt;<i> Pelo que entendi, eu vejo dois assuntos aqui. Um deles &#233; a que objeto
+</I>&gt;<i> o m&#233;todo &quot;imprima&quot; pertence. O outro &#233; que, em algum momento, a
+</I>&gt;<i> impress&#227;o dever&#225; ocorrer, e n&#227;o h&#225; como expressar isso &quot;puramente&quot; em
+</I>&gt;<i> gptassembly.
+</I>&gt;<i>
+</I>
+Isso mesmo :-)
+
+
+&gt;<i> O primeiro, acho que a gente n&#227;o precisa resolver agora, pois &#233; um
+</I>&gt;<i> problema de como organizar os objetos.
+</I>&gt;<i>
+</I>
+Concordo que n&#227;o precisamos resolver agora. Por&#233;m, acho que n&#227;o &#233; s&#243; uma
+quest&#227;o de como organizar os objetos visto que o imprima ser&#225; uma
+funcionalidade da biblioteca do G-Portugol, e n&#227;o um m&#233;todo que existe em
+todos os objetos como o &quot;aloca&quot;.
+
+Mas sim, quanto mais postergarmos este tipo de detalhe, melhor para
+simplificarmos as etapas iniciais :-)
+
+
+&gt;<i> A melhor forma que conhe&#231;o para lidar com o segundo &#233; com &quot;primitivas&quot;
+</I>&gt;<i> da VM. Se representarmos m&#233;todos (ou fun&#231;&#245;es..estou usando os termos
+</I>&gt;<i> como sin&#244;nimos para facilitar) compilados com um header possuindo uma
+</I>&gt;<i> flag dizendo se o m&#233;todo &#233; primitivo e qual o n&#250;mero da fun&#231;&#227;o
+</I>&gt;<i> primitiva, por exemplo, podemos ter o &quot;send&quot;, ao receber o m&#233;todo do
+</I>&gt;<i> lookup(), checando em seu header se trata-se de uma opera&#231;&#227;o
+</I>&gt;<i> primitiva. Se for, extrai-se o n&#250;mero da primitiva e invoca-se ela
+</I>&gt;<i> internamente. Caso conr&#225;rio, realiza-se o &quot;send&quot; padr&#227;o.
+</I>&gt;<i>
+</I>
+Ok. Mas at&#233; agora n&#227;o parece ser diferente de invocar um m&#233;todo qualquer de
+um objeto certo? &quot;imprima&quot; n&#227;o &#233; um m&#233;todo qualquer, &#233; um m&#233;todo que deve
+estar acess&#237;vel a qq objeto por fazer parte da biblioteca padr&#227;o da
+linguagem.
+
+No caso do imprima, a gente n&#227;o vai ter uma entrada na vtable de cada objeto
+(imagino eu), e pouco menos o objeto pai (objeto) vai ter esta entrada em
+sua vtable.
+
+A n&#227;o ser que o que voc&#234; quis dizer (e eu n&#227;o entendi direito) &#233; que o
+lookup (ou send, sei l&#225; hehehe) primeiro testa se &#233; um m&#233;todo pr&#233;-definido
+(imprima, leia, ...), e caso seja, faz um tratamento (c&#243;digo nativo), sen&#227;o
+busca na vtable do objeto para ver se existe. &#201; isso?
+
+Considerando-se o tamanho do header, podemos ter um n&#250;mero X de
+&gt;<i> opera&#231;&#245;es primitivas (por exemplo, de e/s, primitivas gr&#225;ficas, FFI
+</I>&gt;<i> para fazer bindings, e mil outras coisas), cada uma associada a um
+</I>&gt;<i> n&#250;mero, sem interferir no conjunto de instru&#231;&#245;es.
+</I>&gt;<i>
+</I>&gt;<i> Por exemplo, eis algumas opera&#231;&#245;es primitivas definidas na VM do smalltalk:
+</I>&gt;<i>
+</I>&gt;<i> opera&#231;&#245;es aritm&#233;ticas para ints e floats (+,-,*,.....), relacionais
+</I>&gt;<i> (&gt;,&lt;,=,....), sem&#225;foros (wait, resume, ...), processos (suspend,
+</I>&gt;<i> resume...), opera&#231;&#245;es de clock, display (biblt copybits, draw, ...),
+</I>&gt;<i> opera&#231;&#245;es b&#225;sicas de objetos (&quot;getclass()&quot;, become, ...), opera&#231;&#245;es em
+</I>&gt;<i> blocos (fun&#231;&#245;es an&#244;nimas, que s&#227;o objetos/closures), ....
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> &gt; 2) Ao inv&#233;s de invoca, poder&#237;amos utilizar outro mnem&#244;nico, que este sim
+</I>&gt;<i> &gt; saberia que n&#227;o &#233; um m&#233;todo da classe.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Se poss&#237;vel gostaria de ler suas considera&#231;&#245;es :-)
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Acrescento que, vendo agora, achei muito estranho utilizarmos invoca
+</I>&gt;<i> tanto
+</I>&gt;<i> &gt; para m&#233;todos como para fun&#231;&#245;es do SO. &#201; bem prov&#225;vel que teremos que
+</I>&gt;<i> &gt; diferenciar, ou seja, um mnem&#244;nico para cada.
+</I>&gt;<i> &gt;
+</I>&gt;<i>
+</I>&gt;<i> Se tratar a fun&#231;&#227;o como objeto, vc pode ter esse pr&#243;prio objeto como
+</I>&gt;<i> receptor respondendo a uma mensagem como &quot;execute&quot;, por exemplo. A&#237;
+</I>&gt;<i> resta saber como este m&#233;todo &quot;execute&quot; executar&#225; seu &quot;this&quot;. Uma
+</I>&gt;<i> abordagem &#233; usar opera&#231;&#245;es primitivas: basta que o m&#233;todo &quot;execute&quot;
+</I>&gt;<i> tenha o flag de primitiva marcado e associado a uma opera&#231;&#227;o primitiva
+</I>&gt;<i> que sabe como realizar a execu&#231;&#227;o -- ou seja, criar um registro de
+</I>&gt;<i> ativa&#231;&#227;o usando o &quot;this&quot; e execut&#225;-lo. Passagem de par&#226;metros funciona
+</I>&gt;<i> normalmente.
+</I>&gt;<i>
+</I>&gt;<i> Resumo da &#243;pera, uma forma de isso tudo funcionar &#233; (se meu sono n&#227;o
+</I>&gt;<i> atrapalhar meu racioc&#237;nio):
+</I>&gt;<i>
+</I>&gt;<i> Suponha que &quot;imprima&quot; &#233; um m&#233;todo de strings (faz parte da vtable dos
+</I>&gt;<i> strings). Ent&#227;o:
+</I>&gt;<i>
+</I>&gt;<i> .m&#233;todo X:imprime_oi
+</I>&gt;<i>   carstr &quot;oi&quot;
+</I>&gt;<i>    invoca imprima
+</I>&gt;<i> .fim_m&#233;todo
+</I>&gt;<i>
+</I>&gt;<i> a implementa&#231;&#227;o da instru&#231;&#227;o invoca (simplificado):
+</I>&gt;<i>
+</I>&gt;<i> m = lookup(receiver, &quot;imprima&quot;)
+</I>&gt;<i>
+</I>&gt;<i> if !m
+</I>&gt;<i>  //fail/exception
+</I>&gt;<i>
+</I>&gt;<i> if m.is_primitive
+</I>&gt;<i>  execute_primitive(m.primitive_id)
+</I>&gt;<i> else
+</I>&gt;<i>  //send normal...
+</I>&gt;<i> end
+</I>&gt;<i>
+</I>&gt;<i> void primitive_imprima(stack* S) {
+</I>&gt;<i>  //...realiza o bendito &quot;printf()&quot;
+</I>&gt;<i> }
+</I>&gt;<i>
+</I>
+Hum, acho que a sua id&#233;ia bate com o que deduzi acima hehehe.
+
+Desta forma a gente posterga o problema de como implementar as bibliotecas,
+o que eu acho que &#233; uma boa coisa no est&#225;gio atual em que estamos.
+
+Abra&#231;os!
+
+-- 
+[]'s
+Alex Sandro Garz&#227;o
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/gpt-devel/attachments/20101015/6e6d94af/attachment.html">https://lists.berlios.de/pipermail/gpt-devel/attachments/20101015/6e6d94af/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000123.html">[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?
+</A></li>
+	<LI>Next message: <A HREF="000127.html">[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#125">[ date ]</a>
+              <a href="thread.html#125">[ thread ]</a>
+              <a href="subject.html#125">[ subject ]</a>
+              <a href="author.html#125">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

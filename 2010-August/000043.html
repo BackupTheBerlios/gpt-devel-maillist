@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Compilando para o Windows
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Compilando%20para%20o%20Windows&In-Reply-To=%3CAANLkTimuNyGqS5FM2uv7P3tUn8i8_wyt1ST77-WeE9%2BO%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000052.html">
+   <LINK REL="Next"  HREF="000044.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Compilando para o Windows</H1>
+    <B>Adorilson Bezerra de Araujo</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Compilando%20para%20o%20Windows&In-Reply-To=%3CAANLkTimuNyGqS5FM2uv7P3tUn8i8_wyt1ST77-WeE9%2BO%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Compilando para o Windows">adorilson at gmail.com
+       </A><BR>
+    <I>Thu Aug  5 04:46:19 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000052.html">[gpt-devel] Vamos dar prosseguimento a V2 ???
+</A></li>
+        <LI>Next message: <A HREF="000044.html">[gpt-devel] Compilando para o Windows
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#43">[ date ]</a>
+              <a href="thread.html#43">[ thread ]</a>
+              <a href="subject.html#43">[ subject ]</a>
+              <a href="author.html#43">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Thiago,
+
+estou adicionando a verifica&#231;ao do nasm em run-time.
+
+Para GNU/Linux estah pronto. Fiz com o which, assim:
+
+#ifndef WIN32
+        cmd &lt;&lt; &quot;which nasm &gt;&gt; /dev/null&quot;;
+
+        if (system(cmd.str().c_str()) != 0){
+           s.str(&quot;&quot;);
+           s &lt;&lt; &quot;Para executar o gpt no modo de compila&#231;&#227;o &#233; necess&#225;rio o
+nasm. E ele n&#227;o est&#225; instalado.&quot; &lt;&lt; endl;
+           GPTDisplay::self()-&gt;showError(s);
+           goto bail;
+        }
+#endif
+
+Para Windows, o que encontrei foi um tal de wmic[0]. Algu&#233;m tem outra
+sugest&#227;o?
+
+Minha d&#250;vida &#233;: como gerar o execut&#225;vel do gpt para o Windows?
+
+[0] <A HREF="http://guiadoleigo.com.br/listando-todos-os-programas-instalados">http://guiadoleigo.com.br/listando-todos-os-programas-instalados</A>
+
+-- 
+Adorilson Bezerra
+Organiza&#231;&#227;o do IV ENSL / IV EPSL
+5 e 6 de Novembro - Natal-RN
+<A HREF="http://www.ensl.org.br">http://www.ensl.org.br</A>
+Venha discutir software livre e rever amigos no calor do Nordeste.
+
+Aten&#231;&#227;o: Este e-mail pode conter anexos no formato ODF (Open Document
+Format)/ABNT (extens&#245;es odt, ods, odp, odb, odg). Antes de pedir os anexos
+em outro formato, voc&#234; pode instalar gratuita e livremente o BrOffice (
+<A HREF="http://www.broffice.org">http://www.broffice.org</A>) ou o seguinte Plugin para Microsoft Office (
+<A HREF="http://www.sun.com/software/star/odf_plugin/get.jsp">http://www.sun.com/software/star/odf_plugin/get.jsp</A>).
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/gpt-devel/attachments/20100804/d7a33463/attachment.html">https://lists.berlios.de/pipermail/gpt-devel/attachments/20100804/d7a33463/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000052.html">[gpt-devel] Vamos dar prosseguimento a V2 ???
+</A></li>
+	<LI>Next message: <A HREF="000044.html">[gpt-devel] Compilando para o Windows
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#43">[ date ]</a>
+              <a href="thread.html#43">[ thread ]</a>
+              <a href="subject.html#43">[ subject ]</a>
+              <a href="author.html#43">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

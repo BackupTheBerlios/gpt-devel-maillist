@@ -1,0 +1,220 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Fwd:  Como implementar estruturas de controle
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Fwd%3A%20%20Como%20implementar%20estruturas%20de%20controle&In-Reply-To=%3CAANLkTik7aCzH%2BTtXFiuWrnv6PNbgzAMFx_aVwmeUDy2M%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000140.html">
+   <LINK REL="Next"  HREF="000143.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Fwd:  Como implementar estruturas de controle</H1>
+    <B>Thiago Silva</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Fwd%3A%20%20Como%20implementar%20estruturas%20de%20controle&In-Reply-To=%3CAANLkTik7aCzH%2BTtXFiuWrnv6PNbgzAMFx_aVwmeUDy2M%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Fwd:  Como implementar estruturas de controle">tsilva at sourcecraft.info
+       </A><BR>
+    <I>Wed Oct 20 15:59:31 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000140.html">[gpt-devel] Como ser&#225; identificada a fun&#231;&#227;o principal em GptAssembly
+</A></li>
+        <LI>Next message: <A HREF="000143.html">[gpt-devel] Fwd:  Como implementar estruturas de controle
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#142">[ date ]</a>
+              <a href="thread.html#142">[ thread ]</a>
+              <a href="subject.html#142">[ subject ]</a>
+              <a href="author.html#142">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>---------- Forwarded message ----------
+From: Thiago Silva &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">tsilva at sourcecraft.info</A>&gt;
+Date: 2010/10/19
+Subject: Re: [gpt-devel] Como implementar estruturas de controle
+To: Alex Garzao &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">alexgarzaol at gmail.com</A>&gt;
+
+
+Boa madrugada :)
+
+2010/10/18 Alex Garzao &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">alexgarzaol at gmail.com</A>&gt;:
+&gt;<i> Boa noite :-)
+</I>&gt;<i>
+</I>&gt;&gt;<i> 1) Suponha:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> -que objetos boolean (&quot;verdadeiro&quot; e &quot;falso&quot;) possuem em sua vtable o
+</I>&gt;&gt;<i> m&#233;todo &quot;se&quot; que recebe dois objetos como par&#226;metro.
+</I>&gt;&gt;<i> -que a sintaxe &quot;[...]&quot; cria um objeto que denota uma fun&#231;&#227;o literal
+</I>&gt;&gt;<i> an&#244;nima (lambda/closure) e tais objeto possuem m&#233;todos, como por
+</I>&gt;&gt;<i> exemplo, &quot;execute&quot;.
+</I>&gt;<i>
+</I>&gt;<i> Esta &#233; a minha d&#250;vida. O que eu chamei de sub-fun&#231;&#245;es (nome horr&#237;vel) seriam
+</I>&gt;<i> os closures gerados para cada lambda. Isto quer dizer que uma fun&#231;&#227;o, com um
+</I>&gt;<i> if, gera pelo menos 3 closures certo? Um closure para a fun&#231;&#227;o, um para o
+</I>&gt;<i> &quot;ent&#227;o&quot; e outro para o &quot;sen&#227;o&quot; correto?
+</I>
+acho que n&#227;o entendi o &quot;gera, pelo menos 3 closures&quot;. Estritamente
+falando, neste caso, h&#225; o m&#233;todo &quot;se&quot; nesses booleans, que recebe dois
+objetos como par&#226;metros que devem saber responder ao m&#233;todo &quot;execute&quot;.
+Naturalmente, o caso comum &#233; que estes dois par&#226;metros seriam
+closures.
+
+
+&gt;&gt;<i> carconst 0
+</I>&gt;&gt;<i> carconst 10
+</I>&gt;&gt;<i> invoca &quot;at&#233;&quot;
+</I>&gt;&gt;<i> carobj xxx //endere&#231;o do closure (1)
+</I>&gt;&gt;<i> invoca &quot;para_cada&quot;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> .... // c&#243;digo do closure (1)
+</I>&gt;&gt;<i> carobj x
+</I>&gt;&gt;<i> invoca &quot;par&quot;
+</I>&gt;&gt;<i> carobj yyy //endere&#231;o do closure (2)
+</I>&gt;&gt;<i> carobj zzz //endere&#231;o do closure (3)
+</I>&gt;&gt;<i> invoca &quot;se&quot;
+</I>&gt;<i>
+</I>&gt;<i> Quando voc&#234; diz &quot;endere&#231;o do closure&quot;, seria algum tipo de identifica&#231;&#227;o,
+</I>&gt;<i> quase como um nome de fun&#231;&#227;o certo?
+</I>&gt;<i>
+</I>
+&#201; por a&#237;. Se &quot;carobj&quot; faz um push de um objeto ou oop (object oriented
+pointer), ent&#227;o &#233; o que estou fazendo: um push de um objeto, onde
+&quot;xxx&quot;,&quot;yyy&quot; e &quot;zzz&quot; resolvem para os respectivos objetos. Talvez, por
+exemplo, a compila&#231;&#227;o daquele c&#243;digo gerasse:
+
+xxx(x):
+carobj x
+invoca &quot;par&quot;
+carobj yyy //endere&#231;o do closure (2)
+carobj zzz //endere&#231;o do closure (3)
+invoca &quot;se&quot;
+
+onde &quot;xxx&quot; &#233; um nome arbitrariamente gerado pelo compilador. E a&#237;, o
+&quot;xxx&quot; em &quot;carobj xxx&quot; resolveria para a fun&#231;&#227;o definida acima.
+
+
+&gt;&gt;&gt;<i> Se cada estrutura de
+</I>&gt;&gt;&gt;<i> controle &#233; uma mensagem, isto quer dizer que ter&#237;amos que ter
+</I>&gt;&gt;&gt;<i> &quot;sub-fun&#231;&#245;es&quot;,
+</I>&gt;&gt;&gt;<i> onde cada fun&#231;&#227;o sub-fun&#231;&#227;o trataria uma mensagem espec&#237;fica?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Essa parte eu n&#227;o entendi, hehe..
+</I>&gt;<i>
+</I>&gt;<i> Como eu disse acima, eu chamei de sub-fun&#231;&#245;es, mas o correto seria closures.
+</I>&gt;<i> Enfim, eu entendi sim o pseudo-c&#243;digo, sem problemas. Mas eu achei um
+</I>&gt;<i> assembly bem &quot;complicado&quot; para algo que deveria ser simples. Imagine uma
+</I>&gt;<i> fun&#231;&#227;o com um for encadeado dentro de outro, com um if, mas um outro for no
+</I>&gt;<i> mesmo n&#237;vel do primeiro. Ok, gerar este c&#243;digo, a partir do GptC, depois de
+</I>&gt;<i> feitas as regras de tradu&#231;&#227;o de AST para GptAssembly, n&#227;o ser&#225; problema. Mas
+</I>&gt;<i> para gerar este GptAssembly &quot;na munheca&quot;, o cara vai ter que suar a camiseta
+</I>&gt;<i> hehehe.
+</I>&gt;<i>
+</I>
+S&#233;rio? O do &quot;se&quot; eu achei t&#227;o simples...os mesmos mnemonicos usados em
+todo o sistema s&#227;o usados para o &quot;se&quot;; n&#227;o h&#225; necessidade de saber
+nenhum outro opcode.
+
+O que observo no caso do &quot;for&quot; &#233; que ele distribui mais as partes --
+um estilo caracteristicamente funcional -- ent&#227;o certamente dificulta
+uma leitura linear (que &#233; uma caracter&#237;stica mais imperativa). Mas
+queria saber o que vc acha mais complicado...
+
+Sei que h&#225; formas de gerar um c&#243;digo mais tradicional com condicionais
+e jumps (sei que isso &#233; feito como otimiza&#231;&#227;o em m&#225;quinas OO puras)
+sem violar o modelo, mas n&#227;o &#233; algo que eu investiguei muito...
+
+
+&gt;<i> Bom, fica a d&#250;vida ent&#227;o sobre o n&#250;mero de closures.
+</I>&gt;<i>
+</I>&gt;<i> Se realmente existe esta quest&#227;o de um (ou mais) closures para cada
+</I>&gt;<i> estrutura de controle, talvez at&#233; seja poss&#237;vel &quot;contornar&quot;, mas n&#227;o sei se
+</I>&gt;<i> &#233; uma boa abordagem.
+</I>&gt;<i>
+</I>
+acho que vou te pedir pra reexplicar essa quest&#227;o do n&#250;mero de
+closures, heheh...
+
+&gt;<i> Bom, eu vou colocar a minha sugest&#227;o. No pior dos casos, entendi errado e o
+</I>&gt;<i> problema n&#227;o existe, ent&#227;o descartasse a sugest&#227;o e pronto :-)
+</I>&gt;<i>
+</I>&gt;<i> A primeira op&#231;&#227;o (mais &#243;bvia) &#233; termos os opcodes tradicionais (como a JVM,
+</I>&gt;<i> DotNet, Parrot, LuaVM e afins).
+</I>&gt;<i>
+</I>&gt;<i> Ent&#227;o, um for de 1 a 10 seria algo como:
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> &#160;&#160; &#160; &#160; &#160; &#160; &#160; &#160;// Inicializa X com 1
+</I>&gt;<i> &#160;&#160; &#160; &#160; &#160; &#160; &#160; &#160;carconst 1
+</I>&gt;<i> &#160;&#160; &#160; &#160; &#160; &#160; &#160; &#160;armvar X
+</I>&gt;<i> :teste_for &#160; &#160;// Verifica se X &#233; &lt;= 10
+</I>&gt;<i> &#160;&#160; &#160; &#160; &#160; &#160; &#160; &#160;carvar X
+</I>&gt;<i> &#160;&#160; &#160; &#160; &#160; &#160; &#160; &#160;meoi 10 // meoi = menor ou igual
+</I>&gt;<i> &#160;&#160; &#160; &#160; &#160; &#160; &#160; &#160;sefalso fim
+</I>&gt;<i> &#160;&#160; &#160; &#160; &#160; &#160; &#160; &#160;carvar X
+</I>&gt;<i> &#160;&#160; &#160; &#160; &#160; &#160; &#160; &#160;carconst 1
+</I>&gt;<i> &#160;&#160; &#160; &#160; &#160; &#160; &#160; &#160;invoca imprima
+</I>&gt;<i> &#160;&#160; &#160; &#160; &#160; &#160; &#160; &#160;// Soma +1 em X
+</I>&gt;<i> &#160;&#160; &#160; &#160; &#160; &#160; &#160; &#160;carvar X
+</I>&gt;<i> &#160;&#160; &#160; &#160; &#160; &#160; &#160; &#160;carconst 1
+</I>&gt;<i> &#160;&#160; &#160; &#160; &#160; &#160; &#160; &#160;adc
+</I>&gt;<i> &#160;&#160; &#160; &#160; &#160; &#160; &#160; &#160;armvar X
+</I>&gt;<i> &#160;&#160; &#160; &#160; &#160; &#160; &#160; &#160;salta teste_for
+</I>&gt;<i> :fim
+</I>&gt;<i>
+</I>
+
+Certo. Eu imaginei que, cedo ou tarde, possivelmente algo nessa linha
+seria feito, mas creio que mais como otimiza&#231;&#227;o, como falei acima.
+Algo que me salta os olhos como provavel ponto de dificuldade s&#227;o
+opcodes como &quot;meoi&quot;. Como s&#243; temos objetos, estes opcodes operam sobre
+objetos e n&#227;o sobre inteiros primitivos. Se criarmos objetos que
+representam n&#250;meros racionais, complexos, etc, cuidado deve ser tomado
+para que &quot;meoi&quot; opere corretamente com quaisquer destes objetos que
+venham a surgir, do contr&#225;rio viola-se o encapsulamento e, como
+consequ&#234;ncia, limitam-se as possibilidades..
+
+
+&gt;<i> A outra op&#231;&#227;o &#233; a seguinte. Seguindo esta sua abordagem, e se o closure
+</I>&gt;<i> &quot;verdadeiro:se&quot; recebesse tamb&#233;m como argumento o closure que cont&#233;m o
+</I>&gt;<i> c&#243;digo a ser executado, o endere&#231;o inicial de execu&#231;&#227;o dentro deste closure
+</I>&gt;<i> e o n&#250;mero de opcodes que devem ser executados? Pelo tardar da hora, me
+</I>&gt;<i> parece que isto quebra alguns encapsulamentos e conceitos da OO, e me
+</I>&gt;<i> pareceu meio &quot;gambiarra&quot;, mas fica como sugest&#227;o (pelo menos at&#233; amanh&#227;
+</I>&gt;<i> hehehe). Talvez amanh&#227; eu acorde e diga &quot;que horror isso que eu disse&quot;
+</I>&gt;<i> hehehe.
+</I>
+haha...acho que vou esperar vc acordar e escrever um exemplo :) hehehe
+
+
+[]'s
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000140.html">[gpt-devel] Como ser&#225; identificada a fun&#231;&#227;o principal em GptAssembly
+</A></li>
+	<LI>Next message: <A HREF="000143.html">[gpt-devel] Fwd:  Como implementar estruturas de controle
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#142">[ date ]</a>
+              <a href="thread.html#142">[ thread ]</a>
+              <a href="subject.html#142">[ subject ]</a>
+              <a href="author.html#142">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Ordem de empilhamento dos argumentos
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Ordem%20de%20empilhamento%20dos%20argumentos&In-Reply-To=%3CAANLkTikLchSO2SQNcgNvB50Wu6XUhFFNrj2nuf2nbEuK%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000166.html">
+   <LINK REL="Next"  HREF="000170.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Ordem de empilhamento dos argumentos</H1>
+    <B>Alex Garzao</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Ordem%20de%20empilhamento%20dos%20argumentos&In-Reply-To=%3CAANLkTikLchSO2SQNcgNvB50Wu6XUhFFNrj2nuf2nbEuK%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Ordem de empilhamento dos argumentos">alexgarzaol at gmail.com
+       </A><BR>
+    <I>Tue Oct 26 15:03:48 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000166.html">[gpt-devel] Ordem de empilhamento dos argumentos
+</A></li>
+        <LI>Next message: <A HREF="000170.html">[gpt-devel] Ordem de empilhamento dos argumentos
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#168">[ date ]</a>
+              <a href="thread.html#168">[ thread ]</a>
+              <a href="subject.html#168">[ subject ]</a>
+              <a href="author.html#168">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Oi :-)
+
+
+&gt;<i> &gt; carobj x
+</I>&gt;<i> &gt; carobj w
+</I>&gt;<i> &gt; carobj r
+</I>&gt;<i> &gt; invoca a // a deixa na pilha o objeto
+</I>&gt;<i> &gt;
+</I>&gt;<i>
+</I>&gt;<i> ok, &quot;r&quot; &#233; o receptor, ele est&#225; no topo, e w,x s&#227;o os argumentos. Ao
+</I>&gt;<i> fim, o resultado fica no topo...
+</I>&gt;<i>
+</I>&gt;<i> &gt; carobj z
+</I>&gt;<i> &gt; carobj y
+</I>&gt;<i> &gt; invoca b // b deixa na pilha o objeto
+</I>&gt;<i> &gt;
+</I>&gt;<i>
+</I>&gt;<i> eis o que estava imaginando: y que est&#225; no topo e &#233; o receptor. Mas o
+</I>&gt;<i> receptor deveria ser o resultado da chamada &quot;a&quot;. Corrija-me se eu
+</I>&gt;<i> estiver errado, mas este c&#243;digo acima invoca &quot;y.b(z, ....)&quot;., n&#227;o?
+</I>&gt;<i>
+</I>
+&#201; verdade. Est&#225; errado. Vamos rever...
+
+A senten&#231;a r.a(w,x).b(y,z).c(k) geraria algo como:
+
+// Empilha argumentos de c
+carobj k
+
+// Empilha argumentos de b
+carobj z
+carobj y
+
+// Empilha argumentos de a
+carobj x
+carobj w
+carobj r
+
+invoca a // a deixa na pilha o objeto
+invoca b // b deixa na pilha o objeto
+invoca c
+
+
+
+
+N&#227;o tenho certeza de que isto est&#225; correto, mas a impress&#227;o que tenho &#233; que,
+neste caso, temos que empilhar todos os argumentos de todas as chamadas
+cascateadas, antes de invocar o primeiro m&#233;todo.
+
+No momento do &quot;invoca a&quot;, a pilha cont&#233;m &quot;r, w, x, y, z, k&quot;. Ap&#243;s &quot;invoca a&quot;
+a pilha cont&#233;m &quot;r2, y, z, k&quot;, sendo r2 o objeto retornado por &quot;a&quot;.
+
+Ap&#243;s &quot;invoca b&quot;, a pilha cont&#233;m &quot;r3, k&quot;, sendo r3 o objeto retornado por
+&quot;b&quot;.
+
+Seria isso?
+
+-- 
+[]'s
+Alex Sandro Garz&#227;o
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/gpt-devel/attachments/20101026/c461a967/attachment.html">https://lists.berlios.de/pipermail/gpt-devel/attachments/20101026/c461a967/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000166.html">[gpt-devel] Ordem de empilhamento dos argumentos
+</A></li>
+	<LI>Next message: <A HREF="000170.html">[gpt-devel] Ordem de empilhamento dos argumentos
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#168">[ date ]</a>
+              <a href="thread.html#168">[ thread ]</a>
+              <a href="subject.html#168">[ subject ]</a>
+              <a href="author.html#168">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,200 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Formato (gram&#225;tica) do GptAssembly
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%0A%09%3D%3Fiso-8859-1%3Fq%3FFormato_%3D28gram%3DE1tica%3D29_do_GptAssemb%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Fly%3F%3D&In-Reply-To=%3CAANLkTimVuPL7uVVh67NAan8NnqkSiEu07kdJfQW1oujQ%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000107.html">
+   <LINK REL="Next"  HREF="000079.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Formato (gram&#225;tica) do GptAssembly</H1>
+    <B>Alex Garzao</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%0A%09%3D%3Fiso-8859-1%3Fq%3FFormato_%3D28gram%3DE1tica%3D29_do_GptAssemb%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Fly%3F%3D&In-Reply-To=%3CAANLkTimVuPL7uVVh67NAan8NnqkSiEu07kdJfQW1oujQ%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Formato (gram&#225;tica) do GptAssembly">alexgarzaol at gmail.com
+       </A><BR>
+    <I>Mon Oct 11 16:23:16 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000107.html">[gpt-devel] Formato (gram&#225;tica) do GptAssembly
+</A></li>
+        <LI>Next message: <A HREF="000079.html">[gpt-devel] Mnem&#244;nicos do GptAssembly
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#110">[ date ]</a>
+              <a href="thread.html#110">[ thread ]</a>
+              <a href="subject.html#110">[ subject ]</a>
+              <a href="author.html#110">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> &gt;&gt; Hehe....porque vc acha uma bazuca?
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Hehehe. Pensando em termos de G-Portugol, ou em termos de uma VM com
+</I>&gt;<i> suporte
+</I>&gt;<i> &gt; a OO, podemos ter as funcionalidades necess&#225;rias (acho eu) com assembly
+</I>&gt;<i> &gt; &quot;mais tradicional&quot; que, para um for, gera c&#243;digo para inicializar a
+</I>&gt;<i> vari&#225;vel
+</I>&gt;<i> &gt; do la&#231;o, c&#243;digo para testar, e no final do bloco, c&#243;digo para incrementar
+</I>&gt;<i> e
+</I>&gt;<i> &gt; saltar para o teste novamente.
+</I>&gt;<i> &gt; Eu posso estar enganado, claro, mas tenho a impress&#227;o que a gente t&#225;
+</I>&gt;<i> &gt; montando uma VM &quot;pau pra toda obra&quot;, s&#243; que isso tem um custo: muita
+</I>&gt;<i> &gt; implementa&#231;&#227;o.
+</I>&gt;<i>
+</I>&gt;<i> Voc&#234; acha que dar&#225; mais trabalho na VM n&#227;o implementar uma s&#233;rie de
+</I>&gt;<i> opcodes? At&#233; aqui, n&#243;s removemos completamente todo trabalho sobre
+</I>&gt;<i> tipos e removemos todas as opera&#231;&#245;es aritm&#233;ticas, l&#243;gicas e
+</I>&gt;<i> relacionais da VM. Ela n&#227;o estaria ficando mais simples??
+</I>&gt;<i>
+</I>
+A VM sim fica mais simples...
+
+
+&gt;<i> Claro que essas remo&#231;&#245;es v&#227;o pra outro lugar.....pro alto n&#237;vel, nos
+</I>&gt;<i> objetos e seus m&#233;todos. A gente s&#243; moveu o trabalho de um lugar pro
+</I>&gt;<i> outro. N&#227;o acho que a movimenta&#231;&#227;o altera a quantidade de trabalho
+</I>&gt;<i> geral nem sua complexidade (e do lado da VM, apenas diminui)....
+</I>&gt;<i>
+</I>&gt;<i> Estou deixano de ver algo?
+</I>&gt;<i>
+</I>
+A &quot;complexidade&quot; vai para outro lugar. Eu acho que o meu par&#226;metro para
+dizer que &quot;&#233; mais complicado&quot; &#233; comparar a VM que estamos discutindo com uma
+tradicional com os opcodes &quot;&#243;bvios&quot;, assemby &quot;&#243;bvio&quot;, e por ai vai.
+
+Mas, para ser bem sincero, talvez eu esteja exagerando. N&#227;o sei mesmo. &#201; que
+quando eu penso na meta (compilar/executar G-Portugol), n&#227;o vejo a
+necessidade de uma VM t&#227;o elaborada.
+
+
+&gt;<i>
+</I>&gt;<i> &gt; Tenho receio que o nosso escopo fique grande o suficiente
+</I>&gt;<i> &gt; para demorarmos muito para alcan&#231;ar. Da pouca experi&#234;ncia que tenho com
+</I>&gt;<i> &gt; projetos open-source, o que eu vi claramente &#233; que tudo que demora demais
+</I>&gt;<i> &gt; acaba &quot;desanimando&quot; o pessoal do projeto porque, bem ou mal, nunca se
+</I>&gt;<i> &gt; termina nada porque tudo &#233; muito custoso (em termos de tempo).
+</I>&gt;<i>
+</I>&gt;<i> Mas, vc acha que o escopo est&#225; aumentando? N&#243;s tiramos um catatau de
+</I>&gt;<i> coisas da VM e &quot;em troca&quot;, s&#243; pedi first-class closures, hehe
+</I>&gt;<i>
+</I>
+Hehehe. A gente tira da VM, mas movemos para outro lugar, ent&#227;o continuamos
+tendo que implementar estas funcionalidades em algum lugar para atingir as
+metas do G-Portugol.
+
+
+&gt;<i> &gt;&gt; Quanto a implementa&#231;&#227;o de opera&#231;&#245;es de controle (condi&#231;&#227;o, repeti&#231;&#227;o,
+</I>&gt;<i> &gt;&gt; etc), eu acho que podemos seguir uma linha tradicional, oferecendo os
+</I>&gt;<i> &gt;&gt; opcodes ncess&#225;rios.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Pois &#233;. Sinceramente, n&#227;o sei dizer o que &#233; melhor. Eu s&#243; penso que, se a
+</I>&gt;<i> &gt; gente montar a base correta, nada impede que a gente opte pela solu&#231;&#227;o X
+</I>&gt;<i> &gt; agora e, posteriormente, resolva implementar Y ou Z.
+</I>&gt;<i> &gt; Eu tenho a sensa&#231;&#227;o &#233; que, com todas estas propostas, n&#243;s teremos uma
+</I>&gt;<i> super
+</I>&gt;<i> &gt; VM. A quest&#227;o &#233;: a gente precisa de tanto assim agora? N&#227;o seria melhor
+</I>&gt;<i> &gt; fazer algo mais trivial e evoluir quando necess&#225;rio?
+</I>&gt;<i> &gt;
+</I>&gt;<i>
+</I>&gt;<i> O que seria a forma mais trivial?
+</I>&gt;<i>
+</I>
+A antiga proposta da GptVM, tirando a tipagem, e colocando suporte a OO.
+Claro, n&#227;o ter&#237;amos a possibilidade de reprogramar tudo. Enfim...
+
+
+&gt;<i>  &gt;&gt; Meu ponto &#233; que eu acho importante ter uma m&#225;quina virtual gen&#233;rica o
+</I>&gt;<i> &gt;&gt; suficiente para implementar, sem impedimentos ou grandes dores de
+</I>&gt;<i> &gt;&gt; cabe&#231;a, diversos conceitos. Acho que enquanto esse objetivo n&#227;o ferir
+</I>&gt;<i> &gt;&gt; a complexidade da implementa&#231;&#227;o (e at&#233; agora, acho que est&#225; tudo
+</I>&gt;<i> &gt;&gt; dentro dos meus crit&#233;rios de simplicidade, pelo menos), vale a pena
+</I>&gt;<i> &gt;&gt; seguir esse caminho.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Entendo. Mas, imagine que tivessemos esta VM hoje. A gente n&#227;o tem uma
+</I>&gt;<i> &gt; linguagem de alto n&#237;vel para explorar a VM, e sim apenas a GptAssembly.
+</I>&gt;<i> Por
+</I>&gt;<i> &gt; isso tenho a sensa&#231;&#227;o de estarmos fazendo algo que n&#227;o iremos utilizar
+</I>&gt;<i> (pelo
+</I>&gt;<i> &gt; menos n&#227;o por enquanto).
+</I>&gt;<i>
+</I>&gt;<i> Falando especificamente disso, linguagem simples (algo como
+</I>&gt;<i> g-portugol, gptassembly, etc...qualquer coisa que n&#227;o se pare&#231;a como
+</I>&gt;<i> C++) &#233; trabalho r&#225;pido. Mesmo...n&#227;o estou contaminado pelo v&#237;rus do
+</I>&gt;<i> &quot;programador otimista&quot; quando digo isso, heheh...
+</I>&gt;<i>
+</I>
+Eu concordo. Eu j&#225; implementei algumas linguagens &quot;estranhas&quot;, gerando
+bytecode, etc e tal, sem grande stress.
+
+O que eu tenho a impress&#227;o &#233; que esta VM seria quase como um projeto &quot;a
+parte&quot;, porque ela n&#227;o seria para o G-Portugol entende? O prop&#243;sito dela
+seria servir para v&#225;rios outros fins, inclusive para o G-Portugol, mas n&#227;o
+apenas para ele.
+
+
+&gt;<i>  &gt; Entendo. A proposta &#233; interessante. A d&#250;vida &#233; se a nossa meta &#233; esta
+</I>&gt;<i> &gt; tamb&#233;m.
+</I>&gt;<i>
+</I>&gt;<i> [resposta no pr&#243;ximo email]
+</I>&gt;<i>
+</I>
+Ok.
+
+
+&gt;<i>
+</I>&gt;<i> &gt; Entendo. Isso &#233; algo legal tamb&#233;m.
+</I>&gt;<i> &gt; Bom, como disse, o meu receio &#233; estarmos montando uma ferrari, mas um
+</I>&gt;<i> &gt; fusquinha s&#243; j&#225; serviria hehehe.
+</I>&gt;<i> &gt; Vamos conversando....
+</I>&gt;<i> &gt; Abra&#231;os!
+</I>&gt;<i>
+</I>&gt;<i> Ent&#227;o...posso estar louco, mas tenho a impress&#227;o de que &#233; justamente
+</I>&gt;<i> um fusquinha que estamos construindo...heheeh
+</I>&gt;<i>
+</I>
+Eu acredito que a nossa diferen&#231;a na percep&#231;&#227;o do que &#233; complicado (ou n&#227;o)
+seja em fun&#231;&#227;o da nossa experi&#234;ncia individual. Eu consigo definir 80% do
+que uma VM precisa para rodar aplicativos em Java, C# (e para linguagens n&#227;o
+muito convencionais) facilmente, porque j&#225; fiz isso antes. Pelo que eu noto,
+a sua experi&#234;ncia lhe proporciona facilidade em outras &#225;reas que eu n&#227;o
+tenho experi&#234;ncia hehehe.
+
+Abra&#231;os!
+
+-- 
+[]'s
+Alex Sandro Garz&#227;o
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/gpt-devel/attachments/20101011/cee5512d/attachment.html">https://lists.berlios.de/pipermail/gpt-devel/attachments/20101011/cee5512d/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000107.html">[gpt-devel] Formato (gram&#225;tica) do GptAssembly
+</A></li>
+	<LI>Next message: <A HREF="000079.html">[gpt-devel] Mnem&#244;nicos do GptAssembly
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#110">[ date ]</a>
+              <a href="thread.html#110">[ thread ]</a>
+              <a href="subject.html#110">[ subject ]</a>
+              <a href="author.html#110">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

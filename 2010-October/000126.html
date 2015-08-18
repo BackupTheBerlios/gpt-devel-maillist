@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Como%20funcionaria%20o%20%22imprima%22%20na%20VM%3F&In-Reply-To=%3CAANLkTi%3DP6V78asmaLnRJE1CwW-k_suNagTUo4Su1u_yP%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000124.html">
+   <LINK REL="Next"  HREF="000131.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?</H1>
+    <B>Alex Garzao</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Como%20funcionaria%20o%20%22imprima%22%20na%20VM%3F&In-Reply-To=%3CAANLkTi%3DP6V78asmaLnRJE1CwW-k_suNagTUo4Su1u_yP%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?">alexgarzaol at gmail.com
+       </A><BR>
+    <I>Sat Oct 16 05:01:53 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000124.html">[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?
+</A></li>
+        <LI>Next message: <A HREF="000131.html">[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#126">[ date ]</a>
+              <a href="thread.html#126">[ thread ]</a>
+              <a href="subject.html#126">[ subject ]</a>
+              <a href="author.html#126">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i>
+</I>&gt;<i> Acrescento que, vendo agora, achei muito estranho utilizarmos invoca tanto
+</I>&gt;&gt;<i> para m&#233;todos como para fun&#231;&#245;es do SO. &#201; bem prov&#225;vel que teremos que
+</I>&gt;&gt;<i> diferenciar, ou seja, um mnem&#244;nico para cada.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;<i> Estranho em que sentido? Do ponto de vista do usu&#225;rio (abstraindo qualquer
+</I>&gt;<i> aspectos da implementa&#231;&#227;o disso) eu acho bastante natural que seja dessa
+</I>&gt;<i> forma. &#201; muito mais simples voc&#234; ter de aprender uma &#250;nica fun&#231;&#227;o (no caso o
+</I>&gt;<i> invoca) do que duas, por exemplo, invoca_funcao e invoca_metodo.
+</I>&gt;<i>
+</I>
+Entendi. Voc&#234; esta analisando do ponto de vista do usu&#225;rio, e eu da VM
+hehehe. Para a VM seria mais l&#243;gico (no meu ponto de vista) serem mnem&#244;nicos
+separados, porque a funcionalidade &#233; distinda. Mas do ponto de vista do
+usu&#225;rio &#233; valido sim o que voc&#234; disse.
+
+S&#243; ressaltando que a id&#233;ia n&#227;o era ter invoca_funcao e invoca_metodo, mas
+sim invoca_metodo e invoca_lib (ou algo do g&#234;nero).
+
+De qualquer forma, acho que voc&#234; tem raz&#227;o. Para o usu&#225;rio &#233; mais simples
+ter uma fun&#231;&#227;o s&#243;, e ela que se vire hehehe.
+
+Abra&#231;os!
+
+-- 
+[]'s
+Alex Sandro Garz&#227;o
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/gpt-devel/attachments/20101016/b34a2767/attachment.html">https://lists.berlios.de/pipermail/gpt-devel/attachments/20101016/b34a2767/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000124.html">[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?
+</A></li>
+	<LI>Next message: <A HREF="000131.html">[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#126">[ date ]</a>
+              <a href="thread.html#126">[ thread ]</a>
+              <a href="subject.html#126">[ subject ]</a>
+              <a href="author.html#126">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

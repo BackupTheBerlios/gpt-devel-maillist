@@ -1,0 +1,166 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Evitar uso de argumentos para os opcodes?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Evitar%20uso%20de%20argumentos%20para%20os%20opcodes%3F&In-Reply-To=%3CAANLkTinPixAe9ziE_S0e0M_yrD_2Up_fPHOJA%2BRyAqSm%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000167.html">
+   <LINK REL="Next"  HREF="000171.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Evitar uso de argumentos para os opcodes?</H1>
+    <B>Alex Garzao</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Evitar%20uso%20de%20argumentos%20para%20os%20opcodes%3F&In-Reply-To=%3CAANLkTinPixAe9ziE_S0e0M_yrD_2Up_fPHOJA%2BRyAqSm%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Evitar uso de argumentos para os opcodes?">alexgarzaol at gmail.com
+       </A><BR>
+    <I>Tue Oct 26 15:08:17 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000167.html">[gpt-devel] Evitar uso de argumentos para os opcodes?
+</A></li>
+        <LI>Next message: <A HREF="000171.html">[gpt-devel] Evitar uso de argumentos para os opcodes?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#169">[ date ]</a>
+              <a href="thread.html#169">[ thread ]</a>
+              <a href="subject.html#169">[ subject ]</a>
+              <a href="author.html#169">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Inclusive, vou tentar rever o exemplo da senten&#231;a r.a(w,x).b(y,z).c(k)
+utilizando esta abordagem...
+
+// Empilha dados para invocar c
+carobj k
+carconst &quot;c&quot;
+
+// Empilha dados para invocar b
+carobj z
+carobj y
+carconst &quot;b&quot;
+
+// Empilha dados para invocar a
+carobj x
+carobj w
+carconst &quot;a&quot;
+carobj r
+
+invoca // invoca &quot;a&quot; que deixa na pilha o objeto
+invoca // invoca &quot;b&quot; que deixa na pilha o objeto
+invoca // invoca &quot;c&quot;
+
+
+Seria isso?
+
+Abra&#231;os!
+
+
+2010/10/26 Thiago Silva &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">tsilva at sourcecraft.info</A>&gt;
+
+&gt;<i> Bom dia!
+</I>&gt;<i>
+</I>&gt;<i> 2010/10/26 Alex Garzao &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">alexgarzaol at gmail.com</A>&gt;:
+</I>&gt;<i> &gt; Bom dia senhores :-)
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Eu tenho uma sugest&#227;o quanto ao formato dos opcodes.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Atualmente, para invocarmos um m&#233;todo com um argumento seria algo como:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; carconst &quot;Oi&quot;
+</I>&gt;<i> &gt; invoca meu_metodo
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Eu teria uma sugest&#227;o. Tentarmos, sempre que poss&#237;vel, evitar passarmos
+</I>&gt;<i> &gt; argumentos para os opcodes que n&#227;o manipulam a pilha diretamente. No
+</I>&gt;<i> exemplo
+</I>&gt;<i> &gt; acima, seria o opcode &quot;invoca&quot;.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; A sugest&#227;o seria algo como:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; carconst &quot;Oi&quot;
+</I>&gt;<i> &gt; carconst &quot;meu_metodo&quot;
+</I>&gt;<i> &gt; invoca
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; O que ganhamos com esta aborgadem &#233; que deixamos os opcodes mais
+</I>&gt;<i> flex&#237;veis.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; No exemplo original, como o &quot;invoca&quot; recebe como argumento o nome do
+</I>&gt;<i> m&#233;todo,
+</I>&gt;<i> &gt; n&#227;o temos como invocar um m&#233;todo que n&#227;o seja conhecido em tempo de
+</I>&gt;<i> &gt; compila&#231;&#227;o, at&#233; porque &quot;meu_metodo&quot; vai ter que constar na tabela de
+</I>&gt;<i> &gt; s&#237;mbolos do bytecode gerado.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; No outro exemplo proposto, como invoca busca na pilha o nome do m&#233;todo a
+</I>&gt;<i> ser
+</I>&gt;<i> &gt; invocado, nada impede que at&#233; o usu&#225;rio (via teclado) informe o nome do
+</I>&gt;<i> &gt; m&#233;todo a ser invocado. Algo como:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; .vari&#225;vel nome_m&#233;todo
+</I>&gt;<i> &gt; .vari&#225;vel valor
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; carconst &quot;Digite o nome do m&#233;todo: &quot;
+</I>&gt;<i> &gt; carconst leia
+</I>&gt;<i> &gt; invoca
+</I>&gt;<i> &gt; armvar nome_m&#233;todo
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; carconst &quot;Digite um valor: &quot;
+</I>&gt;<i> &gt; carconst leia
+</I>&gt;<i> &gt; invoca
+</I>&gt;<i> &gt; armvar valor
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; carvar valor
+</I>&gt;<i> &gt; carvar nome_m&#233;todo
+</I>&gt;<i> &gt; invoca
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Ok, estou assumindo que o m&#233;todo realmente existe, e que recebe um
+</I>&gt;<i> &gt; argumento, mas como um exemplo, serve :-)
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Abra&#231;os!
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; --
+</I>&gt;<i> &gt; []'s
+</I>&gt;<i> &gt; Alex Sandro Garz&#227;o
+</I>&gt;<i> &gt;
+</I>&gt;<i>
+</I>&gt;<i> J&#243;ia! muito bom!
+</I>&gt;<i>
+</I>
+
+
+-- 
+[]'s
+Alex Sandro Garz&#227;o
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/gpt-devel/attachments/20101026/fd03a380/attachment.html">https://lists.berlios.de/pipermail/gpt-devel/attachments/20101026/fd03a380/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000167.html">[gpt-devel] Evitar uso de argumentos para os opcodes?
+</A></li>
+	<LI>Next message: <A HREF="000171.html">[gpt-devel] Evitar uso de argumentos para os opcodes?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#169">[ date ]</a>
+              <a href="thread.html#169">[ thread ]</a>
+              <a href="subject.html#169">[ subject ]</a>
+              <a href="author.html#169">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,183 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Formato (gram&#225;tica) do GptAssembly
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%0A%09%3D%3Fiso-8859-1%3Fq%3FFormato_%3D28gram%3DE1tica%3D29_do_GptAssemb%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Fly%3F%3D&In-Reply-To=%3CAANLkTikZXuycisP6nqS_c1-4zmddThew9vxaw-u%2BaJ9X%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000101.html">
+   <LINK REL="Next"  HREF="000103.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Formato (gram&#225;tica) do GptAssembly</H1>
+    <B>Alex Garzao</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%0A%09%3D%3Fiso-8859-1%3Fq%3FFormato_%3D28gram%3DE1tica%3D29_do_GptAssemb%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Fly%3F%3D&In-Reply-To=%3CAANLkTikZXuycisP6nqS_c1-4zmddThew9vxaw-u%2BaJ9X%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Formato (gram&#225;tica) do GptAssembly">alexgarzaol at gmail.com
+       </A><BR>
+    <I>Sat Oct  9 16:32:35 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000101.html">[gpt-devel] Formato (gram&#225;tica) do GptAssembly
+</A></li>
+        <LI>Next message: <A HREF="000103.html">[gpt-devel] Formato (gram&#225;tica) do GptAssembly
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#102">[ date ]</a>
+              <a href="thread.html#102">[ thread ]</a>
+              <a href="subject.html#102">[ subject ]</a>
+              <a href="author.html#102">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i>
+</I>&gt;<i> &gt;&gt; &gt;&gt; O que me leva a pensar que talvez seja necess&#225;rio pensar sobre como
+</I>&gt;<i> &gt;&gt; &gt;&gt; implementar uma chamada equivalente a &quot;super()&quot;..
+</I>&gt;<i> &gt;&gt; &gt;
+</I>&gt;<i> &gt;&gt; &gt; No closure temos dados &quot;opacos&quot; e a implementa&#231;&#227;o do m&#233;todo. Acredito
+</I>&gt;<i> &gt;&gt; &gt; que na
+</I>&gt;<i> &gt;&gt; &gt; se&#231;&#227;o de dados poderia ter um pointer (ou algo do g&#234;nero) que aponta
+</I>&gt;<i> &gt;&gt; &gt; para
+</I>&gt;<i> &gt;&gt; &gt; o &quot;m&#233;todo pai&quot; (super).
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; interessante. Eu n&#227;o tinha pensado nisso. Eu pensei em ter um outro
+</I>&gt;<i> &gt;&gt; tipo de &quot;invoca&quot; que &quot;pula&quot; o dicion&#225;rio do objeto e come&#231;a a busca do
+</I>&gt;<i> &gt;&gt; m&#233;todo no objeto pai.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; &quot;Acho&quot; que self pode ser um m&#233;todo invocado com o &quot;invoca&quot; mesmo. E ele
+</I>&gt;<i> v&#234;
+</I>&gt;<i> &gt; se tem um ponteiro para o m&#233;todo pai na &#225;rea de dados.
+</I>&gt;<i> &gt; De qq forma, a gente avalia quando necess&#225;rio a melhor abordagem. Pelo
+</I>&gt;<i> &gt; tardar da hora, n&#227;o tenho muita opini&#227;o formada :-D
+</I>&gt;<i> &gt;
+</I>&gt;<i>
+</I>&gt;<i> Eu n&#227;o entendi: &quot;self pode ser um m&#233;todo invocado com 'invoca'&quot;. Mas
+</I>&gt;<i> podemos continuar andando :)
+</I>&gt;<i>
+</I>
+Errei hehehe. &quot;super&quot; pode ser um m&#233;todo invocado com &quot;invoca&quot;. Se tem um
+pointer para super, ele invoca o m&#233;todo do pai. Sen&#227;o, acho que gera uma
+exception.
+
+
+&gt;<i> &gt;&gt; *Objeto (vtable: VTable)
+</I>&gt;<i> &gt;&gt; -parent: null
+</I>&gt;<i> &gt;&gt; -methods: {novo()}
+</I>&gt;<i> &gt;&gt; -payload: 0 //inst&#226;ncias de Objeto n&#227;o possuem propriedades
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; .. e que a defini&#231;&#227;o &quot;X:Objeto&quot; cria o seguinte objeto:
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; *X (vtable: VTable)
+</I>&gt;<i> &gt;&gt; -parent: Objeto
+</I>&gt;<i> &gt;&gt; -methods: {imprime_oi()}
+</I>&gt;<i> &gt;&gt; -payload: 0 //inst&#226;ncias de X n&#227;o possuemi propriedades
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; a implementa&#231;&#227;o de novo() poderia ser:
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; .m&#233;todo Objeto:novo
+</I>&gt;<i> &gt;&gt;   //supondo que &quot;this&quot; est&#225; no topo da pilha e this = X
+</I>&gt;<i> &gt;&gt;   carprop 2 //carrega o valor de payload de X: 0
+</I>&gt;<i> &gt;&gt;   aloca       //cria um novo objeto [obj]
+</I>&gt;<i> &gt;&gt; fim
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Para mim parece ok :-)
+</I>&gt;<i> &gt; Pequenas ressalvas... Acho que &quot;.m&#233;todo&quot; ficou mais leg&#237;vel do que
+</I>&gt;<i> &gt; &quot;.fun&#231;&#227;o&quot;. O que lhe pareceu?
+</I>&gt;<i>
+</I>&gt;<i> que para m&#233;todos, realmente fica melhor. Mas e o &quot;principal&quot;?
+</I>&gt;<i>
+</I>
+Acho que a&#237; entramos na discuss&#227;o de tudo ter como base a OO (ou n&#227;o) :-/
+
+Eu conhe&#231;o poucas linguagens OO e, das que eu conhe&#231;o, ou elas tem uma
+fun&#231;&#227;o que inicia a aplica&#231;&#227;o (main de C++) ou possuem um m&#233;todo espec&#237;fico
+em uma classe que determina o ponto de inicio da execu&#231;&#227;o (java).
+
+Pelo que eu me lembre (n&#227;o tenho certeza) no DotNet qualquer m&#233;todo de uma
+classe pode ser o ponto de in&#237;cio da execu&#231;&#227;o. As linguagens que geram
+c&#243;digo para o Dotnet tem as suas regras, mas o que interessa para o dotnet &#233;
+o m&#233;todo que &#233; sinalizado como ponto de in&#237;cio.
+
+Eu sugiro termos uma abordagem similar. N&#227;o podemos ter fun&#231;&#245;es, mas apenas
+m&#233;todos. Por&#233;m, apenas um dos m&#233;todos de todas as classes carregadas pode
+ser sinalizado como ponto de in&#237;cio da execu&#231;&#227;o.
+
+Acredito que voc&#234; conhe&#231;a bem mais linguagens OO do que eu. Que abordagens
+voc&#234; viu e achou interessante?
+
+
+&gt;<i> &gt; N&#227;o que seja importante agora, mas acho que no lugar de &quot;carprop 2&quot;
+</I>&gt;<i> (carrega
+</I>&gt;<i> &gt; propriedade) seria &quot;carconst 0&quot; (carrega constante 0). Ou voc&#234; imaginou
+</I>&gt;<i> &gt; outra funcionalidade para &quot;carprop 2&quot;?
+</I>&gt;<i>
+</I>&gt;<i> hmm, eu tinha entendido que carprop carregava a propriedade
+</I>&gt;<i> identificada pelo &#237;ndice num&#233;rico, iniciando em 0. Em objetos vtable
+</I>&gt;<i> como Objeto e X, temos esta ordem de propriedades: [0] = parent, [1] =
+</I>&gt;<i> methods, [2] = &quot;payload&quot;. Por isso que escrevi carprop 2. Talvez
+</I>&gt;<i> pudesse ser &quot;carprop 'payload'&quot;....Enfim n&#227;o sei se entendi errado,
+</I>&gt;<i> mas a inten&#231;&#227;o era essa.
+</I>&gt;<i>
+</I>
+Ah entendi. Quando eu comecei a montar os mnem&#244;nicos eu nem imagina o
+formato da vtable (se &#233; que a gente teria isso, enfim).
+
+Eu n&#227;o tinha &quot;me ligado&quot; que parent, methods e payload j&#225; s&#227;o atributos do
+objeto vtable. Agora faz sentido sim :-)
+
+Vamos revisando os exemplos e os mnem&#244;nicos quando poss&#237;vel... De qq forma,
+acho que vamos ter alguns mnem&#244;nicos para facilitar a nossa vida. Por
+exemplo, se a gente quer carregar a propriedade 5 (de nome prop5) do objeto,
+seria mais f&#225;cil termos um opcode para isso do que termos que carregar o
+payload e ai gerar outro opcode para carregar a propriedade. Algo como
+carprop prop5. O carprop sabe onde est&#225; o payload e sabe como buscar a
+localiza&#231;&#227;o de prop5. Acredito que o assemblador depois se responsabiliza
+por traduzir para o endere&#231;o correto.
+
+Lendo novamente, no entanto, talvez vc refira o &quot;0&quot; de &quot;carconst 0&quot; ao
+&gt;<i> valor do payload de Objeto, que &#233; 0. No entanto, n&#227;o sabemos em tempo
+</I>&gt;<i> de compila&#231;&#227;o qual o payload do objeto receptor de &quot;novo()&quot;...
+</I>&gt;<i>
+</I>
+Entendi. Como eu disse acima,  eu &quot;acho&quot; que isso ser&#225; responsabilidade dos
+opcodes saberem onde est&#225; payload. Se algu&#233;m quiser mudar a estrutura da
+vtable, ter&#225; necessariamente que reprogramar estes opcodes. Claro, talvez
+pensando melhor, a gente consiga generalizar mais, mas por enquanto, sem
+pensar &quot;com calma&quot;, n&#227;o sei dizer :-)
+
+Abra&#231;os!
+
+-- 
+[]'s
+Alex Sandro Garz&#227;o
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/gpt-devel/attachments/20101009/7be81d5e/attachment.html">https://lists.berlios.de/pipermail/gpt-devel/attachments/20101009/7be81d5e/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000101.html">[gpt-devel] Formato (gram&#225;tica) do GptAssembly
+</A></li>
+	<LI>Next message: <A HREF="000103.html">[gpt-devel] Formato (gram&#225;tica) do GptAssembly
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#102">[ date ]</a>
+              <a href="thread.html#102">[ thread ]</a>
+              <a href="subject.html#102">[ subject ]</a>
+              <a href="author.html#102">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

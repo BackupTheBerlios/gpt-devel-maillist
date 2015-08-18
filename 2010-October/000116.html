@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] sobre os objetivos do projeto g-portugol (era: Formato (gram&#225;tica) do GptAssembly)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%0A%09%3D%3Fiso-8859-1%3Fq%3Fsobre_os_objetivos_do_projeto_g-portug%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Fol_%3D28era%3D3A_Formato_%3D28gram%3DE1tica%3D29_do_GptAssemb%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Fly%3D29%3F%3D&In-Reply-To=%3CAANLkTikdhaQ-Lz%2BKS81P2BmtRH9iZHqFQcJ8fFXh37fK%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000121.html">
+   <LINK REL="Next"  HREF="000119.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] sobre os objetivos do projeto g-portugol (era: Formato (gram&#225;tica) do GptAssembly)</H1>
+    <B>Alex Garzao</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%0A%09%3D%3Fiso-8859-1%3Fq%3Fsobre_os_objetivos_do_projeto_g-portug%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Fol_%3D28era%3D3A_Formato_%3D28gram%3DE1tica%3D29_do_GptAssemb%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Fly%3D29%3F%3D&In-Reply-To=%3CAANLkTikdhaQ-Lz%2BKS81P2BmtRH9iZHqFQcJ8fFXh37fK%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] sobre os objetivos do projeto g-portugol (era: Formato (gram&#225;tica) do GptAssembly)">alexgarzaol at gmail.com
+       </A><BR>
+    <I>Thu Oct 14 02:47:34 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000121.html">[gpt-devel] sobre os objetivos do projeto g-portugol (era: Formato (gram&#225;tica) do GptAssembly)
+</A></li>
+        <LI>Next message: <A HREF="000119.html">[gpt-devel] sobre os objetivos do projeto g-portugol (era: Formato (gram&#225;tica) do GptAssembly)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#116">[ date ]</a>
+              <a href="thread.html#116">[ thread ]</a>
+              <a href="subject.html#116">[ subject ]</a>
+              <a href="author.html#116">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Oi :-)
+
+
+&gt;<i> Aproveitei para dar uma relida em toda essa thread (sugiro que fa&#231;a o
+</I>&gt;<i> mesmo) e me bateu uma d&#250;vida: o que &#233; exatamente que voc&#234;s dois est&#227;o
+</I>&gt;<i> discutindo? At&#233; ent&#227;o eu tava achando que era sobre implementar ou n&#227;o uma
+</I>&gt;<i> VM. Mas relendo esses emails, vi que n&#243;s 3 haviamos concordado em fazer uma
+</I>&gt;<i> VM pr&#243;pria.
+</I>&gt;<i>
+</I>&gt;<i> Ent&#227;o a discuss&#227;o est&#225; no &quot;como&quot;? &#201; isso ent&#227;o?
+</I>&gt;<i>
+</I>
+Isso mesmo :-)
+
+
+&gt;<i>
+</I>&gt;&gt;<i> J&#225; se tratando de modelo computacional, acho que a quest&#227;o recai muito
+</I>&gt;&gt;<i> sobre quanto do mist&#233;rio e &quot;lacre&quot; do baixo n&#237;vel se consegue eliminar
+</I>&gt;&gt;<i> e, ao mesmo tempo, permitir modificar em termos de um n&#237;vel mais alto.
+</I>&gt;&gt;<i> Me refiro as &quot;fronteiras artificiais&quot;: &#233; natural que alunos comessem a
+</I>&gt;&gt;<i> se perguntar como algumas instru&#231;&#245;es funcionam (digamos, printf(), ou
+</I>&gt;&gt;<i> while)...mas muitas delas est&#227;o, em sua forma concreta, inacess&#237;veis,
+</I>&gt;&gt;<i> n&#227;o porque &#233; a natureza complexa delas que impede o estudante de
+</I>&gt;&gt;<i> aprend&#234;-las naquele momento, mas porque existe todo um &quot;aparato
+</I>&gt;&gt;<i> acidental&quot; (n&#227;o-intr&#237;nseco) que envolve sua implementa&#231;&#227;o concreta,
+</I>&gt;&gt;<i> complexo pra ded&#233;u, e este aparato manifesta toda uma &quot;barreira
+</I>&gt;&gt;<i> artificial&quot;.  O resultado disso n&#227;o &#233; que coisas f&#225;ceis s&#227;o f&#225;ceis e
+</I>&gt;&gt;<i> coisas dif&#237;ceis s&#227;o dif&#237;ceis de aprender...&#233; que coisas f&#225;ceis s&#227;o
+</I>&gt;&gt;<i> dif&#237;ceis (e pior, muitas s&#227;o levadas &quot;na f&#233;&quot;, &quot;&#233; complicado eu te
+</I>&gt;&gt;<i> mostrar, mas confia em mim&quot;), e isso n&#227;o deve acontecer. Olhando por
+</I>&gt;&gt;<i> outro ponto, muito das aulas de introdu&#231;&#227;o a programa&#231;&#227;o e computa&#231;&#227;o
+</I>&gt;&gt;<i> s&#227;o processos de desmistifica&#231;&#227;o da m&#225;quina (algo &quot;m&#225;gico&quot; e
+</I>&gt;&gt;<i> misterioso para a maioria das pessoas), e creio que essa
+</I>&gt;&gt;<i> desmistifica&#231;&#227;o dificilmente acontece a contento (pode at&#233;, por
+</I>&gt;&gt;<i> exemplo, ter ficado um pouco pior com a propaganda popular de alguns
+</I>&gt;&gt;<i> proponentes de OO de que &quot;vc n&#227;o precisa saber como algo &#233; feito para
+</I>&gt;&gt;<i> usar&quot;), t&#227;o pouco tem envergadura -- novamente, os alunos precisam
+</I>&gt;&gt;<i> saber muito para fazer pouco, e n&#227;o o contr&#225;rio...ao meu ver, um
+</I>&gt;&gt;<i> sintoma de linguagens, ambientes,  ferramentas e abordagens
+</I>&gt;&gt;<i> inadequadas  -- ainda, com a analogia do sistema romano em mente. [A
+</I>&gt;&gt;<i> prop&#243;sito, eu posso estar usando o termo &quot;aluno&quot;, mas muito do que
+</I>&gt;&gt;<i> digo reflete no nosso uso pessoal dos computadores no dia a dia.]
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;<i> Rpz, talvez por n&#227;o ter ido nas entranhas do SOs e depois no n&#237;vel dos
+</I>&gt;<i> circuitos el&#233;tricos ainda acho esse neg&#243;cio de computador algo muito m&#237;stico
+</I>&gt;<i> mesmo. :p
+</I>&gt;<i>
+</I>&gt;<i> Se formos querer deixar as coisas &#224;s vistas dos usu&#225;rios, at&#233; onde iremos?
+</I>&gt;<i> Tamb&#233;m n&#227;o &#233; algo que eu goste, mas at&#233; aceito isso de &quot;&#233; complicado eu te
+</I>&gt;<i> mostrar, mas confia em mim&quot; neste momento, visto que o objetivo das aulas de
+</I>&gt;<i> algoritmos &#233; o desenvolvimento do racioc&#237;nio l&#243;gico. Talvez eu tenha sido
+</I>&gt;<i> bem doutrinado nas aulas de Java. :p
+</I>&gt;<i>
+</I>
+Eu tamb&#233;m n&#227;o sei dizer &quot;at&#233; onde iremos&quot;, mas estou achando que s&#243; tentando
+para ver onde a gente chega hehehe.
+
+No pior dos casos, damos alguns passos para tr&#225;s. Bom, espero que seja algo
+simples assim :-D
+
+Abra&#231;os!!!
+
+-- 
+[]'s
+Alex Sandro Garz&#227;o
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/gpt-devel/attachments/20101013/cb136d43/attachment.html">https://lists.berlios.de/pipermail/gpt-devel/attachments/20101013/cb136d43/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000121.html">[gpt-devel] sobre os objetivos do projeto g-portugol (era: Formato (gram&#225;tica) do GptAssembly)
+</A></li>
+	<LI>Next message: <A HREF="000119.html">[gpt-devel] sobre os objetivos do projeto g-portugol (era: Formato (gram&#225;tica) do GptAssembly)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#116">[ date ]</a>
+              <a href="thread.html#116">[ thread ]</a>
+              <a href="subject.html#116">[ subject ]</a>
+              <a href="author.html#116">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

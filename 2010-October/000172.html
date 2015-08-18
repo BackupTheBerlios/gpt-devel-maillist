@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Ordem de empilhamento dos argumentos
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Ordem%20de%20empilhamento%20dos%20argumentos&In-Reply-To=%3CAANLkTi%3DpAQZWLJvTO59qemhhrmP6PVbYoKHrnAU5X2jt%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000170.html">
+   <LINK REL="Next"  HREF="000173.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Ordem de empilhamento dos argumentos</H1>
+    <B>Thiago Silva</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Ordem%20de%20empilhamento%20dos%20argumentos&In-Reply-To=%3CAANLkTi%3DpAQZWLJvTO59qemhhrmP6PVbYoKHrnAU5X2jt%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Ordem de empilhamento dos argumentos">tsilva at sourcecraft.info
+       </A><BR>
+    <I>Tue Oct 26 19:21:07 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000170.html">[gpt-devel] Ordem de empilhamento dos argumentos
+</A></li>
+        <LI>Next message: <A HREF="000173.html">[gpt-devel] Ordem de empilhamento dos argumentos
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#172">[ date ]</a>
+              <a href="thread.html#172">[ thread ]</a>
+              <a href="subject.html#172">[ subject ]</a>
+              <a href="author.html#172">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>2010/10/26 Thiago Silva &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">tsilva at sourcecraft.info</A>&gt;:
+&gt;<i> Opa!
+</I>&gt;<i>
+</I>&gt;<i> 2010/10/26 Alex Garzao &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">alexgarzaol at gmail.com</A>&gt;:
+</I>&gt;&gt;&gt;<i> eis o que estava imaginando: y que est&#225; no topo e &#233; o receptor. Mas o
+</I>&gt;&gt;&gt;<i> receptor deveria ser o resultado da chamada &quot;a&quot;. Corrija-me se eu
+</I>&gt;&gt;&gt;<i> estiver errado, mas este c&#243;digo acima invoca &quot;y.b(z, ....)&quot;., n&#227;o?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &#201; verdade. Est&#225; errado. Vamos rever...
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> A senten&#231;a r.a(w,x).b(y,z).c(k) geraria algo como:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> // Empilha argumentos de c
+</I>&gt;&gt;<i> carobj k
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> // Empilha argumentos de b
+</I>&gt;&gt;<i> carobj z
+</I>&gt;&gt;<i> carobj y
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> // Empilha argumentos de a
+</I>&gt;&gt;<i> carobj x
+</I>&gt;&gt;<i> carobj w
+</I>&gt;&gt;<i> carobj r
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> invoca a // a deixa na pilha o objeto
+</I>&gt;&gt;<i> invoca b // b deixa na pilha o objeto
+</I>&gt;&gt;<i> invoca c
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> N&#227;o tenho certeza de que isto est&#225; correto, mas a impress&#227;o que tenho &#233; que,
+</I>&gt;&gt;<i> neste caso, temos que empilhar todos os argumentos de todas as chamadas
+</I>&gt;&gt;<i> cascateadas, antes de invocar o primeiro m&#233;todo.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> No momento do &quot;invoca a&quot;, a pilha cont&#233;m &quot;r, w, x, y, z, k&quot;. Ap&#243;s &quot;invoca a&quot;
+</I>&gt;&gt;<i> a pilha cont&#233;m &quot;r2, y, z, k&quot;, sendo r2 o objeto retornado por &quot;a&quot;.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Ap&#243;s &quot;invoca b&quot;, a pilha cont&#233;m &quot;r3, k&quot;, sendo r3 o objeto retornado por
+</I>&gt;&gt;<i> &quot;b&quot;.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Seria isso?
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Perfeito. &#201; isso mesmo
+</I>
+Ali&#225;s, s&#243; uma nota: o fato de &quot;k&quot; ser avaliado primeiro pode ser
+n&#227;o-intuitivo. Mas de resto, t&#225; bom
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000170.html">[gpt-devel] Ordem de empilhamento dos argumentos
+</A></li>
+	<LI>Next message: <A HREF="000173.html">[gpt-devel] Ordem de empilhamento dos argumentos
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#172">[ date ]</a>
+              <a href="thread.html#172">[ thread ]</a>
+              <a href="subject.html#172">[ subject ]</a>
+              <a href="author.html#172">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

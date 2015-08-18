@@ -1,0 +1,316 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Formato (gram&#225;tica) do GptAssembly
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%0A%09%3D%3Fiso-8859-1%3Fq%3FFormato_%3D28gram%3DE1tica%3D29_do_GptAssemb%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Fly%3F%3D&In-Reply-To=%3CAANLkTikEr6XHkQimwj9%2BEsVd6-5KM3ktdoP4MyHU%3DgUM%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000100.html">
+   <LINK REL="Next"  HREF="000101.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Formato (gram&#225;tica) do GptAssembly</H1>
+    <B>Alex Garzao</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%0A%09%3D%3Fiso-8859-1%3Fq%3FFormato_%3D28gram%3DE1tica%3D29_do_GptAssemb%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Fly%3F%3D&In-Reply-To=%3CAANLkTikEr6XHkQimwj9%2BEsVd6-5KM3ktdoP4MyHU%3DgUM%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Formato (gram&#225;tica) do GptAssembly">alexgarzaol at gmail.com
+       </A><BR>
+    <I>Sat Oct  9 04:49:52 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000100.html">[gpt-devel] Formato (gram&#225;tica) do GptAssembly
+</A></li>
+        <LI>Next message: <A HREF="000101.html">[gpt-devel] Formato (gram&#225;tica) do GptAssembly
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#99">[ date ]</a>
+              <a href="thread.html#99">[ thread ]</a>
+              <a href="subject.html#99">[ subject ]</a>
+              <a href="author.html#99">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i>
+</I>&gt;<i> &gt; Ent&#227;o o &quot;Ol&#225; mundo&quot; seria algo como:
+</I>&gt;<i> &gt; .fun&#231;&#227;o principal
+</I>&gt;<i> &gt;     carstr &quot;Ol&#225; mundo!!!&quot; // Argumento 1
+</I>&gt;<i> &gt;     carconst_1            // N&#250;mero de argumentos
+</I>&gt;<i> &gt;     invoca es.imprima
+</I>&gt;<i> &gt;     sai_0
+</I>&gt;<i> &gt; .fim_fun&#231;&#227;o
+</I>&gt;<i> &gt;
+</I>&gt;<i>
+</I>&gt;<i> Mais uma considera&#231;&#227;o: O que &#233; es.imprima? Ela ser&#225; uma string
+</I>&gt;<i> internalizada?
+</I>&gt;<i>
+</I>
+Ops, erro meu. &quot;es&quot; seria o nome de uma biblioteca mapeado do sistema, neste
+caso uma biblioteca de IO (EntradaSa&#237;da). Eu copiei a id&#233;ia de uma VM que
+trabalhei h&#225; pouco tempo, mas n&#227;o expliquei. Era por isto que o mnem&#244;nico
+estava com o nome de &quot;invocalib&quot;.
+
+De qq forma, isso a gente n&#227;o precisa por enquanto. Quando tivermos a
+necessidade de mapear libs do SO a gente conversa melhor. Por enquanto fica
+apenas &quot;invoca nome_m&#233;todo&quot;.
+
+
+&gt;<i> &gt;&gt; -Criando objetos:
+</I>&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;<i> &gt;&gt; No n&#237;vel mais primitivo, acho que precisariamos definir como alocar
+</I>&gt;<i> &gt;&gt; mem&#243;ria e associar ao bloco de mem&#243;ria sua &quot;vtable&quot; -- algo que
+</I>&gt;<i> &gt;&gt; represente seu Comportamento: hierarquia e dicion&#225;rio de m&#233;todos, por
+</I>&gt;<i> &gt;&gt; exemplo. Talvez pudessemos ter um opcode (&quot;crie&quot;,&quot;aloca&quot;, ...) com um
+</I>&gt;<i> &gt;&gt; argumento: n&#250;mero de bytes para alocar. A partir da&#237;, poderiamos fazer
+</I>&gt;<i> &gt;&gt; a cria&#231;&#227;o de objetos mandando mensagens. As figuras 10 e 11 de [1]
+</I>&gt;<i> &gt;&gt; apresentam uma poss&#237;vel implementa&#231;&#227;o.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Antes de ler o artigo, eu achei estranho passar o n&#250;mero de bytes. Mas,
+</I>&gt;<i> &gt; depois de uma boa leitura, ficou claro o motivo hehehe.
+</I>&gt;<i> &gt; Por mim me parece ok esta abordagem.
+</I>&gt;<i> &gt;
+</I>&gt;<i>
+</I>&gt;<i> S&#243; um ponto, eu acho que talvez seja necess&#225;rio passar dois argumentos
+</I>&gt;<i> para &quot;aloca/cria&quot;: o tamanho do estado do objeto em bytes e um
+</I>&gt;<i> ponteiro para o objeto vtable. Assim, temos como retorno um objeto
+</I>&gt;<i> completo, sem causar problemas por trabalhar com algo incompleto...
+</I>&gt;<i>
+</I>
+Ah ok. Acredito que isto seria equivalente ao vtable_allocate do artigo.
+Realmente, quando coloquei o exemplo, n&#227;o olhei as fun&#231;&#245;es propostas no
+artigo. Com isso j&#225; adianto que podem estar faltando mais coisas nos
+exemplos :-)
+
+
+&gt;<i> &gt;&gt; O que me leva a pensar que talvez seja necess&#225;rio pensar sobre como
+</I>&gt;<i> &gt;&gt; implementar uma chamada equivalente a &quot;super()&quot;..
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; No closure temos dados &quot;opacos&quot; e a implementa&#231;&#227;o do m&#233;todo. Acredito que
+</I>&gt;<i> na
+</I>&gt;<i> &gt; se&#231;&#227;o de dados poderia ter um pointer (ou algo do g&#234;nero) que aponta para
+</I>&gt;<i> &gt; o &quot;m&#233;todo pai&quot; (super).
+</I>&gt;<i>
+</I>&gt;<i> interessante. Eu n&#227;o tinha pensado nisso. Eu pensei em ter um outro
+</I>&gt;<i> tipo de &quot;invoca&quot; que &quot;pula&quot; o dicion&#225;rio do objeto e come&#231;a a busca do
+</I>&gt;<i> m&#233;todo no objeto pai.
+</I>&gt;<i>
+</I>
+&quot;Acho&quot; que self pode ser um m&#233;todo invocado com o &quot;invoca&quot; mesmo. E ele v&#234;
+se tem um ponteiro para o m&#233;todo pai na &#225;rea de dados.
+
+De qq forma, a gente avalia quando necess&#225;rio a melhor abordagem. Pelo
+tardar da hora, n&#227;o tenho muita opini&#227;o formada :-D
+
+
+&gt;<i> &gt; Enfim, o exemplo para instanciar novos objetos e enviar mensagens seria
+</I>&gt;<i> algo
+</I>&gt;<i> &gt; como:
+</I>&gt;<i> &gt; .fun&#231;&#227;o imprime_oi // &#233; o m&#233;todo do nosso objeto
+</I>&gt;<i> &gt;     carstr &quot;oi&quot;
+</I>&gt;<i> &gt;     carconst_1
+</I>&gt;<i> &gt;     invoca es.imprima
+</I>&gt;<i> &gt; .fim_fun&#231;&#227;o
+</I>&gt;<i> &gt; .fun&#231;&#227;o objeto_inic // &#233; o construtor do nosso objeto
+</I>&gt;<i> &gt;     aloca XXX
+</I>&gt;<i> &gt;     adicmetodo imprime_oi
+</I>&gt;<i> &gt;     armres 0 // armazena o objeto como resultado de &#237;ndice 0 da fun&#231;&#227;o
+</I>&gt;<i> &gt; .fim_fun&#231;&#227;o
+</I>&gt;<i> &gt; .fun&#231;&#227;o principal // &#233; a fun&#231;&#227;o principal onde inicia a execu&#231;&#227;o das
+</I>&gt;<i> &gt; aplica&#231;&#245;es
+</I>&gt;<i> &gt;     .var obj
+</I>&gt;<i> &gt;     buscafun&#231;&#227;o objeto_inic // busca/executa a fun&#231;&#227;o
+</I>&gt;<i> &gt;     armobj obj // ok, como &#233; uma m&#225;quina de pilha, esta e a pr&#243;xima
+</I>&gt;<i> &gt; instru&#231;&#227;o n&#227;o s&#227;o necess&#225;rias...
+</I>&gt;<i> &gt;     carobj obj
+</I>&gt;<i> &gt;     buscafun&#231;&#227;o imprime_oi
+</I>&gt;<i> &gt;     sai_0
+</I>&gt;<i> &gt; .fim_fun&#231;&#227;o
+</I>&gt;<i> &gt;
+</I>&gt;<i>
+</I>&gt;<i> Acho que uma forma de simplificar a &quot;montagem&quot; de m&#233;todos no objeto
+</I>&gt;<i> seria, ao inv&#233;s de adicionar os m&#233;todos do objeto via opcode (como em
+</I>&gt;<i> objeto_inic), ter o arquivo bin&#225;rio especificando o mapeamento de
+</I>&gt;<i> m&#233;todos e objetos. Assim, na leitura do bin&#225;rio, imagino que o loader
+</I>&gt;<i> poderia ser respons&#225;vel por construir o objeto, adicionando os m&#233;todos
+</I>&gt;<i> a ele e jogando-o no pool de objetos.
+</I>&gt;<i>
+</I>
+Concordo plenamente hehehe.
+
+Ent&#227;o, digamos queremos definir um objeto X : Objeto() sem atributos,
+&gt;<i> com o m&#233;todo &quot;imprima_oi&quot;, uma sugest&#227;o seria:
+</I>&gt;<i>
+</I>&gt;<i> -Ter, no arquivo bin&#225;rio:
+</I>&gt;<i>  * Os bytecodes do m&#233;todo.
+</I>&gt;<i>  * A associa&#231;&#227;o do m&#233;todo com seus nomes (&quot;imprime_oi&quot;)
+</I>&gt;<i>  * a especifica&#231;&#227;o do objeto X (sem atributos, herda de Objeto)
+</I>&gt;<i>  * A associa&#231;&#227;o do m&#233;todo ao objeto X
+</I>&gt;<i>
+</I>
+Para mim parece estar perfeita esta abordagem :-)
+
+
+&gt;<i> Ent&#227;o, poderiamos escrever:
+</I>&gt;<i>
+</I>&gt;<i> .objeto X:Objeto
+</I>&gt;<i>
+</I>&gt;<i> .m&#233;todo X:imprime_oi
+</I>&gt;<i>     carstr &quot;oi&quot;
+</I>&gt;<i>    carconst_1
+</I>&gt;<i>    invoca es.imprima
+</I>&gt;<i> .fim_fun&#231;&#227;o
+</I>&gt;<i>
+</I>&gt;<i> .fun&#231;&#227;o principal // &#233; a fun&#231;&#227;o principal onde inicia a execu&#231;&#227;o das
+</I>&gt;<i> aplica&#231;&#245;es
+</I>&gt;<i>    .var obj
+</I>&gt;<i>     carobj X
+</I>&gt;<i>    invoca novo //novo() &#233; definido em Objeto
+</I>&gt;<i>     armobj obj // ok, como &#233; uma m&#225;quina de pilha, esta e a pr&#243;xima
+</I>&gt;<i> instru&#231;&#227;o n&#227;o s&#227;o necess&#225;rias...
+</I>&gt;<i>    carobj obj
+</I>&gt;<i>     invoca imprime_oi
+</I>&gt;<i>    sai_0
+</I>&gt;<i> .fim_fun&#231;&#227;o
+</I>&gt;<i>
+</I>
+Para mim parece muito bom. Quando lhe questionei sobre como poder&#237;amos
+&quot;descomplicar&quot; o GptAssembly, tinha pensado tamb&#233;m em colocar algumas coisas
+intr&#237;nsecas no bytecode. De qq forma eu n&#227;o tinha chegado a um formato
+&quot;decente&quot; para o GptAssembly como este que voc&#234; prop&#244;s :-)
+
+
+&gt;<i> Podemos assumir que X faz parte do escopo l&#233;xico. Se assumirmos que
+</I>&gt;<i> uma propriedade &quot;payload&quot; na vtable determina o tamanho de suas
+</I>&gt;<i> inst&#226;ncias e que temos o objeto Objeto com as seguintes especifica&#231;&#245;es
+</I>&gt;<i> de vtable e propriedades:
+</I>&gt;<i>
+</I>
+S&#243; para ver se eu n&#227;o me perdi hehehe. Voc&#234; comentou que &quot;uma propriedade
+'payload' na vtable determina o tamanho de suas
+inst&#226;ncias...&quot;
+
+&quot;Payload&quot; determina o tamanho da &#225;rea reservada as propriedades do objeto
+certo?  Ou o que voc&#234; quis dizer com &quot;tamanho de suas inst&#226;ncias&quot;?
+
+*Objeto (vtable: VTable)
+&gt;<i> -parent: null
+</I>&gt;<i> -methods: {novo()}
+</I>&gt;<i> -payload: 0 //inst&#226;ncias de Objeto n&#227;o possuem propriedades
+</I>&gt;<i>
+</I>&gt;<i> .. e que a defini&#231;&#227;o &quot;X:Objeto&quot; cria o seguinte objeto:
+</I>&gt;<i>
+</I>&gt;<i> *X (vtable: VTable)
+</I>&gt;<i> -parent: Objeto
+</I>&gt;<i> -methods: {imprime_oi()}
+</I>&gt;<i> -payload: 0 //inst&#226;ncias de X n&#227;o possuemi propriedades
+</I>&gt;<i>
+</I>&gt;<i> a implementa&#231;&#227;o de novo() poderia ser:
+</I>&gt;<i>
+</I>&gt;<i> .m&#233;todo Objeto:novo
+</I>&gt;<i>   //supondo que &quot;this&quot; est&#225; no topo da pilha e this = X
+</I>&gt;<i>   carprop 2 //carrega o valor de payload de X: 0
+</I>&gt;<i>   aloca       //cria um novo objeto [obj]
+</I>&gt;<i> fim
+</I>&gt;<i>
+</I>
+Para mim parece ok :-)
+
+Pequenas ressalvas... Acho que &quot;.m&#233;todo&quot; ficou mais leg&#237;vel do que
+&quot;.fun&#231;&#227;o&quot;. O que lhe pareceu?
+
+N&#227;o que seja importante agora, mas acho que no lugar de &quot;carprop 2&quot; (carrega
+propriedade) seria &quot;carconst 0&quot; (carrega constante 0). Ou voc&#234; imaginou
+outra funcionalidade para &quot;carprop 2&quot;?
+
+Assim, X.novo() criaria uma nova inst&#226;ncia de X corretamente,
+&gt;<i> utlizando o m&#233;todo &quot;novo()&quot; herdado de Objeto. &quot;aloca&quot; cria um objeto
+</I>&gt;<i> na mem&#243;ria com tamanho 0 (X.payload) e sua vtable apontar&#225; para X.
+</I>&gt;<i>
+</I>&gt;<i> A sem&#226;ntica de &quot;invoca&quot; em &quot;invoca imprime_oi&quot; na forma mais
+</I>&gt;<i> tradicional, ent&#227;o, faria o seguinte (tendo esta inst&#226;ncia &quot;obj&quot; no
+</I>&gt;<i> topo):
+</I>&gt;<i>
+</I>&gt;<i> * extrairia a vtable do receptor obj (que &#233; X)
+</I>&gt;<i> * buscaria nos m&#233;todos de X o m&#233;todo &quot;imprime_oi&quot;
+</I>&gt;<i> * Aplicaria este m&#233;todo ao &quot;obj&quot;
+</I>&gt;<i>
+</I>
+Para mim parece ok :-)
+
+
+&gt;<i> &gt; Quanto ao exemplo, eu acho que as defini&#231;&#245;es como &quot;.var obj&quot; v&#227;o
+</I>&gt;<i> continuar
+</I>&gt;<i> &gt; existindo. Apesar de n&#227;o termos que explicitar o tipo (algo como .var
+</I>&gt;<i> objeto
+</I>&gt;<i> &gt; obj) eu acho que estas defini&#231;&#245;es deixar&#227;o o nosso assembly mais
+</I>&gt;<i> &gt; consistente. Apesar de n&#227;o ser necess&#225;rio definir o tipo, ser&#225; necess&#225;rio
+</I>&gt;<i> &gt; informar quais as vari&#225;veis que ser&#227;o utilizadas.
+</I>&gt;<i> &gt;
+</I>&gt;<i>
+</I>&gt;<i> Beleza. Antes, eu estava imaginando algo muito mais baixo n&#237;vel, como
+</I>&gt;<i> especificar diretamente o espa&#231;o na pilha necess&#225;rio para as vari&#225;veis
+</I>&gt;<i> locais, hehe.
+</I>&gt;<i>
+</I>
+Hehehe. At&#233; podemos fazer algo assim (especificar espa&#231;o necess&#225;rio na
+pilha), mas acho que quanto mais informa&#231;&#245;es a VM tiver sobre o que ela est&#225;
+manipulando, mais consistente ela fica, melhor fica um utilit&#225;rio do tipo
+&quot;desassemblador&quot;, e maiores as informa&#231;&#245;es de debug que a VM pode
+proporcionar. Claro, todas as abordagens tem p&#243;s e contras, mas enfim...
+
+
+&gt;<i> &gt; Uma coisa. Olhando os exemplos agora, a sensa&#231;&#227;o que eu tive &#233; que,
+</I>&gt;<i> apesar
+</I>&gt;<i> &gt; de estarmos simplificando a VM, os exemplos em GptAssembly est&#227;o ficando
+</I>&gt;<i> &gt; &quot;complexos&quot;. Ok, algumas coisas ainda podem ser retiradas, mas mesmo
+</I>&gt;<i> assim
+</I>&gt;<i> &gt; estou com a sensa&#231;&#227;o de que exemplos simples ficaram complexos. Imagina
+</I>&gt;<i> &gt; termos que criar 5 classes, onde cada classe tem 10 m&#233;todos, 20
+</I>&gt;<i> &gt; propriedades, ...
+</I>&gt;<i>
+</I>&gt;<i> Ent&#227;o, eu imagino que vc se refira aos bytecodes tendo que &quot;construir&quot;
+</I>&gt;<i> o objeto, adicionando seus m&#233;todos etc -- &#233; isso mesmo? Por isso que
+</I>&gt;<i> eu sugeri que o bin&#225;rio j&#225; tivesse estas informa&#231;&#245;es para que o loader
+</I>&gt;<i> criasse o objeto.
+</I>&gt;<i>
+</I>
+Isso mesmo :-)
+
+Para mim est&#225; 100% melhor este formato que voc&#234; prop&#244;s :-)
+
+Abra&#231;os!!!
+
+-- 
+[]'s
+Alex Sandro Garz&#227;o
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/gpt-devel/attachments/20101008/1fa14cda/attachment.html">https://lists.berlios.de/pipermail/gpt-devel/attachments/20101008/1fa14cda/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000100.html">[gpt-devel] Formato (gram&#225;tica) do GptAssembly
+</A></li>
+	<LI>Next message: <A HREF="000101.html">[gpt-devel] Formato (gram&#225;tica) do GptAssembly
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#99">[ date ]</a>
+              <a href="thread.html#99">[ thread ]</a>
+              <a href="subject.html#99">[ subject ]</a>
+              <a href="author.html#99">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,267 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Ordem de empilhamento dos argumentos
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Ordem%20de%20empilhamento%20dos%20argumentos&In-Reply-To=%3CAANLkTimiUOTWDK%2BnA3WiZ_n-uxqdsK4wiNAG-Xf%2B3V8Y%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000163.html">
+   <LINK REL="Next"  HREF="000166.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Ordem de empilhamento dos argumentos</H1>
+    <B>Alex Garzao</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Ordem%20de%20empilhamento%20dos%20argumentos&In-Reply-To=%3CAANLkTimiUOTWDK%2BnA3WiZ_n-uxqdsK4wiNAG-Xf%2B3V8Y%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Ordem de empilhamento dos argumentos">alexgarzaol at gmail.com
+       </A><BR>
+    <I>Tue Oct 26 14:20:13 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000163.html">[gpt-devel] Ordem de empilhamento dos argumentos
+</A></li>
+        <LI>Next message: <A HREF="000166.html">[gpt-devel] Ordem de empilhamento dos argumentos
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#164">[ date ]</a>
+              <a href="thread.html#164">[ thread ]</a>
+              <a href="subject.html#164">[ subject ]</a>
+              <a href="author.html#164">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bom dia :-)
+
+&gt;&gt;<i> S&#243; pra ficar claro pra mim, a posi&#231;&#227;o do receptor na pilha &#233; sempre no
+</I>&gt;<i> &gt;&gt; topo da pilha, ou ele fica enterrado abaixo dos argumentos?
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Se eu entendi a sua pergunta, sim, acho bem prov&#225;vel que o receptor tem
+</I>&gt;<i> que
+</I>&gt;<i> &gt; ficar no topo, porque &#233; ele que, ap&#243;s receber a mensagem, &quot;sabe&quot; quantos
+</I>&gt;<i> &gt; argumentos devem ser retirados da pilha conforme o prot&#243;tipo da fun&#231;&#227;o
+</I>&gt;<i> &gt; invocada.
+</I>&gt;<i>
+</I>&gt;<i> Ent&#227;o, acho que o receptor vindo antes ou depois dos argumentos
+</I>&gt;<i> influencia na forma como as express&#245;es em cascata s&#227;o geradas (o que
+</I>&gt;<i> me motivou a pedir que vc gere o c&#243;digo para a ultima express&#227;o deste
+</I>&gt;<i> email, ao final)
+</I>&gt;<i>
+</I>
+Eu acredito que os argumentos devem ser empilhados primeiro, e por &#250;ltimo o
+receptor. Como &#233; uma pilha, o opcode retira primeiro o receptor, depois a
+mensagem, e invoca a mensagem. Por &#250;ltimo, a mensagem &quot;sabe&quot; quantos
+argumentos ela tem.
+
+Se a gente empilhasse tamb&#233;m a mensagem (o que n&#227;o estamos fazendo, visto
+que invoca recebe a mensagem como argumento), acredito que a mensagem
+ficaria no topo, ou seja, empilhariamos os argumentos, depois o receptor e,
+por &#250;ltimo, a mensagem. Algo como:
+
+carconst arg2
+carconst arg1
+carobj r
+carmsg metodo_1
+invoca
+
+Mas nada impede que, mesmo neste caso, o receptor ficasse no topo. Acho que
+seria mais uma quest&#227;o de gosto, porque o invoca sempre teria que retirar os
+dois &#250;ltimos argumentos para saber qual a mensagem e quem &#233; o receptor. Algo
+como:
+
+carconst arg2
+carconst arg1
+carmsg metodo_1
+carobj r
+invoca
+
+
+&gt;&gt;<i> No caso especificamente dos par&#226;metros, eu acho que em ordem inversa
+</I>&gt;<i> &gt;&gt; facilita a vida em alguns aspectos (mas n&#227;o sei em que dificulta)
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Em que aspecto que facilitaria? Como no exemplo que voc&#234; colocou abaixo,
+</I>&gt;<i> &gt; onde &#233; poss&#237;vel utilizar diretamente os valores na pilha com &#237;ndices
+</I>&gt;<i> &gt; negativos?
+</I>&gt;<i>
+</I>&gt;<i> Eu tava imaginando que ia facilitar lidar com varargs. Mas creio que
+</I>&gt;<i> eu estava muito com a cabe&#231;a na forma como C implementa varargs --
+</I>&gt;<i> acho que podemos facilitar nossa vida nisso, por exemplo, empacotando
+</I>&gt;<i> os argumentos extras em um objeto hashmap ou coisa do g&#234;nero. Por
+</I>&gt;<i> outro lado, acho que facilitaria lidar com as conve&#231;&#245;es de chamada de
+</I>&gt;<i> C, na hora de fazer bindings e coisas do tipo...
+</I>&gt;<i>
+</I>
+Quanto ao varargs, acredito que pode auxiliar sim forem acessados com
+&quot;&#237;ndices negativos&quot; na pilha.
+
+Quanto a empacotar os argumentos extras, eu lembro de ter tentado algo
+similar e n&#227;o ficou legal. Talvez eu n&#227;o tenha utilizado uma boa abordagem.
+Na &#233;poca, a forma mais clara de fazer isto seria, antes de come&#231;ar a
+empilhar os argumentos, indicar para a VM que eu queria empacotar alguns
+argumentos. Nesta abordagem, o assembly ficou feio (minha opini&#227;o), porque
+eu indicava quando iniciar a empacotar e quando deveria terminar de
+empacotar.
+
+No nosso caso, acredito que ter&#237;amos que criar um objeto (&quot;argumentos&quot;, por
+exemplo) e adicionar os argumentos nele. De qualquer forma, eu acha que
+ficaria um assembly meio &quot;moroso&quot; demais hehehe.
+
+Eu acho que uma forma simples seria, para chamadas com n&#250;mero de argumentos
+vari&#225;veis, a gente empilhar o n&#250;mero de argumentos, assim como fazemos para
+chamar &quot;imprima&quot;. Com isso a VM sabe quantos argumentos est&#227;o sendo passados
+para a fun&#231;&#227;o, podendo inclusive validar caso uma fun&#231;&#227;o tente acessar mais
+argumentos do que realmente foram passados.
+
+Quanto aos bindings, o que complica n&#227;o &#233; a ordem dos argumentos (minha
+opini&#227;o), mas sim a convers&#227;o para tipos equivalentes entre G-Portugol e as
+libs do SO. A ordem indifere porque sempre teremos que desempilhar (seja l&#225;
+qual for a ordem) para poder invocar as fun&#231;&#245;es do SO.
+
+Por exemplo, para a seguinte fun&#231;&#227;o &quot;double sqrt(double x);&quot;, estou
+assumindo que &quot;ObjetoReal&quot; seria equivalente ao double do C. Neste caso
+ter&#237;amos um c&#243;digo na VM similar ao seguinte:
+
+//pseudo-c&#243;digo em C
+void invoca_lib_sqrt(Stack&amp; stack)
+{
+    ObjetoReal arg1   = stack.pop();
+
+    double     x      = arg1.toDouble();
+    double     result = sqrt(x);
+
+    stack.push(ObjetoReal(result));
+}
+
+
+&gt;<i> Se for isso, acho que n&#227;o vai funcionar. O &quot;invoca f&quot; precisa saber quem &#233;
+</I>&gt;<i> o
+</I>&gt;<i> &gt; receptor para poder buscar &quot;f&quot; corretamente. No exemplo acima, como o
+</I>&gt;<i> invoca
+</I>&gt;<i> &gt; vai saber que tem que retirar dois argumentos para depois encontrar o
+</I>&gt;<i> &gt; receptor? Como ela sabe que &quot;f&quot; (prot&#243;tipo desconhecido) tem dois
+</I>&gt;<i> &gt; argumentos?
+</I>&gt;<i> &gt; No seu exemplo, eu acho que o receptor tem que ser o &#250;ltimo a ser
+</I>&gt;<i> empilhado.
+</I>&gt;<i> &gt; O que faltou (minha opini&#227;o) &#233; que o c&#243;digo tem que ser gerado na ordem
+</I>&gt;<i> &gt; inversa. &quot;a + b&quot; pode ser visto como um m&#233;todo &quot;+&quot; que recebe dois
+</I>&gt;<i> &gt; argumentos. S, ent&#227;o estes argumentos tamb&#233;m devem ser empilhados na
+</I>&gt;<i> ordem
+</I>&gt;<i> &gt; inversa.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Certo, acho que faltou eu explicitar isso no meu exemplo. Eu estou
+</I>&gt;<i> considerando &quot;a+b&quot; como algo equivalente a &quot;a.+(b)&quot;. Se &quot;+&quot; for um
+</I>&gt;<i> m&#233;todo que recebe dois argumentos, (ie &quot;+(a,b)&quot;), ent&#227;o quem &#233; o seu
+</I>&gt;<i> receptor (em outras palavras, &quot;?.+(a,b)&quot;)?
+</I>&gt;<i>
+</I>
+Do jeito que eu falei, ficou estranho. Sim, eu tamb&#233;m imagino &quot;a+b&quot; como
+&quot;a.+(b)&quot;. Quando eu disse que &quot;+&quot; seria um m&#233;todo era para deixar claro que
+os argumentos teriam que ser invertidos, como na chamada de um m&#233;todo
+qualquer. Me expressei mal...
+
+
+&gt;<i> Em um primeiro momento, poderiamos fazer com que o identificador &quot;+&quot;
+</I>&gt;<i> seja associado &#224; uma fun&#231;&#227;o que recebe dois argumentos -- afinal,
+</I>&gt;<i> temos fun&#231;&#245;es &quot;soltas&quot;. Inicialmente, n&#227;o h&#225; problema. Mas
+</I>&gt;<i> posteriormente, se o usu&#225;rio criar, por exemplo, objetos que
+</I>&gt;<i> representam n&#250;meros racionais, ele n&#227;o vai poder criar sua fun&#231;&#227;o
+</I>&gt;<i> espec&#237;fica de soma chamada &quot;+&quot; sem entrar em algum conflito com o
+</I>&gt;<i> antigo &quot;+&quot;. E sobreescrever o &quot;+&quot; antigo vai quebrar a soma de
+</I>&gt;<i> inteiros, por exemplo (como n&#227;o tempos tipos expl&#237;citos nesse primeiro
+</I>&gt;<i> momento, n&#227;o podemos ter uma lista de fun&#231;&#245;es &quot;+&quot; com assinaturas
+</I>&gt;<i> distintas e selecionar uma delas em fun&#231;&#227;o dos tipos dos argumentos).
+</I>&gt;<i> Como resultado, ou ele utiliza outro nome pra sua fun&#231;&#227;o (&quot;mais&quot;,
+</I>&gt;<i> &quot;add&quot;, ...), ou ele a sobreescreve e se compromete a n&#227;o somar
+</I>&gt;<i> inteiros, hehe. E essas duas op&#231;&#245;es s&#227;o muito desagrad&#225;veis...
+</I>&gt;<i>
+</I>
+Tamb&#233;m n&#227;o gostei :-)
+
+
+&gt;<i> Por outro lado, se &quot;+&quot; est&#225; associado &#224; uma &quot;classe&quot; (ou uma familia
+</I>&gt;<i> de objetos...digamos, varios objetos que compartilham uma vtable),
+</I>&gt;<i> ent&#227;o, cada algoritmo distinto de soma estar&#225; associado aos
+</I>&gt;<i> respectivos tipos de objetos que operam sobre esses algoritmos -- &quot;+&quot;
+</I>&gt;<i> se torna polim&#243;rfica em fun&#231;&#227;o do receptor; o modelo de mensagens &#233;
+</I>&gt;<i> reenfor&#231;ado. S&#243; falta fazer com que uma sintaxe como &quot;a + b&quot; seja
+</I>&gt;<i> a&#231;ucar e equivalente a algo no formato &quot;a.+(b)&quot; ou &quot;b.+(a)&quot;. No caso,
+</I>&gt;<i> a primeira costuma ser preferida.
+</I>&gt;<i>
+</I>
+Isso mesmo. Pelos exemplos que estavamos colocando, eu tamb&#233;m estava
+pensando nisso. E prefiro &quot;a.+(b)&quot;, at&#233; porque para algumas opera&#231;&#245;es (como
+&quot;-&quot;), a ordem dos argumentos importa, e, para mim &quot;a-b&quot; fica mais claro como
+&quot;a.-(b)&quot;.
+
+
+&gt;<i>  &gt; Seguindo o exemplo &quot;x = r.f(a,b) + c - d&quot;, eu acredito que o c&#243;digo
+</I>&gt;<i> gerado
+</I>&gt;<i> &gt; deveria ser:
+</I>&gt;<i> &gt; carobj d
+</I>&gt;<i> &gt; carobj c
+</I>&gt;<i> &gt; -
+</I>&gt;<i> &gt; carobj b
+</I>&gt;<i> &gt; carobj a
+</I>&gt;<i> &gt; carobj r
+</I>&gt;<i> &gt; invoca f
+</I>&gt;<i> &gt; +
+</I>&gt;<i> &gt; armobj x
+</I>&gt;<i>
+</I>&gt;<i> humm....e como vc geraria o seguinte?
+</I>&gt;<i>
+</I>&gt;<i> r.a(w,x).b(y,z).c(k)
+</I>&gt;<i>
+</I>
+Deduzo que &quot;a&quot; e &quot;b&quot; retornam objetos correto? Se sim, seria algo como:
+
+carobj x
+carobj w
+carobj r
+invoca a // a deixa na pilha o objeto
+
+carobj z
+carobj y
+invoca b // b deixa na pilha o objeto
+
+carobj k
+invoca c
+
+Em suma, apenas os argumentos s&#227;o invertidos, e n&#227;o as chamadas de fun&#231;&#245;es
+&quot;cascateadas&quot;.
+
+Abra&#231;os!
+
+-- 
+[]'s
+Alex Sandro Garz&#227;o
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/gpt-devel/attachments/20101026/b2240257/attachment.html">https://lists.berlios.de/pipermail/gpt-devel/attachments/20101026/b2240257/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000163.html">[gpt-devel] Ordem de empilhamento dos argumentos
+</A></li>
+	<LI>Next message: <A HREF="000166.html">[gpt-devel] Ordem de empilhamento dos argumentos
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#164">[ date ]</a>
+              <a href="thread.html#164">[ thread ]</a>
+              <a href="subject.html#164">[ subject ]</a>
+              <a href="author.html#164">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

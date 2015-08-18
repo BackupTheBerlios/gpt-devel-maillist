@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Vamos dar prosseguimento a V2 ???
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Vamos%20dar%20prosseguimento%20a%20V2%20%3F%3F%3F&In-Reply-To=%3CAANLkTimgMnqR3km6W83AcHfbr2Vmypo2AJBty7iOk5y4%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000040.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Vamos dar prosseguimento a V2 ???</H1>
+    <B>Alex Garzao</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Vamos%20dar%20prosseguimento%20a%20V2%20%3F%3F%3F&In-Reply-To=%3CAANLkTimgMnqR3km6W83AcHfbr2Vmypo2AJBty7iOk5y4%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Vamos dar prosseguimento a V2 ???">alexgarzaol at gmail.com
+       </A><BR>
+    <I>Tue Aug  3 15:22:45 CEST 2010</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000040.html">[gpt-devel] Vamos dar prosseguimento a V2 ???
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#39">[ date ]</a>
+              <a href="thread.html#39">[ thread ]</a>
+              <a href="subject.html#39">[ subject ]</a>
+              <a href="author.html#39">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bom dia senhores :-)
+
+Ap&#243;s um bom tempo &quot;inativo&quot;, acho que vamos retomar a vers&#227;o 2 :-)
+
+Al&#233;m dos volunt&#225;rios de sempre (Eu, Thiago e Adorilson), o Eleandro tamb&#233;m
+se voluntariou a ajudar.
+
+Aproveito para convidar a todos que desejam contribuir para se pronunciarem.
+Contribui&#231;&#227;o de qualquer &quot;esp&#233;cie&quot; &#233; sempre bem vinda (id&#233;ias, dicas,
+arquitetura do projeto, documenta&#231;&#227;o, fontes, testes, ...).
+
+Eu revisei agora os e-mails antigos e o wikki. O escopo da V2 era:
+- sintaxe para novas instru&#231;&#245;es (repita, escolha, fa&#231;a enquanto, sair, etc)
+- estruturas
+- arrays unidimensionais e multidimensionais
+- suporte a n&#250;mero de par&#226;metros vari&#225;veis
+- Uso de m&#243;dulos (aka import/include/use/require/load)
+- Sintaxe para declara&#231;&#227;o e utiliza&#231;&#227;o de estruturas heterog&#234;neas (aka
+struct)
+- Sintaxe para passagem de par&#226;metros por refer&#234;ncia
+- Revis&#227;o geral da sintaxe
+- Revis&#227;o geral da sem&#226;ntica dos tipos
+- Unicode
+- Uso de m&#243;dulos externos
+- Uso de bibliotecas de sistema
+
+Se esqueci de algo, desculpem-me. E sintam-se a vontade para colocar (ou
+retirar) itens desta lista :-)
+
+Das decis&#245;es que tomamos anteriormente, acredito que as mais importantes
+eram que  ter&#237;amos o ambiente para desenvolvimento/execu&#231;&#227;o com os seguintes
+componentes:
+- GptC, o compilador que traduz g-portugol para um c&#243;digo intermedi&#225;rio (gpt
+assembly)
+- GptASM, o montador assembly que traduz gpt assembly para bytecode
+- GptVM, a VM (m&#225;quina virtual) que executa o bytecode gerado
+
+Eu acho que dever&#237;amos rever brevemente algumas destas decis&#245;es. Lembro que,
+em 2007, eu era o mais partid&#225;rio de implementarmos uma VM para o projeto.
+Mas, atualmente, eu acho que devemos deixar o projeto flex&#237;vel o suficente
+para que possamos implementar uma VM pr&#243;pria, utilizar alguma existente, ou
+gerar c&#243;digo para outras linguagens. Com esta abordagem acredito que
+possamos ter algo funcional em &quot;pouco tempo&quot;.
+
+Eu imagino termos a seguinte estrutura:
+
+                                                     -&gt;  C#
+G-Portugol  -&gt;  GptC  -&gt;  GptAssembly  -&gt;  Tradutor  -&gt;  C++
+                                                     -&gt;  C
+                                                     -&gt;  Parrot
+                                                     -&gt;  LuaVM
+                                                     -&gt;  GptVM
+                                                     -&gt;  Python VM
+                                                     -&gt;  JVM
+                                                     -&gt;  Assembly
+
+
+Ou seja, a partir do G-Portugol, o GptC geraria GptAssembly. Posteriormente,
+para possibilitar a execu&#231;&#227;o do programa em g-portugol, haveria duas
+possibilidades:
+
+1) Traduzir este assembly para linguagens &quot;de mercado&quot; (como C#, C++, C,
+Assembly), utilizando assim seus respectivos ambientes de
+desenvolvimento/execu&#231;&#227;o para executar o aplicativo;
+
+2) Traduzir este assembly para bytecode de alguma VM (parrot, jvm, gptvm,
+luavm, pythonvm, ...).
+
+Com isso, a gente continuaria tendo um projeto que, al&#233;m de auxiliar no
+ensino da programa&#231;&#227;o, tamb&#233;m seria um projeto did&#225;tico para quem tem
+interesse no desenvolvimento de linguagens, compiladores, VMs e afins.
+
+Como citando em um e-mail antigo, o GptAssembly poderia (ou at&#233; deveria) ser
+em portugu&#234;s. Na vers&#227;o que estavamos desenvolvendo era em ingl&#234;s, mas acho
+que deveria ser em portugu&#234;s mesmo.
+
+Outra coisa. O usu&#225;rio poderia inserir c&#243;digo em GptAssembly no seu
+algor&#237;tmo tamb&#233;m, possibilitando que ele entenda tamb&#233;m o assembly utilizado
+no projeto. Al&#233;m disso, as bibliotecas desenvolvidas pelo usu&#225;rio, por serem
+feitas em g-portugol, poderiam ser &quot;desassembladas&quot; para GptAssembly,
+proporcionando assim que o usu&#225;rio entenda o que a biblioteca faz
+&quot;internamente&quot;.
+
+O que voc&#234;s acham deste novo escopo para a V2? &#201; bem similar ao anterior.
+
+Claro, dentro do poss&#237;vel vamos aproveitar o que j&#225; desenvolvemos da V2, mas
+n&#227;o precisamos nos prender tanto assim ao que j&#225; foi feito. Aproveitamos o
+que d&#225; e era isso :-)
+
+Um detalhe sobre as VMs. Grosseiramente podemos categoriz&#225;-las em &quot;baseada
+em pilha&quot; e &quot;baseada em registradores&quot;.
+
+A LuaVM (se eu n&#227;o me engado da vers&#227;o 5 em diante) e a Parrot s&#227;o m&#225;quinas
+baseadas em registradores. A Python VM, JVM e a GptVM s&#227;o m&#225;quinas de pilha.
+Saliento que &#233; mais f&#225;cil gerar c&#243;digo a partir do compilador para m&#225;quinas
+baseadas em pilha, por&#233;m pode-se explorar menos as t&#233;cnicas de otimiza&#231;&#227;o de
+c&#243;digo cl&#225;ssicas descritas nos livros de compiladores.
+
+Outro detalhe. A Parrot, apesar de ser baseada em registradores, aceita
+c&#243;digo em uma linguagem intermedi&#225;ria &quot;de alto n&#237;vel&quot;, o que facilita
+bastante o seu uso.
+
+O que voc&#234;s acham ???
+
+Abra&#231;os !!!!
+
+
+-- 
+[]'s
+Alex Sandro Garz&#227;o
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/gpt-devel/attachments/20100803/513f2d05/attachment.html">https://lists.berlios.de/pipermail/gpt-devel/attachments/20100803/513f2d05/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000040.html">[gpt-devel] Vamos dar prosseguimento a V2 ???
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#39">[ date ]</a>
+              <a href="thread.html#39">[ thread ]</a>
+              <a href="subject.html#39">[ subject ]</a>
+              <a href="author.html#39">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

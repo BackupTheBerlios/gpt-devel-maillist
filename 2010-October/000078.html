@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Formato (gram&#225;tica) do GptAssembly
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20%3D%3Fiso-8859-1%3Fq%3FFormato_%3D28gram%3DE1tica%3D29_do_GptAssemb%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Fly%3F%3D&In-Reply-To=%3CAANLkTi%3DYx%3D_G_kCwiU48g_ZjWV6euaZGhrJ2jjN9MX2G%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000085.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Formato (gram&#225;tica) do GptAssembly</H1>
+    <B>Alex Garzao</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20%3D%3Fiso-8859-1%3Fq%3FFormato_%3D28gram%3DE1tica%3D29_do_GptAssemb%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Fly%3F%3D&In-Reply-To=%3CAANLkTi%3DYx%3D_G_kCwiU48g_ZjWV6euaZGhrJ2jjN9MX2G%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Formato (gram&#225;tica) do GptAssembly">alexgarzaol at gmail.com
+       </A><BR>
+    <I>Fri Oct  1 08:11:57 CEST 2010</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000085.html">[gpt-devel] Formato (gram&#225;tica) do GptAssembly
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#78">[ date ]</a>
+              <a href="thread.html#78">[ thread ]</a>
+              <a href="subject.html#78">[ subject ]</a>
+              <a href="author.html#78">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Boa noite para todos :-)
+
+Precisamos definir qual ser&#225; o formato (gram&#225;tica) do GptAssembly.
+GptAssembly &#233; a linguagem de m&#225;quina da GptVM (m&#225;quina virtual).
+
+A minha sugest&#227;o inicial &#233; esta:
+
+Exemplo em PortugolExemplo traduzido para GptAssembly
+
+algoritmo exemplo;
+
+in&#237;cio
+    imprima( &quot;Ol&#225; mundo!!!&quot; );
+fim
+
+.classe principal
+    .m&#233;todo principal:nulo
+        crstr &quot;Ol&#225; mundo!!!&quot; // Argumento 1
+        crconst_1            // N&#250;mero de argumentos
+        invocalib es.imprima
+        sai_0
+    .fim_m&#233;todo
+.fim_classe
+
+
+Lembrando que, apesar do G-Portugol n&#227;o ser OO, a GptVM vai ter suporte aos
+conceitos da OO. Consequentemente, GptAssembly deve ter suporte &#224;
+polimorfimo, sobrecarga, heran&#231;a, ...
+
+Em GptAssembly, tudo que inicia com &quot;.&quot; &#233; uma defini&#231;&#227;o (&quot;.classe&quot;,
+&quot;.m&#233;todo&quot;, ...), enquanto que crstr, crconst_1, invocalib e sai_0 seriam
+exemplos de mnem&#244;nicos.
+
+Outra coisa. Os nomes destes mnem&#244;nicos n&#227;o est&#227;o bons e apenas &quot;chutei&quot;
+alguns para que possamos iniciar os debates :-)
+
+Abra&#231;os!!!!
+
+-- 
+[]'s
+Alex Sandro Garz&#227;o
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/gpt-devel/attachments/20101001/f1e73c61/attachment.html">https://lists.berlios.de/pipermail/gpt-devel/attachments/20101001/f1e73c61/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000085.html">[gpt-devel] Formato (gram&#225;tica) do GptAssembly
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#78">[ date ]</a>
+              <a href="thread.html#78">[ thread ]</a>
+              <a href="subject.html#78">[ subject ]</a>
+              <a href="author.html#78">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

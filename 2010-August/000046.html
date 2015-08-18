@@ -1,0 +1,225 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Vamos dar prosseguimento a V2 ???
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Vamos%20dar%20prosseguimento%20a%20V2%20%3F%3F%3F&In-Reply-To=%3CAANLkTim4Dxkq2XSm6s16vxGyDpxqb8fdUE83W%3DoxC5wS%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000048.html">
+   <LINK REL="Next"  HREF="000047.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Vamos dar prosseguimento a V2 ???</H1>
+    <B>Thiago Silva</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Vamos%20dar%20prosseguimento%20a%20V2%20%3F%3F%3F&In-Reply-To=%3CAANLkTim4Dxkq2XSm6s16vxGyDpxqb8fdUE83W%3DoxC5wS%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Vamos dar prosseguimento a V2 ???">tsilva at sourcecraft.info
+       </A><BR>
+    <I>Thu Aug  5 16:29:58 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000048.html">[gpt-devel] Vamos dar prosseguimento a V2 ???
+</A></li>
+        <LI>Next message: <A HREF="000047.html">[gpt-devel] Vamos dar prosseguimento a V2 ???
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#46">[ date ]</a>
+              <a href="thread.html#46">[ thread ]</a>
+              <a href="subject.html#46">[ subject ]</a>
+              <a href="author.html#46">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>2010/8/4 Alex Garzao &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">alexgarzaol at gmail.com</A>&gt;:
+&gt;&gt;<i> Eu acho que vc pontuou bem as quest&#245;es da nova linguagem (a de alto
+</I>&gt;&gt;<i> n&#237;vel), mesmo eu n&#227;o tendo revisto os documentos antigos. No que tange
+</I>&gt;&gt;<i> a revis&#227;o da linguagem, eu pensei brevemente em considerar a
+</I>&gt;&gt;<i> implementa&#231;&#227;o de m&#243;dulos parametrizados. Claro, dentro da nossa
+</I>&gt;&gt;<i> realidade de viabilidade....como nunca implementei isso, n&#227;o sei at&#233;
+</I>&gt;&gt;<i> que ponto &#233; vi&#225;vel com o que temos pra fazer....
+</I>&gt;<i>
+</I>&gt;<i> Boiei hehehe. O que seriam m&#243;dulos parametrizados??? Algo no estilo
+</I>&gt;<i> &quot;programa&#231;&#227;o gen&#233;rica&quot;???
+</I>&gt;<i>
+</I>
+&#233;, algo no estilo...
+<A HREF="http://lambda-the-ultimate.org/node/3735">http://lambda-the-ultimate.org/node/3735</A>
+<A HREF="http://gbracha.blogspot.com/2009/06/ban-on-imports.html">http://gbracha.blogspot.com/2009/06/ban-on-imports.html</A>
+
+
+&gt;&gt;<i> No que tange as ferramentas de compila&#231;&#227;o/transforma&#231;&#227;o e a m&#225;quina
+</I>&gt;&gt;<i> virtual, eu acho muito interessante considerar a portabilidade entre
+</I>&gt;&gt;<i> diversas vms. E certamente, de podermos trabalhar nossos pr&#243;prios
+</I>&gt;&gt;<i> runtimes :)
+</I>&gt;<i>
+</I>&gt;<i> Ent&#227;o acredito que uma linguagem intermedi&#225;ria (tipo GptAssembly ou similar)
+</I>&gt;<i> facilitaria esta tarefa certo ?
+</I>&gt;<i>
+</I>
+sim, eu ainda acho importante termos gptassembly
+
+&gt;&gt;<i>
+</I>&gt;&gt;<i> OMeta: an Object-Oriented Language for Pattern Matching
+</I>&gt;&gt;<i> <A HREF="http://www.tinlizzie.org/~awarth/papers/dls07.pdf">http://www.tinlizzie.org/~awarth/papers/dls07.pdf</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Escrevi em 2008 um paper utilizando uma implementa&#231;&#227;o dessa
+</I>&gt;&gt;<i> (meta)linguagem, e achei um brinquedinho fascinante para realizar
+</I>&gt;&gt;<i> transforma&#231;&#245;es. Mas como &#233; uma linguagem baseada em PEGs e n&#227;o nas
+</I>&gt;&gt;<i> famosas gram&#225;ticas livres de contexto, cabe refletir se vale te-la
+</I>&gt;&gt;<i> como compilador nesse primeiro momento, dado que ninguem aprende PEGs
+</I>&gt;&gt;<i> nas aulas de compiladores. Talvez seja melhor utilizar uma compila&#231;&#227;o
+</I>&gt;&gt;<i> tradicional e, no futuro, ter uma gram&#225;tica equivalente em OMeta. De
+</I>&gt;&gt;<i> qualquer forma, eu acho que ela pode ser utilizada bem em etapas de
+</I>&gt;&gt;<i> otimiza&#231;&#227;o e demais transforma&#231;&#245;es de c&#243;digo.
+</I>&gt;<i>
+</I>&gt;<i> Olhei superficialmente o artigo (+- 10 minutos) mas me pareceu bem
+</I>&gt;<i> interessante.&#160;De qualquer forma, como voc&#234; mesmo disse, acho que deixamos
+</I>&gt;<i> para um segundo momento. Mas gostei :-)
+</I>&gt;&gt;<i>
+</I>
+&#233;...s&#227;o dois pontos que me levaram a considerar o ometa: facilidade
+para usu&#225;rios adaptarem a sintaxe da linguagem (que foi o tema do
+artigo [1] ), e facilidade para explorar meta-linguagem para
+especificar reportagem de erros, pois fazer isso da forma como eu fiz
+no gpt1.x &#233; sofr&#237;vel. Mas digo isso em um panorama geral, em
+m&#233;dio/longo prazo.
+
+Se eu tivesse conseguido implementar na &#233;poca um bom mecanismo de
+reportagem de erros no ometa, eu acho at&#233; que investiria em criar um
+parser pro portugol inicialmente nessa linguagem e escrever uma GLR
+pra algo como o antlr em um momento posterior. Mas parei no meio do
+caminho e n&#227;o sei quando poderia retomar. Um plano B que pensei seria
+usar o antlr para criar uma segunda meta-linguagem, baseada no antlr,
+que extendesse a linguagem de gram&#225;tica para permitir especificar
+mensagens de erros mais facilmente.
+
+Agora, considerando cronograma, acho que isso poderia ser secund&#225;rio.
+Podemos ter um parser completo sem nos importarmos muito com mensagens
+de erro em um primeiro momento.
+
+
+&gt;&gt;<i> The Virtual Processor: Fast, Architecture-Neutral Dynamic Code Generation
+</I>&gt;&gt;<i> (google encontra)
+</I>&gt;<i>
+</I>&gt;<i> Tamb&#233;m achei bem interessante. Mas s&#243; olhando &quot;com calma&quot; para saber o
+</I>&gt;<i> quanto nos seria &#250;til.
+</I>&gt;<i> Eu posso estar enganado, mas na minha r&#225;pida leitura (15 minutos) eu tenho a
+</I>&gt;<i> impress&#227;o que o Virtual Processor abstrai gera&#231;&#227;o de c&#243;digo de m&#225;quina, mas
+</I>&gt;<i> de qualquer forma me parece ser muito &quot;baixo n&#237;vel&quot; perto do que a gente
+</I>&gt;<i> precisa. E a gente continuaria tendo problemas para termos bibliotecas
+</I>&gt;<i> port&#225;veis entre v&#225;rios sistemas operacionais (socket, thread, GUI, ...).
+</I>
+&#233;, acho que ele tem um uso mais voltado pra JIT.... na pressa peguei
+algo que n&#227;o representa bem a minha inten&#231;&#227;o... (embora seja uma id&#233;ia
+para implementa&#231;&#245;es do que intenciono)
+
+o que eu queria provocar era uma discuss&#227;o sobre gera&#231;&#227;o de c&#243;digo
+(n&#227;o necessariamente de m&#225;quina) em tempo de execu&#231;&#227;o, de forma a
+permitir um processo de programa&#231;&#227;o mais explorat&#243;rio (al&#225; lisp,
+smalltalk e outros ambientes din&#226;micos), ao inv&#233;s de restringir
+somente ao ciclo compile-&gt;execute-&gt;kill-&gt;write. Isso tem um apelo
+did&#225;tico muito grande e creio que trabalhar no gptassembly e runtime
+com isso em mente seria importante.
+
+
+&gt;<i> Outra coisa (que n&#227;o olhei agora) &#233; para quais SO e arquiteturas temos a
+</I>&gt;<i> implementa&#231;&#227;o destes projetos. Al&#233;m disso, dentro do poss&#237;vel, acredito que
+</I>&gt;<i> n&#227;o devemos obrigar os usu&#225;rios a instalar novas VMs ou afins. Claro, se for
+</I>&gt;<i> algo &quot;pequeno&quot;, se bobear a gente at&#233; &quot;acopla&quot; na instala&#231;&#227;o do Gpt. De
+</I>&gt;<i> qualquer forma, acho que n&#227;o sou o cara mais indicado para debater sobre
+</I>&gt;<i> este t&#243;pico hehehe.
+</I>
+Acho que os dois casos n&#227;o s&#227;o grandes empreedimentos em termos de
+implementa&#231;&#227;o (mas posso falar mais no que tange o ometa, que j&#225;
+implementei uma vez). Um mostra uma forma de fazer parsing, o outro
+mostra uma forma de emitir c&#243;digo execut&#225;vel em runtime (e pode ser
+qualquer c&#243;digo, inclusive emiss&#227;o de c&#243;digo gptassembly em runtime).
+
+De qualquer forma, concordo com o que disse sobre dependencias (foi
+justamente o que me fez n&#227;o focar muito em traduzir c&#243;digo para outra
+linguagem...n&#227;o queria exigir que as pessoas instalassem o gcc ou o
+que for pra usar o gpt).
+
+
+&gt;&gt;<i>
+</I>&gt;&gt;<i> Em rela&#231;&#227;o &#224; linguagem gptassembly, eu gostaria de reve-la tbm para
+</I>&gt;&gt;<i> saber at&#233; que ponto ela pode permitir que a gente pire aos poucos em
+</I>&gt;&gt;<i> linguagens de alto nivel (late binding, restri&#231;&#227;o de tipos,
+</I>&gt;&gt;<i> polimorfismo, etc..)
+</I>&gt;<i>
+</I>&gt;<i> Isso &#233; verdade. Ela &#233; simples (at&#233; demais) e acho que para que a gente possa
+</I>&gt;<i> &quot;pirar&quot; com estes conceitos, ela teria que ser revista. Inclusive, talvez
+</I>&gt;<i> seria interessante a gente avaliar a possibilidade de usar alguma linguagem
+</I>&gt;<i> intermedi&#225;ria j&#225; existente que tenha suporte a isso (IL deve ter,
+</I>&gt;<i> certamente). Por&#233;m, n&#227;o ter&#237;amos o benef&#237;cio de uma linguagem intermedi&#225;ria
+</I>&gt;<i> em portugu&#234;s :-/
+</I>
+hmm, verdade.
+
+&gt;<i> Divagando um pouco, talvez seja o caso de continuarmos com a GptAssembly,
+</I>&gt;<i> mas vendo como estes outros conceitos (late binding, restri&#231;&#227;o de tipos,
+</I>&gt;<i> polimorfismo, ...) podem ser agregados nela.
+</I>&gt;<i> Aproveitando. O que seria &quot;restri&#231;&#227;o de tipos&quot; ?
+</I>&gt;&gt;<i>
+</I>
+legal. Restri&#231;&#227;o de tipos no sentido de type safety...Bom, eu n&#227;o sei
+tanto sobre isso a n&#237;vel de c&#243;digo de baixo n&#237;vel, mas acredito que
+diversas VMs realizam checagem de tipos durante a execu&#231;&#227;o de forma a
+impor seguran&#231;a. Eu vou tentar ver com cuidado mais isso....acredito
+que seria interessante ter o gptassembly sem &quot;tipos fortes&quot;. Talvez
+isso permita que tenhamos linguagem com tipagem forte e fraca em alto
+n&#237;vel, sem termos grandes problemas em baixo n&#237;vel (at&#233; onde entendo,
+ter tipagem forte no bytecode dificulta implementar gera&#231;&#227;o de c&#243;digo
+de uma linguagem de alto n&#237;vel com tipagem fraca).
+
+
+&gt;&gt;<i> O que me leva pensar sobre source level debugging. N&#227;o lembro se
+</I>&gt;&gt;<i> chegamos a discutir isso, mas precisamos de informa&#231;&#245;es no objeto para
+</I>&gt;&gt;<i> ajudar a depurar os programas..
+</I>&gt;<i>
+</I>&gt;<i> Tamb&#233;m n&#227;o lembro de termos conversado sobre isso. Inclusive, pensando pouco
+</I>&gt;<i> sobre o assunto, seria &quot;f&#225;cil&quot; fazer um debugger que atua sobre o c&#243;digo
+</I>&gt;<i> intermedi&#225;rio, mas n&#227;o sobre o c&#243;digo final. Relembrando que, como a id&#233;ia &#233;
+</I>&gt;<i> podermos ter v&#225;rias sa&#237;das (bytecode, C, C++, assembly), como instrumentar
+</I>&gt;<i> todas estes &quot;formatos&quot; ? Acredito que at&#233; d&#225; (conforme o target)
+</I>&gt;<i> instrument&#225;-lo, mas isso daria bastante trabalho porque seria uma forma de
+</I>&gt;<i> instrumenta&#231;&#227;o para cada target. J&#225; se instrumentarmos o c&#243;digo
+</I>&gt;<i> intermedi&#225;rio, o debugger usaria estas informa&#231;&#245;es.
+</I>&gt;<i> Mas adianto que n&#227;o sou muito entendido em debuggers, ent&#227;o posso ter falado
+</I>&gt;<i> besteira :-)
+</I>
+&#201;, eu tbm n&#227;o sou nenhum entendido do assunto...Eu acho que seria
+bastante importante termos debugger do pr&#243;prio gpt e da gptvm que
+permitam depurar na linguagem de alto n&#237;vel. Eu sugeriria ignorarmos a
+depura&#231;&#227;o em alto n&#237;vel para outros targets.
+
+[]'s
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000048.html">[gpt-devel] Vamos dar prosseguimento a V2 ???
+</A></li>
+	<LI>Next message: <A HREF="000047.html">[gpt-devel] Vamos dar prosseguimento a V2 ???
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#46">[ date ]</a>
+              <a href="thread.html#46">[ thread ]</a>
+              <a href="subject.html#46">[ subject ]</a>
+              <a href="author.html#46">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Ordem de empilhamento dos argumentos
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Ordem%20de%20empilhamento%20dos%20argumentos&In-Reply-To=%3CAANLkTimDLH%2ByjsJExk_0YZxEuSD4j-5ASr2fuB_86MjG%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000177.html">
+   <LINK REL="Next"  HREF="000180.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Ordem de empilhamento dos argumentos</H1>
+    <B>Thiago Silva</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Ordem%20de%20empilhamento%20dos%20argumentos&In-Reply-To=%3CAANLkTimDLH%2ByjsJExk_0YZxEuSD4j-5ASr2fuB_86MjG%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Ordem de empilhamento dos argumentos">tsilva at sourcecraft.info
+       </A><BR>
+    <I>Tue Nov  9 15:48:24 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000177.html">[gpt-devel] Ordem de empilhamento dos argumentos
+</A></li>
+        <LI>Next message: <A HREF="000180.html">[gpt-devel] Ordem de empilhamento dos argumentos
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#179">[ date ]</a>
+              <a href="thread.html#179">[ thread ]</a>
+              <a href="subject.html#179">[ subject ]</a>
+              <a href="author.html#179">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>2010/10/26 Alex Garzao &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">alexgarzaol at gmail.com</A>&gt;:
+&gt;<i>
+</I>&gt;&gt;<i> Ali&#225;s, s&#243; uma nota: o fato de &quot;k&quot; ser avaliado primeiro pode ser
+</I>&gt;&gt;<i> n&#227;o-intuitivo. Mas de resto, t&#225; bom
+</I>&gt;<i>
+</I>&gt;<i> Em C/C++ uma das &quot;premissas&quot; do padr&#227;o &#233; que a ordem em que os argumentos
+</I>&gt;<i> s&#227;o avaliados em uma senten&#231;a pode divergir de um compilador para outro.
+</I>&gt;<i> Quanto ao &quot;cascateamento&quot; de chamadas, com argumentos, n&#227;o sei se o padr&#227;o
+</I>&gt;<i> especifica algo. Voc&#234; sabe?
+</I>&gt;<i>
+</I>
+&#233;, realmente n&#227;o sei com certeza...
+
+&gt;<i> Mas concordo que &#233; &quot;n&#227;o-intuitivo&quot;, e aceito sugest&#245;es :-)
+</I>&gt;<i>
+</I>
+que tal se tivessemos invoca_1, invoca_2, ... onde 1 e 2 representa
+quantos argumentos est&#227;o sendo passados na pilha?
+
+&gt;<i> Vou pensar tamb&#233;m em alguma outra abordagem...
+</I>&gt;<i>
+</I>&gt;<i> Lembrei de uma coisa. O nosso problema &#233; que, se o &quot;invoca&quot; tem s&#243; o nome do
+</I>&gt;<i> m&#233;todo, n&#227;o adianta, porque sem saber a que objeto este m&#233;todo pertence, ele
+</I>&gt;<i> n&#227;o tem como saber quantos argumentos ele deve retirar at&#233; encontrar o
+</I>&gt;<i> receptor.
+</I>&gt;<i>
+</I>&gt;<i> Bom, o &quot;invoca&quot; deve invocar um objeto, que no caso &#233; uma fun&#231;&#227;o. E se este
+</I>&gt;<i> objeto-fun&#231;&#227;o tiver a informa&#231;&#227;o de quantos argumentos ele possui? Neste
+</I>&gt;<i> caso, o invoca saberia quantos argumentos retirar antes de achar o receptor.
+</I>&gt;<i>
+</I>
+ai haveria um problema com varargs...
+
+[]'s
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000177.html">[gpt-devel] Ordem de empilhamento dos argumentos
+</A></li>
+	<LI>Next message: <A HREF="000180.html">[gpt-devel] Ordem de empilhamento dos argumentos
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#179">[ date ]</a>
+              <a href="thread.html#179">[ thread ]</a>
+              <a href="subject.html#179">[ subject ]</a>
+              <a href="author.html#179">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

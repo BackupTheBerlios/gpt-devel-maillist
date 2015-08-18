@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Como implementar estruturas de controle
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Como%20implementar%20estruturas%20de%20controle&In-Reply-To=%3CAANLkTimCuPj-NeMU_HB4RopoV-w7dvwTgV%2BB8yC%3DfyXM%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000139.html">
+   <LINK REL="Next"  HREF="000133.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Como implementar estruturas de controle</H1>
+    <B>Alex Garzao</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Como%20implementar%20estruturas%20de%20controle&In-Reply-To=%3CAANLkTimCuPj-NeMU_HB4RopoV-w7dvwTgV%2BB8yC%3DfyXM%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Como implementar estruturas de controle">alexgarzaol at gmail.com
+       </A><BR>
+    <I>Sun Oct 17 14:09:25 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000139.html">[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?
+</A></li>
+        <LI>Next message: <A HREF="000133.html">[gpt-devel] Como implementar estruturas de controle
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#128">[ date ]</a>
+              <a href="thread.html#128">[ thread ]</a>
+              <a href="subject.html#128">[ subject ]</a>
+              <a href="author.html#128">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bom dia senhores :-)
+
+Colo abaixo um trecho de outro e-mail, escrito pelo Thiago:
+
+&quot;Podemos tratar fun&#231;&#245;es e closures como valores, objetos. E com closures,
+podemos implementar condi&#231;&#227;o e repeti&#231;&#227;o apenas enviando mensagens. Basta o
+objeto da fun&#231;&#227;o/closure responder a uma mensagem executando-se e retornando
+o valor de sua execu&#231;&#227;o.&quot;
+
+Eu fiquei com v&#225;rias d&#250;vidas neste ponto.
+
+Imaginando os seguintes exemplos:
+
+1) Uma fun&#231;&#227;o com um if apenas
+
+2) Uma fun&#231;&#227;o com um if e um for
+
+Que c&#243;digo GptAssembly seria gerado para estas fun&#231;&#245;es? Se cada estrutura de
+controle &#233; uma mensagem, isto quer dizer que ter&#237;amos que ter &quot;sub-fun&#231;&#245;es&quot;,
+onde cada fun&#231;&#227;o sub-fun&#231;&#227;o trataria uma mensagem espec&#237;fica?
+
+Abra&#231;os!
+
+-- 
+[]'s
+Alex Sandro Garz&#227;o
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/gpt-devel/attachments/20101017/9f0c04a8/attachment.html">https://lists.berlios.de/pipermail/gpt-devel/attachments/20101017/9f0c04a8/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000139.html">[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?
+</A></li>
+	<LI>Next message: <A HREF="000133.html">[gpt-devel] Como implementar estruturas de controle
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#128">[ date ]</a>
+              <a href="thread.html#128">[ thread ]</a>
+              <a href="subject.html#128">[ subject ]</a>
+              <a href="author.html#128">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Como%20funcionaria%20o%20%22imprima%22%20na%20VM%3F&In-Reply-To=%3CAANLkTik6iKC5D9nKm4nVw2Z9w6oYxg%3DQiP%2BXF5ahPO--%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000125.html">
+   <LINK REL="Next"  HREF="000124.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?</H1>
+    <B>Thiago Silva</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Como%20funcionaria%20o%20%22imprima%22%20na%20VM%3F&In-Reply-To=%3CAANLkTik6iKC5D9nKm4nVw2Z9w6oYxg%3DQiP%2BXF5ahPO--%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?">tsilva at sourcecraft.info
+       </A><BR>
+    <I>Sat Oct 16 18:07:26 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000125.html">[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?
+</A></li>
+        <LI>Next message: <A HREF="000124.html">[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#127">[ date ]</a>
+              <a href="thread.html#127">[ thread ]</a>
+              <a href="subject.html#127">[ subject ]</a>
+              <a href="author.html#127">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>2010/10/15 Alex Garzao &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">alexgarzaol at gmail.com</A>&gt;:
+&gt;&gt;<i> A melhor forma que conhe&#231;o para lidar com o segundo &#233; com &quot;primitivas&quot;
+</I>&gt;&gt;<i> da VM. Se representarmos m&#233;todos (ou fun&#231;&#245;es..estou usando os termos
+</I>&gt;&gt;<i> como sin&#244;nimos para facilitar) compilados com um header possuindo uma
+</I>&gt;&gt;<i> flag dizendo se o m&#233;todo &#233; primitivo e qual o n&#250;mero da fun&#231;&#227;o
+</I>&gt;&gt;<i> primitiva, por exemplo, podemos ter o &quot;send&quot;, ao receber o m&#233;todo do
+</I>&gt;&gt;<i> lookup(), checando em seu header se trata-se de uma opera&#231;&#227;o
+</I>&gt;&gt;<i> primitiva. Se for, extrai-se o n&#250;mero da primitiva e invoca-se ela
+</I>&gt;&gt;<i> internamente. Caso conr&#225;rio, realiza-se o &quot;send&quot; padr&#227;o.
+</I>&gt;<i>
+</I>&gt;<i> Ok. Mas at&#233; agora n&#227;o parece ser diferente de invocar um m&#233;todo qualquer de
+</I>&gt;<i> um objeto certo?
+</I>
+Isso -- &quot;por fora&quot; n&#227;o &#233; diferente, mas internamente, casos especiais
+s&#227;o tratados.
+
+&gt;<i>  &quot;imprima&quot; n&#227;o &#233; um m&#233;todo qualquer, &#233; um m&#233;todo que deve
+</I>&gt;<i> estar acess&#237;vel a qq objeto por fazer parte da biblioteca padr&#227;o da
+</I>&gt;<i> linguagem.
+</I>
+&quot;por fora&quot;, ele se parece e age como um m&#233;todo qualquer -- isso que &#233;
+importante. Seu caso especial &#233; tratado internamente.
+
+Sobre &quot;estar acess&#237;vel a qq objeto por fazer parte da biblioteca
+padr&#227;o&quot;, em termos de g-portugol em um primeiro momento, isso n&#227;o me
+preocupa tanto. A longo prazo, eu j&#225; visualizo casos em que isso pode
+ser indesej&#225;vel. Mas isso &#233; apenas uma tangente bem secund&#225;ria no
+assunto....s&#243; pra dar alguns pitacos, se vc controlar os acessos ao
+escopo -- por exemplo, evitando ter &quot;escopo global&quot; ou objetos e
+m&#233;todos est&#225;ticos -- fica f&#225;cil definir &quot;ambientes&quot; controlados como
+sandboxes e coisas do tipo. Isso permite que objetos/aplica&#231;&#245;es etc
+sejam transferidas pela rede e executadas com seguran&#231;a (da mesma
+forma que o DOM do browser n&#227;o exp&#245;e acesso ao file system por
+exemplo), onde apenas os objetos e m&#233;todos especificados est&#227;o
+dispon&#237;veis para o programa estrangeiro. Ent&#227;o, imagine que a gente
+cria um espa&#231;o na rede onde &quot;applets&quot; de v&#225;rios programadores est&#227;o
+dispon&#237;veis para serem baixados e executados &quot;com um click&quot;. Ficaria
+f&#225;cil criar uma aplica&#231;&#227;o cliente em g-portugol que lista estes
+applets e tem um bot&#227;o de &quot;baixar e executar&quot; -- ou coisa do g&#234;nero --
+e vc pode execut&#225;-los sem se preocupar com o que estes objetos v&#227;o
+fazer com seus dados.
+
+
+&gt;<i> No caso do imprima, a gente n&#227;o vai ter uma entrada na vtable de cada objeto
+</I>&gt;<i> (imagino eu), e pouco menos o objeto pai (objeto) vai ter esta entrada em
+</I>&gt;<i> sua vtable.
+</I>
+&#201;...improv&#225;vel...hehehe
+
+&gt;<i> A n&#227;o ser que o que voc&#234; quis dizer (e eu n&#227;o entendi direito) &#233; que o
+</I>&gt;<i> lookup (ou send, sei l&#225; hehehe) primeiro testa se &#233; um m&#233;todo pr&#233;-definido
+</I>&gt;<i> (imprima, leia, ...), e caso seja, faz um tratamento (c&#243;digo nativo), sen&#227;o
+</I>&gt;<i> busca na vtable do objeto para ver se existe. &#201; isso?
+</I>
+exatamente.
+
+&gt;<i> [...]
+</I>&gt;<i> Hum, acho que a sua id&#233;ia bate com o que deduzi acima hehehe.
+</I>&gt;<i> Desta forma a gente posterga o problema de como implementar as bibliotecas,
+</I>&gt;<i> o que eu acho que &#233; uma boa coisa no est&#225;gio atual em que estamos.
+</I>
+Isso. Tudo aquilo que forma um &quot;ambiente b&#225;sico&quot; e n&#227;o pode ser
+escrito em gptassembly usando envio de mensagens pode ser implementado
+via primitivas. Bindings, em geral, podem ser feitos via algum modelo
+de FFI (que inclusive, imagino que pode ser implementado em termos de
+primitivas), uma vez que j&#225; necessitam de uma camada intermediaria
+para transformar estruturas de uma linguagem/ambiente pra outro. Seja
+como for, a uniformidade do modelo de envio de mensagens se mant&#233;m
+preservada.
+
+[]'s
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000125.html">[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?
+</A></li>
+	<LI>Next message: <A HREF="000124.html">[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#127">[ date ]</a>
+              <a href="thread.html#127">[ thread ]</a>
+              <a href="subject.html#127">[ subject ]</a>
+              <a href="author.html#127">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

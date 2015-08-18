@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Formato (gram&#225;tica) do GptAssembly
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%0A%09%3D%3Fiso-8859-1%3Fq%3FFormato_%3D28gram%3DE1tica%3D29_do_GptAssemb%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Fly%3F%3D&In-Reply-To=%3CAANLkTimrs%3DuTz2uR4_xrZMXUS7tymPXW_phS0V4zngQe%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000078.html">
+   <LINK REL="Next"  HREF="000090.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Formato (gram&#225;tica) do GptAssembly</H1>
+    <B>Thiago Silva</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%0A%09%3D%3Fiso-8859-1%3Fq%3FFormato_%3D28gram%3DE1tica%3D29_do_GptAssemb%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Fly%3F%3D&In-Reply-To=%3CAANLkTimrs%3DuTz2uR4_xrZMXUS7tymPXW_phS0V4zngQe%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Formato (gram&#225;tica) do GptAssembly">tsilva at sourcecraft.info
+       </A><BR>
+    <I>Wed Oct  6 16:24:14 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000078.html">[gpt-devel] Formato (gram&#225;tica) do GptAssembly
+</A></li>
+        <LI>Next message: <A HREF="000090.html">[gpt-devel] Formato (gram&#225;tica) do GptAssembly
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#85">[ date ]</a>
+              <a href="thread.html#85">[ thread ]</a>
+              <a href="subject.html#85">[ subject ]</a>
+              <a href="author.html#85">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bom Dia!
+
+2010/10/1 Alex Garzao &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">alexgarzaol at gmail.com</A>&gt;
+&gt;<i>
+</I>&gt;<i> Boa noite para todos :-)
+</I>&gt;<i> Precisamos definir qual ser&#225; o formato (gram&#225;tica) do GptAssembly. GptAssembly &#233; a linguagem de m&#225;quina da GptVM (m&#225;quina virtual).
+</I>&gt;<i> A minha sugest&#227;o inicial &#233; esta:
+</I>
+
+Vou lan&#231;ar aqui uma sugest&#227;o. Eu pensei em um modelo OO mais puro e
+simples, sem classes (como javascript, self e lua), pela flexibilidade
+(acho que &#233; mais f&#225;cil operar sem classes [tanto em alto n&#237;vel quanto
+em baixo n&#237;vel] e &#233; f&#225;cil implementar classes sobre o modelo de
+prot&#243;tipos).
+
+Neste caso, uma unidade compilada poderia ser um conjunto de
+defini&#231;&#245;es de objetos e defini&#231;&#245;es de m&#233;todos associados a objetos.
+
+Por exemplo, suponha que a seguinte defini&#231;&#227;o crie um objeto prot&#243;tipo
+Pessoa, com atributos &quot;nome&quot; e &quot;idade&quot;, que delega/herda de Objeto:
+
+Pessoa : Objeto[nome, idade];
+
+E a seguinte defini&#231;&#227;o crie um m&#233;todo para o objeto Pessoa:
+
+Pessoa maiorDeIdade()
+   retorne .idade &gt; 18;
+fim
+
+Imagino, ent&#227;o, que uma unidade compilada seria formada por um
+conjunto de defini&#231;&#245;es de objetos e m&#233;todos associados a objetos.
+Talvez com tabelas de objetos, m&#233;todos e mapeamento entre nomes,
+objetos e m&#233;todos. Ent&#227;o, uma linguagem de &quot;baixo&quot; n&#237;vel poderia ser
+algo como a nota&#231;&#227;o acima, exceto pelo corpo dos m&#233;todos, que
+utilizariam mnem&#244;nicos dos bytecodes e, talvez, operariam
+explicitamente com o prologo e epilogo das fun&#231;&#245;es (criando espa&#231;o na
+pilha para os parametros, e coisas do tipo).
+
+Se, por outro lado, fomos tocar um modelo baseado em classes, eu
+sugiro nos livrar da tipagem. Neste caso, a nota&#231;&#227;o que vc sugeriu,
+pra mim, est&#225; boa, com excess&#227;o do &quot;nulo&quot; na defini&#231;&#227;o do m&#233;todo.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000078.html">[gpt-devel] Formato (gram&#225;tica) do GptAssembly
+</A></li>
+	<LI>Next message: <A HREF="000090.html">[gpt-devel] Formato (gram&#225;tica) do GptAssembly
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#85">[ date ]</a>
+              <a href="thread.html#85">[ thread ]</a>
+              <a href="subject.html#85">[ subject ]</a>
+              <a href="author.html#85">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

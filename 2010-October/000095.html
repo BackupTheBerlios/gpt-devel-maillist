@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Formato (gram&#225;tica) do GptAssembly
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%0A%09%3D%3Fiso-8859-1%3Fq%3FFormato_%3D28gram%3DE1tica%3D29_do_GptAssemb%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Fly%3F%3D&In-Reply-To=%3CAANLkTinz5bV43h4gmnXJH5b-TYxGQgf%3DY%2Bpx_O-ADP-Q%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000093.html">
+   <LINK REL="Next"  HREF="000096.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Formato (gram&#225;tica) do GptAssembly</H1>
+    <B>Thiago Silva</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%0A%09%3D%3Fiso-8859-1%3Fq%3FFormato_%3D28gram%3DE1tica%3D29_do_GptAssemb%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Fly%3F%3D&In-Reply-To=%3CAANLkTinz5bV43h4gmnXJH5b-TYxGQgf%3DY%2Bpx_O-ADP-Q%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Formato (gram&#225;tica) do GptAssembly">tsilva at sourcecraft.info
+       </A><BR>
+    <I>Thu Oct  7 21:00:20 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000093.html">[gpt-devel] Formato (gram&#225;tica) do GptAssembly
+</A></li>
+        <LI>Next message: <A HREF="000096.html">[gpt-devel] Formato (gram&#225;tica) do GptAssembly
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#95">[ date ]</a>
+              <a href="thread.html#95">[ thread ]</a>
+              <a href="subject.html#95">[ subject ]</a>
+              <a href="author.html#95">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>2010/10/6 Alex Garzao &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">alexgarzaol at gmail.com</A>&gt;:
+&gt;<i> De qq forma acho que a gente deveria avan&#231;ar um pouco mais as id&#233;ias sobre o
+</I>&gt;<i> GptAssembly. Eu &quot;acho&quot; que captei as suas id&#233;ias, mas gostaria (se poss&#237;vel)
+</I>&gt;<i> que voc&#234; implementasse os seguintes exemplos completos utilizando as duas
+</I>&gt;<i> id&#233;ias:
+</I>
+Ok. Para os exemplos abaixo, vou considerar o modelo de objetos
+descrito em [1], onde:
+
+  * N&#227;o existem classes.
+  * Fun&#231;&#245;es podem ser vistas como objetos
+  * cada objeto O &#233; uma tupla {Estado, Comportamento}
+  * Estado &#233; um bloco de mem&#243;ria para armazenar os atributos
+  * Comportamento (&quot;vtable&quot;) &#233; um objeto que possui, pelo menos, duas
+informa&#231;&#245;es: um ponteiro para o objeto &quot;parent&quot;, e um dicion&#225;rio de
+m&#233;todos.
+  * Um ponteiro de objeto oop aponta para o primeiro atributo do
+Estado. O endere&#231;o oop[-1] aponta para o objeto Comportamento.
+
+
+&gt;<i> 1) Exemplo &quot;Ol&#225; mundo&quot;
+</I>
+N&#227;o t&#227;o diferente...
+
+.m&#233;todo principal
+     crstr &quot;Ol&#225; mundo!!!&quot; // Argumento 1
+     crconst_1            // N&#250;mero de argumentos
+     invocalib es.imprima
+     sai_0
+.fim_m&#233;todo
+
+Algumas sugest&#245;es sobre terminologia:
+-Como fun&#231;&#245;es podem ser vistas como objetos autonomos, talvez a
+nota&#231;&#227;o possa ser &quot;fun&#231;&#227;o&quot; ao inv&#233;s de &quot;m&#233;todo&quot;.
+-Eu sugeriria que &quot;invocalib&quot; n&#227;o tivesse o &quot;lib&quot;. Quem sabe, algo
+gen&#233;rico como &quot;invoca&quot;, &quot;invoque&quot;, &quot;chame&quot;, &quot;envie&quot;, ou algo do tipo.
+
+&gt;<i> 2) Como instanciar novos objetos e enviar mensagens (invocar seus m&#233;todos)
+</I>&gt;<i>
+</I>
+-Enviando mensagens:
+
+Em termos de opcode, utilizando os cr*, etc e invocalib mesmo, da
+forma como vc tem feito. Mas imagino que a sem&#226;ntica de invocalib
+poderia ser de duas formas:
+
+a) Da forma descrita em [1], onde a VM chama o m&#233;todo &quot;lookup&quot; do
+objeto vtable do receptor para obter o ponteiro do m&#233;todo. Dessa
+forma, o lookup()  pode ser (re)programado no n&#237;vel acima da VM; ou
+b) O lookup(m) &#233; feito pela pr&#243;pria VM, buscando por conta pr&#243;pria, no
+dicion&#225;rio de m&#233;todos do objeto, o m&#233;todo &quot;m&quot;.
+
+Se &quot;m&quot; n&#227;o for encontrado pelo lookup(), ou a vm lan&#231;a uma excess&#227;o (o
+que requer um mecanismo de exce&#231;&#245;es), ou a vm chama um m&#233;todo
+espec&#237;fico (como em Smalltalk, onde a VM chama #doesNotUnderstand no
+objeto receptor, que possui uma implementa&#231;&#227;o padr&#227;o definida na
+classe Object).
+
+Em ambas as formas, o lookup() padr&#227;o procuraria o m&#233;todo &quot;m&quot; no
+dicion&#225;rio do receptor, e caso n&#227;o encontre, procuraria sucessivamente
+no dicion&#225;rio do objeto &quot;parent&quot; (analogamente a buscar &quot;m&quot; na
+hierarquia de classes). Por&#233;m, na abordagem (a), o lookup() pode ser
+reescrito e definido para cada objeto (ou para uma fam&#237;lia de objetos)
+sem modificar a VM, a &quot;n&#237;vel de usu&#225;rio&quot;.
+
+
+-Criando objetos:
+
+No n&#237;vel mais primitivo, acho que precisariamos definir como alocar
+mem&#243;ria e associar ao bloco de mem&#243;ria sua &quot;vtable&quot; -- algo que
+represente seu Comportamento: hierarquia e dicion&#225;rio de m&#233;todos, por
+exemplo. Talvez pudessemos ter um opcode (&quot;crie&quot;,&quot;aloca&quot;, ...) com um
+argumento: n&#250;mero de bytes para alocar. A partir da&#237;, poderiamos fazer
+a cria&#231;&#227;o de objetos mandando mensagens. As figuras 10 e 11 de [1]
+apresentam uma poss&#237;vel implementa&#231;&#227;o.
+
+Neste caso, acho que entramos na conversa de como inicializar objetos.
+Eu li algumas discuss&#245;es sobre este tema no passado mas n&#227;o lembro
+muito agora. Talvez, no momento da cria&#231;&#227;o do objet, a VM poderia
+chamar um m&#233;todo &quot;incialize&quot; tendo como receptor o novo objeto
+alocado, caso esse m&#233;todo exista.
+
+O que me leva a pensar que talvez seja necess&#225;rio pensar sobre como
+implementar uma chamada equivalente a &quot;super()&quot;..
+
+&gt;<i> 3) Classe com um m&#233;todo sem argumentos e outro com argumentos, e como estes
+</I>&gt;<i> m&#233;todos s&#227;o invocados
+</I>&gt;<i>
+</I>
+Em termos de opcode, acho que eu faria da forma como vc tem feito,
+empilhando os argumentos e o &quot;self&quot; e fazendo o send. A sem&#226;ntica da
+chamada &#233; o que eu escrevi acima.
+
+
+&gt;<i> 4) Classe com m&#233;todo do tipo soma(x,y) que retorna a soma destes dois
+</I>&gt;<i> valores
+</I>&gt;<i>
+</I>
+Aqui entra algo interessante. Se tivermos opcodes como &quot;add&quot; para
+inteiros, acho que isso implica que temos, a n&#237;vel de VM, dois tipos
+de valores: primitivos e objetos. Eu proponho que todas essas
+opera&#231;&#245;es (que n&#227;o s&#227;o opera&#231;&#245;es sobre a pilha e a mem&#243;ria, por
+exemplo) sejam feitas por envio de mensagens (e que todos os valores
+sejam objetos), sem necessidade de implementar esses opcodes. Creio
+que isso simplifica bastante a opera&#231;&#227;o da VM e elimina a dicotomia de
+trabalhar com esses dois &quot;mundos&quot;. Esta abordagem &#233; descrita no Blue
+Book do Smalltalk [2], no capitulo que descreve a m&#225;quina virtual.
+
+Ent&#227;o, por exemplo, x+y poderia ser implementado carregando o
+par&#226;metro &quot;y&quot;, o receptor &quot;x&quot; e invocando o m&#233;todo &quot;+&quot;. Claro que em
+algum momento &quot;+&quot; deve ser definido. Em smalltalk-80, isso &#233; feito
+tendo, para cada m&#233;todo compilado, um header possuindo uma flag
+indicando se o m&#233;todo &#233; um &quot;m&#233;todo primitivo&quot;. Se for primitivo,
+significa que n&#227;o h&#225; bytecode para este m&#233;todo, que ele &#233; implementado
+pela pr&#243;pria VM. Isso permite que todas as primitivas da VM possam ser
+sobrescritas a &quot;n&#237;vel de usu&#225;rio&quot;.
+
+
+N&#227;o sei se escrevi bem o que vc estava procurando, ent&#227;o, qualquer
+coisa, &#233; s&#243; falar :)
+
+
+[1] - <A HREF="http://piumarta.com/software/id-objmodel/objmodel2.pdf">http://piumarta.com/software/id-objmodel/objmodel2.pdf</A>
+[2] - <A HREF="http://stephane.ducasse.free.fr/FreeBooks/BlueBook/">http://stephane.ducasse.free.fr/FreeBooks/BlueBook/</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000093.html">[gpt-devel] Formato (gram&#225;tica) do GptAssembly
+</A></li>
+	<LI>Next message: <A HREF="000096.html">[gpt-devel] Formato (gram&#225;tica) do GptAssembly
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#95">[ date ]</a>
+              <a href="thread.html#95">[ thread ]</a>
+              <a href="subject.html#95">[ subject ]</a>
+              <a href="author.html#95">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

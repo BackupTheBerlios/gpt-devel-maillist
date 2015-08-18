@@ -1,0 +1,225 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Vamos dar prosseguimento a V2 ???
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Vamos%20dar%20prosseguimento%20a%20V2%20%3F%3F%3F&In-Reply-To=%3CAANLkTikRVpaLNuCGKDNypZ-OR8niE0uc6gVUGJY53hUr%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000039.html">
+   <LINK REL="Next"  HREF="000041.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Vamos dar prosseguimento a V2 ???</H1>
+    <B>Thiago Silva</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Vamos%20dar%20prosseguimento%20a%20V2%20%3F%3F%3F&In-Reply-To=%3CAANLkTikRVpaLNuCGKDNypZ-OR8niE0uc6gVUGJY53hUr%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Vamos dar prosseguimento a V2 ???">tsilva at sourcecraft.info
+       </A><BR>
+    <I>Tue Aug  3 21:03:11 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000039.html">[gpt-devel] Vamos dar prosseguimento a V2 ???
+</A></li>
+        <LI>Next message: <A HREF="000041.html">[gpt-devel] Vamos dar prosseguimento a V2 ???
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#40">[ date ]</a>
+              <a href="thread.html#40">[ thread ]</a>
+              <a href="subject.html#40">[ subject ]</a>
+              <a href="author.html#40">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Opa!
+
+2010/8/3 Alex Garzao &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">alexgarzaol at gmail.com</A>&gt;:
+&gt;<i> Bom dia senhores :-)
+</I>&gt;<i>
+</I>&gt;<i> Ap&#243;s um bom tempo &quot;inativo&quot;, acho que vamos retomar a vers&#227;o 2 :-)
+</I>&gt;<i>
+</I>
+\o/
+
+&gt;<i> Al&#233;m dos volunt&#225;rios de sempre (Eu, Thiago e Adorilson), o Eleandro tamb&#233;m
+</I>&gt;<i> se voluntariou a ajudar.
+</I>&gt;<i>
+</I>
+O eleandro j&#225; est&#225; na lista?
+
+&gt;<i> Aproveito para convidar a todos que desejam contribuir para se pronunciarem.
+</I>&gt;<i> Contribui&#231;&#227;o de qualquer &quot;esp&#233;cie&quot; &#233; sempre bem vinda (id&#233;ias, dicas,
+</I>&gt;<i> arquitetura do projeto, documenta&#231;&#227;o, fontes, testes, ...).
+</I>&gt;<i>
+</I>&gt;<i> Eu revisei agora os e-mails antigos e o wikki. O escopo da V2 era:
+</I>&gt;<i> - sintaxe para novas instru&#231;&#245;es (repita, escolha, fa&#231;a enquanto, sair, etc)
+</I>&gt;<i> - estruturas
+</I>&gt;<i> - arrays unidimensionais e multidimensionais
+</I>&gt;<i> - suporte a n&#250;mero de par&#226;metros vari&#225;veis
+</I>&gt;<i> - Uso de m&#243;dulos (aka import/include/use/require/load)
+</I>&gt;<i> - Sintaxe para declara&#231;&#227;o e utiliza&#231;&#227;o de estruturas heterog&#234;neas (aka
+</I>&gt;<i> struct)
+</I>&gt;<i> - Sintaxe para passagem de par&#226;metros por refer&#234;ncia
+</I>&gt;<i> - Revis&#227;o geral da sintaxe
+</I>&gt;<i> - Revis&#227;o geral da sem&#226;ntica dos tipos
+</I>&gt;<i> - Unicode
+</I>&gt;<i> - Uso de m&#243;dulos externos
+</I>&gt;<i> - Uso de bibliotecas de sistema
+</I>&gt;<i>
+</I>&gt;<i> Se esqueci de algo, desculpem-me. E sintam-se a vontade para colocar (ou
+</I>&gt;<i> retirar) itens desta lista :-)
+</I>&gt;<i>
+</I>&gt;<i> Das decis&#245;es que tomamos anteriormente, acredito que as mais importantes
+</I>&gt;<i> eram que&#160; ter&#237;amos o ambiente para desenvolvimento/execu&#231;&#227;o com os seguintes
+</I>&gt;<i> componentes:
+</I>&gt;<i> - GptC, o compilador que traduz g-portugol para um c&#243;digo intermedi&#225;rio (gpt
+</I>&gt;<i> assembly)
+</I>&gt;<i> - GptASM, o montador assembly que traduz gpt assembly para bytecode
+</I>&gt;<i> - GptVM, a VM (m&#225;quina virtual) que executa o bytecode gerado
+</I>&gt;<i>
+</I>&gt;<i> Eu acho que dever&#237;amos rever brevemente algumas destas decis&#245;es. Lembro que,
+</I>&gt;<i> em 2007, eu era o mais partid&#225;rio de implementarmos uma VM para o projeto.
+</I>&gt;<i> Mas, atualmente, eu acho que devemos deixar o projeto flex&#237;vel o suficente
+</I>&gt;<i> para que possamos implementar uma VM pr&#243;pria, utilizar alguma existente, ou
+</I>&gt;<i> gerar c&#243;digo para outras linguagens. Com esta abordagem acredito que
+</I>&gt;<i> possamos ter algo funcional em &quot;pouco tempo&quot;.
+</I>&gt;<i>
+</I>&gt;<i> Eu imagino termos a seguinte estrutura:
+</I>&gt;<i>
+</I>&gt;<i> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; -&gt;&#160; C#
+</I>&gt;<i> G-Portugol&#160; -&gt;&#160; GptC&#160; -&gt;&#160; GptAssembly&#160; -&gt;&#160; Tradutor&#160; -&gt;&#160; C++
+</I>&gt;<i> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; -&gt;&#160; C
+</I>&gt;<i> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; -&gt;&#160; Parrot
+</I>&gt;<i> &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; -&gt;&#160; LuaVM
+</I>&gt;<i> &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; -&gt;&#160; GptVM
+</I>&gt;<i> &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;-&gt;&#160; Python VM
+</I>&gt;<i> &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;-&gt;&#160; JVM
+</I>&gt;<i> &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160; &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; -&gt;&#160; Assembly
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Ou seja, a partir do G-Portugol, o GptC geraria GptAssembly. Posteriormente,
+</I>&gt;<i> para possibilitar a execu&#231;&#227;o do programa em g-portugol, haveria duas
+</I>&gt;<i> possibilidades:
+</I>&gt;<i>
+</I>&gt;<i> 1) Traduzir este assembly para linguagens &quot;de mercado&quot; (como C#, C++, C,
+</I>&gt;<i> Assembly), utilizando assim seus respectivos ambientes de
+</I>&gt;<i> desenvolvimento/execu&#231;&#227;o para executar o aplicativo;
+</I>&gt;<i>
+</I>&gt;<i> 2) Traduzir este assembly para bytecode de alguma VM (parrot, jvm, gptvm,
+</I>&gt;<i> luavm, pythonvm, ...).
+</I>&gt;<i>
+</I>&gt;<i> Com isso, a gente continuaria tendo um projeto que, al&#233;m de auxiliar no
+</I>&gt;<i> ensino da programa&#231;&#227;o, tamb&#233;m seria um projeto did&#225;tico para quem tem
+</I>&gt;<i> interesse no desenvolvimento de linguagens, compiladores, VMs e afins.
+</I>&gt;<i>
+</I>&gt;<i> Como citando em um e-mail antigo, o GptAssembly poderia (ou at&#233; deveria) ser
+</I>&gt;<i> em portugu&#234;s. Na vers&#227;o que estavamos desenvolvendo era em ingl&#234;s, mas acho
+</I>&gt;<i> que deveria ser em portugu&#234;s mesmo.
+</I>&gt;<i>
+</I>&gt;<i> Outra coisa. O usu&#225;rio poderia inserir c&#243;digo em GptAssembly no seu
+</I>&gt;<i> algor&#237;tmo tamb&#233;m, possibilitando que ele entenda tamb&#233;m o assembly utilizado
+</I>&gt;<i> no projeto. Al&#233;m disso, as bibliotecas desenvolvidas pelo usu&#225;rio, por serem
+</I>&gt;<i> feitas em g-portugol, poderiam ser &quot;desassembladas&quot; para GptAssembly,
+</I>&gt;<i> proporcionando assim que o usu&#225;rio entenda o que a biblioteca faz
+</I>&gt;<i> &quot;internamente&quot;.
+</I>&gt;<i>
+</I>&gt;<i> O que voc&#234;s acham deste novo escopo para a V2? &#201; bem similar ao anterior.
+</I>&gt;<i>
+</I>&gt;<i> Claro, dentro do poss&#237;vel vamos aproveitar o que j&#225; desenvolvemos da V2, mas
+</I>&gt;<i> n&#227;o precisamos nos prender tanto assim ao que j&#225; foi feito. Aproveitamos o
+</I>&gt;<i> que d&#225; e era isso :-)
+</I>&gt;<i>
+</I>&gt;<i> Um detalhe sobre as VMs. Grosseiramente podemos categoriz&#225;-las em &quot;baseada
+</I>&gt;<i> em pilha&quot; e &quot;baseada em registradores&quot;.
+</I>&gt;<i>
+</I>&gt;<i> A LuaVM (se eu n&#227;o me engado da vers&#227;o 5 em diante) e a Parrot s&#227;o m&#225;quinas
+</I>&gt;<i> baseadas em registradores. A Python VM, JVM e a GptVM s&#227;o m&#225;quinas de pilha.
+</I>&gt;<i> Saliento que &#233; mais f&#225;cil gerar c&#243;digo a partir do compilador para m&#225;quinas
+</I>&gt;<i> baseadas em pilha, por&#233;m pode-se explorar menos as t&#233;cnicas de otimiza&#231;&#227;o de
+</I>&gt;<i> c&#243;digo cl&#225;ssicas descritas nos livros de compiladores.
+</I>&gt;<i>
+</I>&gt;<i> Outro detalhe. A Parrot, apesar de ser baseada em registradores, aceita
+</I>&gt;<i> c&#243;digo em uma linguagem intermedi&#225;ria &quot;de alto n&#237;vel&quot;, o que facilita
+</I>&gt;<i> bastante o seu uso.
+</I>&gt;<i>
+</I>&gt;<i> O que voc&#234;s acham ???
+</I>&gt;<i>
+</I>
+
+Ok, vejamos..
+
+Eu acho que vc pontuou bem as quest&#245;es da nova linguagem (a de alto
+n&#237;vel), mesmo eu n&#227;o tendo revisto os documentos antigos. No que tange
+a revis&#227;o da linguagem, eu pensei brevemente em considerar a
+implementa&#231;&#227;o de m&#243;dulos parametrizados. Claro, dentro da nossa
+realidade de viabilidade....como nunca implementei isso, n&#227;o sei at&#233;
+que ponto &#233; vi&#225;vel com o que temos pra fazer....
+
+No que tange as ferramentas de compila&#231;&#227;o/transforma&#231;&#227;o e a m&#225;quina
+virtual, eu acho muito interessante considerar a portabilidade entre
+diversas vms. E certamente, de podermos trabalhar nossos pr&#243;prios
+runtimes :)
+
+Gostaria tamb&#233;m de sugerir os seguintes projetos para conhecimento e
+discutirmos se eles tem lugar na nossa empreitada:
+
+OMeta: an Object-Oriented Language for Pattern Matching
+<A HREF="http://www.tinlizzie.org/~awarth/papers/dls07.pdf">http://www.tinlizzie.org/~awarth/papers/dls07.pdf</A>
+
+Escrevi em 2008 um paper utilizando uma implementa&#231;&#227;o dessa
+(meta)linguagem, e achei um brinquedinho fascinante para realizar
+transforma&#231;&#245;es. Mas como &#233; uma linguagem baseada em PEGs e n&#227;o nas
+famosas gram&#225;ticas livres de contexto, cabe refletir se vale te-la
+como compilador nesse primeiro momento, dado que ninguem aprende PEGs
+nas aulas de compiladores. Talvez seja melhor utilizar uma compila&#231;&#227;o
+tradicional e, no futuro, ter uma gram&#225;tica equivalente em OMeta. De
+qualquer forma, eu acho que ela pode ser utilizada bem em etapas de
+otimiza&#231;&#227;o e demais transforma&#231;&#245;es de c&#243;digo.
+
+
+The Virtual Processor: Fast, Architecture-Neutral Dynamic Code Generation
+(google encontra)
+
+Esse foi outro trabalho que eu gostei sobre gera&#231;&#227;o de c&#243;digo. N&#227;o sei
+se pode nos ser &#250;til...
+
+Em rela&#231;&#227;o &#224; linguagem gptassembly, eu gostaria de reve-la tbm para
+saber at&#233; que ponto ela pode permitir que a gente pire aos poucos em
+linguagens de alto nivel (late binding, restri&#231;&#227;o de tipos,
+polimorfismo, etc..)
+
+O que me leva pensar sobre source level debugging. N&#227;o lembro se
+chegamos a discutir isso, mas precisamos de informa&#231;&#245;es no objeto para
+ajudar a depurar os programas..
+
+Por enquanto &#233; s&#243;...vamos conversando :)
+
+[]'s
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000039.html">[gpt-devel] Vamos dar prosseguimento a V2 ???
+</A></li>
+	<LI>Next message: <A HREF="000041.html">[gpt-devel] Vamos dar prosseguimento a V2 ???
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#40">[ date ]</a>
+              <a href="thread.html#40">[ thread ]</a>
+              <a href="subject.html#40">[ subject ]</a>
+              <a href="author.html#40">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

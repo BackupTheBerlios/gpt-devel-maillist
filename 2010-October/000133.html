@@ -1,0 +1,191 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Como implementar estruturas de controle
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Como%20implementar%20estruturas%20de%20controle&In-Reply-To=%3CAANLkTikcvFqQqneJWnMi-UKSWFZBHhjuOKUnNRAFubnz%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000128.html">
+   <LINK REL="Next"  HREF="000134.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Como implementar estruturas de controle</H1>
+    <B>Thiago Silva</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Como%20implementar%20estruturas%20de%20controle&In-Reply-To=%3CAANLkTikcvFqQqneJWnMi-UKSWFZBHhjuOKUnNRAFubnz%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Como implementar estruturas de controle">tsilva at sourcecraft.info
+       </A><BR>
+    <I>Mon Oct 18 06:28:08 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000128.html">[gpt-devel] Como implementar estruturas de controle
+</A></li>
+        <LI>Next message: <A HREF="000134.html">[gpt-devel] Como implementar estruturas de controle
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#133">[ date ]</a>
+              <a href="thread.html#133">[ thread ]</a>
+              <a href="subject.html#133">[ subject ]</a>
+              <a href="author.html#133">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Boa noite!
+
+2010/10/17 Alex Garzao &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">alexgarzaol at gmail.com</A>&gt;:
+&gt;<i> Bom dia senhores :-)
+</I>&gt;<i> Colo abaixo um trecho de outro e-mail, escrito pelo Thiago:
+</I>&gt;<i> &quot;Podemos tratar fun&#231;&#245;es e closures como valores, objetos. E com&#160;closures,
+</I>&gt;<i> podemos implementar condi&#231;&#227;o e repeti&#231;&#227;o apenas enviando&#160;mensagens. Basta o
+</I>&gt;<i> objeto da fun&#231;&#227;o/closure responder a uma mensagem&#160;executando-se e retornando
+</I>&gt;<i> o valor de sua execu&#231;&#227;o.&quot;
+</I>&gt;<i> Eu fiquei com v&#225;rias d&#250;vidas neste ponto.
+</I>&gt;<i> Imaginando os seguintes exemplos:
+</I>&gt;<i> 1) Uma fun&#231;&#227;o com um if apenas
+</I>&gt;<i> 2) Uma fun&#231;&#227;o com um if e um for
+</I>&gt;<i> Que c&#243;digo GptAssembly seria gerado para estas fun&#231;&#245;es?
+</I>
+
+1) Suponha:
+
+-que objetos boolean (&quot;verdadeiro&quot; e &quot;falso&quot;) possuem em sua vtable o
+m&#233;todo &quot;se&quot; que recebe dois objetos como par&#226;metro.
+-que a sintaxe &quot;[...]&quot; cria um objeto que denota uma fun&#231;&#227;o literal
+an&#244;nima (lambda/closure) e tais objeto possuem m&#233;todos, como por
+exemplo, &quot;execute&quot;.
+
+Ent&#227;o, o seguinte pseudo-c&#243;digo do corpo de um m&#233;todo qualquer (em uma
+sintaxe feia de OO), em alto n&#237;vel, imprime se x &#233; par ou impar:
+
+v = [ imprima(&quot;par&quot;); ];
+f = [ imprima(&quot;impar&quot;); ];
+
+x.par().se(v, f);
+----
+
+O c&#243;digo acima geraria algo similar ao seguinte (suponha que o
+receptor &#233; o primeiro argumento):
+
+carobj x        //receptor
+carconst 10  //argumento
+invoca &quot;==&quot;
+carobj  v
+carobj  f
+invoca &quot;se&quot;
+
+----
+
+Omiti a atribui&#231;&#227;o de v e f por n&#227;o saber bem como definir, na
+linguagem gptasembly, fun&#231;&#245;es an&#244;nimas...
+
+A implementa&#231;&#227;o de &quot;se&quot; em um pseudo-c&#243;digo ilustrativo:
+
+verdadeiro:se(v,f) {
+  return v.execute();
+}
+
+falso:se(v,f) {
+  return f.execute();
+}
+--
+
+De forma que &quot;verdadeiro&quot; e &quot;falso&quot; representam objetos, e as
+opera&#231;&#245;es l&#243;gicas resultam em um destes dois objetos. Ent&#227;o, a
+compila&#231;&#227;o do seguinte c&#243;digo g-portugol 1.x ....
+
+se x = 10 ent&#227;o
+  imprima(&quot;igual a dez&quot;);
+sen&#227;o
+  imprima(&quot;diferente de dez&quot;);
+fim
+
+... geraria o mesmo gptassembly acima.
+
+
+2) Suponha:
+
+-que o m&#233;todo de n&#250;meros inteiros &quot;at&#233;(x)&quot; crie um array de n&#250;meros.
+-que o m&#233;todo &quot;para_cada(f)&quot; de objetos-array itera sobre seus valores
+executando e passando para f o valor atual da itera&#231;&#227;o.
+-que o m&#233;todo &quot;par()&quot; dos n&#250;meros retorne verdadeiro ou falso.
+-que a sintaxe &quot;[ a b c | ... ]&quot; cria uma fun&#231;&#227;o literal de tr&#234;s par&#226;metros.
+-que &quot;imprima()&quot; receba varargs
+
+Ent&#227;o, o seguinte pseudo-c&#243;digo (em um formato mais direto, mas ainda
+assim, feio) itera de 0 &#224; 10 e imprime, para cada n&#250;mero, se ele &#233; par
+ou impar:
+
+0.at&#233;(10).para_cada([ x |
+  x.par().se([ imprima(x, &quot; &#233; par&quot;)], [ imprima(x, &quot; &#233; impar&quot;])
+])
+
+em gptassembly:
+
+carconst 0
+carconst 10
+invoca &quot;at&#233;&quot;
+carobj xxx //endere&#231;o do closure (1)
+invoca &quot;para_cada&quot;
+
+.... // c&#243;digo do closure (1)
+carobj x
+invoca &quot;par&quot;
+carobj yyy //endere&#231;o do closure (2)
+carobj zzz //endere&#231;o do closure (3)
+invoca &quot;se&quot;
+
+---
+
+Onde:
+
+-closure (1) = [ x | x.par().se([ imprima(x, &quot; &#233; par&quot;)], [ imprima(x,
+&quot; &#233; impar&quot;])]
+-closure (2) = [ imprima(x, &quot; &#233; par&quot;)]
+-closure (3) = [ imprima(x, &quot; &#233; impar&quot;]
+
+
+-------------
+
+Ainda, certamente h&#225; formas de implementar otimiza&#231;&#245;es de condi&#231;&#227;o (e
+repeti&#231;&#227;o, etc), gerando codigo condicional diretamente,
+transparentemente, sem quebrar o modelo de mensagens. Mas isso, no
+momento, talvez seja secund&#225;rio.
+
+
+
+&gt;<i> Se cada estrutura de
+</I>&gt;<i> controle &#233; uma mensagem, isto quer dizer que ter&#237;amos que ter &quot;sub-fun&#231;&#245;es&quot;,
+</I>&gt;<i> onde cada fun&#231;&#227;o sub-fun&#231;&#227;o trataria uma mensagem espec&#237;fica?
+</I>
+Essa parte eu n&#227;o entendi, hehe..
+
+[]'s
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000128.html">[gpt-devel] Como implementar estruturas de controle
+</A></li>
+	<LI>Next message: <A HREF="000134.html">[gpt-devel] Como implementar estruturas de controle
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#133">[ date ]</a>
+              <a href="thread.html#133">[ thread ]</a>
+              <a href="subject.html#133">[ subject ]</a>
+              <a href="author.html#133">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

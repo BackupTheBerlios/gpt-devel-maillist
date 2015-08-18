@@ -1,0 +1,186 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Opcode &quot;meoi&quot; viola o encapsulamento?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Opcode%20%22meoi%22%20viola%20o%20encapsulamento%3F&In-Reply-To=%3CAANLkTi%3DkdJajxPhVuB-WFipVwOQqHtL4mCi%2BxobnNN82%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000151.html">
+   <LINK REL="Next"  HREF="000153.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Opcode &quot;meoi&quot; viola o encapsulamento?</H1>
+    <B>Thiago Silva</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Opcode%20%22meoi%22%20viola%20o%20encapsulamento%3F&In-Reply-To=%3CAANLkTi%3DkdJajxPhVuB-WFipVwOQqHtL4mCi%2BxobnNN82%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Opcode &quot;meoi&quot; viola o encapsulamento?">tsilva at sourcecraft.info
+       </A><BR>
+    <I>Thu Oct 21 13:59:43 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000151.html">[gpt-devel] Opcode &quot;meoi&quot; viola o encapsulamento?
+</A></li>
+        <LI>Next message: <A HREF="000153.html">[gpt-devel] Opcode &quot;meoi&quot; viola o encapsulamento?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#152">[ date ]</a>
+              <a href="thread.html#152">[ thread ]</a>
+              <a href="subject.html#152">[ subject ]</a>
+              <a href="author.html#152">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bom dia :)
+
+
+2010/10/20 Alex Garzao &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">alexgarzaol at gmail.com</A>&gt;:
+&gt;<i> Corrigindo o e-mail abaixo...
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &gt;&gt; O que mais me preocupa, neste momento, &#233; o encapsulamento. Se vc tiver
+</I>&gt;&gt;<i> &gt;&gt; id&#233;ias para opcodes que n&#227;o violem o encapsulamento, pode sugerir.
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; Para meu entendimento, me esclarece uma coisa. Naquele exemplo
+</I>&gt;&gt;<i> &gt; &quot;tradicional&quot;
+</I>&gt;&gt;<i> &gt; de la&#231;o, porque os opcodes violam o encapsulamento?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> No caso, opcodes como &quot;meoi&quot;.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Dando um passo pra traz, eu disse que viola supondo que este opcode &#233;
+</I>&gt;&gt;<i> respons&#225;vel por &quot;destilar&quot; os inteiros dos objetos na pilha e realizar
+</I>&gt;&gt;<i> a compara&#231;&#227;o. Se for o caso, ele viola o encapsulamento, porque assume
+</I>&gt;&gt;<i> que os argumentos s&#227;o objetos que representam inteiros e possui
+</I>&gt;&gt;<i> conhecimento sobre a estrutura destes objetos -- para saber como
+</I>&gt;&gt;<i> acessar estes inteiros. O encapsulamento &#233; preservado se todas as
+</I>&gt;&gt;<i> opera&#231;&#245;es s&#227;o feitas via protocolo/interface e se as informa&#231;&#245;es sobre
+</I>&gt;&gt;<i> a estrutura do objeto e sobre o algoritmo de suas opera&#231;&#245;es somente o
+</I>&gt;&gt;<i> pr&#243;prio objeto sabe.
+</I>&gt;<i>
+</I>&gt;<i> Entendi a quest&#227;o. A minha id&#233;ia n&#227;o era violar o encapsulamento, mas
+</I>&gt;<i> realmente n&#227;o sentei e pensei &quot;seriamente&quot; sobre como seria o funcionamento
+</I>&gt;<i> do &quot;meoi&quot;.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Isso vendo &quot;por baixo&quot;. Vendo &quot;por cima&quot;, ficar&#225; bastante complicado
+</I>&gt;&gt;<i> compilar um c&#243;digo em alto n&#237;vel que gere o opcode &quot;meoi&quot; sem
+</I>&gt;&gt;<i> informa&#231;&#227;o de tipo. Por exemplo
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> x &lt;= y
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> o compilador precisa saber que os objetos envolvidos na mensagem &quot;&lt;=&quot;
+</I>&gt;&gt;<i> (x e y) s&#227;o inteiros e obedecem a estrutura que &quot;meoi&quot; assume saber
+</I>&gt;&gt;<i> operar sobre. Se eles n&#227;o forem inteiros, ent&#227;o tal express&#227;o deve
+</I>&gt;&gt;<i> gerar um &quot;invoca&quot; (provavelmente equivalente a x.&lt;=(y)). Caso
+</I>&gt;&gt;<i> contr&#225;rio, &quot;&lt;=&quot; ser&#225; algo espec&#237;fico para inteiros e n&#227;o ser&#225; v&#225;lido
+</I>&gt;&gt;<i> para objetos arbitr&#225;rios para as quais esta mensagem faz sentido (como
+</I>&gt;&gt;<i> outras representa&#231;&#245;es num&#233;ricas que n&#227;o s&#227;o inteiros de 32bits, por
+</I>&gt;&gt;<i> exemplo, ou outras grandezas).
+</I>&gt;<i>
+</I>&gt;<i> Entendi o ponto. Vou tentar divagar um pouco...
+</I>&gt;<i> Exemplo em G-Portugol:
+</I>&gt;<i> fun&#231;&#227;o principal
+</I>&gt;<i> &#160;&#160; &#160;se 10 &lt;= 20 ent&#227;o
+</I>&gt;<i> &#160;&#160; &#160; &#160; &#160;imprima(&quot;10 &lt;= 20&quot;);
+</I>&gt;<i> &#160;&#160; &#160;sen&#227;o
+</I>&gt;<i> &#160;&#160; &#160; &#160; &#160;imprima(&quot;10 &gt; 20&quot;);
+</I>&gt;<i> &#160;&#160; &#160;fim
+</I>&gt;<i> fim
+</I>&gt;<i> Exemplo traduzido para GptAssembly:
+</I>&gt;<i> .fun&#231;&#227;o principal
+</I>&gt;<i> &#160;&#160; &#160;.carfun&#231;&#227;o // sen&#227;o
+</I>&gt;<i> &#160;&#160; &#160; &#160; &#160;carconst &quot;10 &gt; 20&quot;
+</I>&gt;<i> &#160;&#160; &#160; &#160; &#160;carconst 1
+</I>&gt;<i> &#160;&#160; &#160; &#160; &#160;invoca imprima
+</I>&gt;<i> &#160;&#160; &#160;.fim_fun&#231;&#227;o
+</I>&gt;<i> &#160;&#160; &#160;.carfun&#231;&#227;o // ent&#227;o
+</I>&gt;<i> &#160;&#160; &#160; &#160; &#160;carconst &quot;10 &lt;= 20&quot;
+</I>&gt;<i> &#160;&#160; &#160; &#160; &#160;carconst 1
+</I>&gt;<i> &#160;&#160; &#160; &#160; &#160;invoca imprima
+</I>&gt;<i> &#160;&#160; &#160;.fim_fun&#231;&#227;o
+</I>&gt;<i> &#160;&#160; &#160;carconst 20
+</I>&gt;<i> &#160;&#160; &#160;carconst 10
+</I>&gt;<i> &#160;&#160; &#160;&lt;= // ao inv&#233;s de meoi, podemos usar &lt;=
+</I>&gt;<i> .fim_fun&#231;&#227;o
+</I>&gt;<i> Neste exemplo, conforme j&#225; era esperado, tive que inverter a ordem de
+</I>&gt;<i> empilhamento dos argumentos.
+</I>&gt;<i> Durante a execu&#231;&#227;o da VM, no momento em que o opcode &quot;&lt;=&quot; for invocado, na
+</I>&gt;<i> pilha constar&#225;:
+</I>&gt;<i> 1) a fun&#231;&#227;o an&#244;nima referente ao sen&#227;o
+</I>&gt;<i> 2) a fun&#231;&#227;o an&#244;nima referente ao ent&#227;o
+</I>&gt;<i> 3) um objeto inteiro contendo o valor 20
+</I>&gt;<i> 4) um objeto inteiro contendo o valor 10
+</I>&gt;<i> Eu imagino que, internamente, a GptVM ter&#225; uma tabela de s&#237;mbolos (similiar
+</I>&gt;<i> a constant pool da JVM), onde cada s&#237;mbolo ter&#225; um &#237;ndice, seu tipo (objeto)
+</I>&gt;<i> e valor. Apesar de n&#227;o termos explicitamente tipagem na VM, acredito que
+</I>&gt;<i> pelo menos os s&#237;mbolos devem ter uma informa&#231;&#227;o de s&#237;mbolo, informa&#231;&#227;o esta
+</I>&gt;<i> deduzida pelo GptC. Por exemplo, 10 o GptC assume objeto int, 20.3 assume
+</I>&gt;<i> objeto real, &quot;aaa&quot; assume objeto string, e por ai vai.&#160;Com isso, carconst
+</I>&gt;<i> carrega s&#237;mbolos na pilha que possuem a informa&#231;&#227;o do tipo (objeto) que
+</I>&gt;<i> representam.
+</I>&gt;<i> Esbo&#231;o do opcode &quot;&lt;=&quot;:
+</I>&gt;<i> .funcao &quot;&lt;=&quot;
+</I>&gt;<i> &#160;&#160; &#160;invoca &quot;&lt;=&quot;
+</I>&gt;<i> .fim_fun&#231;&#227;o
+</I>&gt;<i> Sendo assim, o opcode &quot;&lt;=&quot; seria (como voc&#234; disse) um &quot;invoca &lt;=&quot;. Lembrando
+</I>&gt;<i> que, como tudo na VM s&#227;o objetos, e n&#227;o temos tipos primitivos, o 10 e 20 na
+</I>&gt;<i> pilha s&#227;o objetos inteiros.&#160;O invoca &quot;&lt;=&quot; retira o &#250;ltimo objeto da pilha
+</I>&gt;<i> (neste caso o objeto inteiro 10) e executa o m&#233;todo &quot;&lt;=&quot; deste objeto. Este
+</I>&gt;<i> m&#233;todo &#233; uma fun&#231;&#227;o nativa da VM porque objetos inteiros s&#227;o considerados
+</I>&gt;<i> tipos primitivos para a VM.
+</I>&gt;<i> Esbo&#231;o da fun&#231;&#227;o (nativa) &quot;&lt;=&quot; do Objeto Int:
+</I>&gt;<i> void ObjetoInt::meoi(Stack stack)
+</I>&gt;<i> {
+</I>&gt;<i> &#160;&#160; &#160;ObjetoInt op2 &#160; &#160; &#160;= stack.pop();
+</I>&gt;<i> &#160;&#160; &#160;Funcao funcaoSenao = stack.pop();
+</I>&gt;<i> &#160;&#160; &#160;Funcao funcaoEntao = stack.pop();
+</I>&gt;<i> &#160;&#160; &#160;if (getValue() &lt;= op2.getValue()) {
+</I>&gt;<i> &#160;&#160; &#160; &#160; &#160;executa(funcaoEntao);
+</I>&gt;<i> &#160;&#160; &#160;} else {
+</I>&gt;<i> &#160;&#160; &#160; &#160; &#160;executa(funcaoSenao);
+</I>&gt;<i> &#160;&#160; &#160;}
+</I>&gt;<i> }
+</I>&gt;<i> Acredito que o mesmo seria v&#225;lido para os objetos Real, String, ...
+</I>&gt;<i> Quanto a termos que inverter a ordem de empilhamento dos argumentos, talvez
+</I>&gt;<i> seja poss&#237;vel contornar isso, mas vou deixar este &quot;detalhe&quot; para outra
+</I>&gt;<i> thread :-)
+</I>&gt;<i> Abra&#231;os!
+</I>&gt;<i> --
+</I>&gt;<i> []'s
+</I>&gt;<i> Alex Sandro Garz&#227;o
+</I>
+Perai, me explica uma coisa, hehehe. Pelo que entendi, voc&#234;
+transformou &quot;&lt;=&quot; (meoi) em uma fun&#231;&#227;o &quot;se&lt;=(entao,senao)&quot;. &#201; isso
+mesmo?
+
+e a opera&#231;&#227;o &quot;&lt;=&quot;? hehehe
+
+O que fazer com a express&#227;o &quot;x := a &lt;= b;&quot;?
+
+[]'s
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000151.html">[gpt-devel] Opcode &quot;meoi&quot; viola o encapsulamento?
+</A></li>
+	<LI>Next message: <A HREF="000153.html">[gpt-devel] Opcode &quot;meoi&quot; viola o encapsulamento?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#152">[ date ]</a>
+              <a href="thread.html#152">[ thread ]</a>
+              <a href="subject.html#152">[ subject ]</a>
+              <a href="author.html#152">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

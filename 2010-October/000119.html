@@ -1,0 +1,192 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] sobre os objetivos do projeto g-portugol (era: Formato (gram&#225;tica) do GptAssembly)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%0A%09%3D%3Fiso-8859-1%3Fq%3Fsobre_os_objetivos_do_projeto_g-portug%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Fol_%3D28era%3D3A_Formato_%3D28gram%3DE1tica%3D29_do_GptAssemb%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Fly%3D29%3F%3D&In-Reply-To=%3CAANLkTin%2B0ddyZVPQe5AS%2BQ9a6tumt%3D%3D4bomo3%3DR1urLw%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000116.html">
+   <LINK REL="Next"  HREF="000122.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] sobre os objetivos do projeto g-portugol (era: Formato (gram&#225;tica) do GptAssembly)</H1>
+    <B>Thiago Silva</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%0A%09%3D%3Fiso-8859-1%3Fq%3Fsobre_os_objetivos_do_projeto_g-portug%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Fol_%3D28era%3D3A_Formato_%3D28gram%3DE1tica%3D29_do_GptAssemb%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Fly%3D29%3F%3D&In-Reply-To=%3CAANLkTin%2B0ddyZVPQe5AS%2BQ9a6tumt%3D%3D4bomo3%3DR1urLw%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] sobre os objetivos do projeto g-portugol (era: Formato (gram&#225;tica) do GptAssembly)">tsilva at sourcecraft.info
+       </A><BR>
+    <I>Thu Oct 14 17:14:24 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000116.html">[gpt-devel] sobre os objetivos do projeto g-portugol (era: Formato (gram&#225;tica) do GptAssembly)
+</A></li>
+        <LI>Next message: <A HREF="000122.html">[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#119">[ date ]</a>
+              <a href="thread.html#119">[ thread ]</a>
+              <a href="subject.html#119">[ subject ]</a>
+              <a href="author.html#119">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>2010/10/12 Adorilson Bezerra de Araujo &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">adorilson at gmail.com</A>&gt;:
+&gt;<i> Opa, fui citado. Exijo direito de resposta. :p
+</I>&gt;<i>
+</I>
+hehe
+
+&gt;<i> Antes quero dizer que n&#227;o estou t&#227;o participativo nessas discuss&#245;es por dois
+</I>&gt;<i> motivos:
+</I>&gt;<i>
+</I>&gt;<i> 1) Falta de tempo. E n&#227;o vou nem dizer quando terei tempo para n&#227;o gerar
+</I>&gt;<i> expectativas nem em voc&#234;s e nem em mim. Mas procuro ler os emails na medida
+</I>&gt;<i> do poss&#237;vel.
+</I>&gt;<i> 2) Meu conhecimento est&#225; aqu&#233;m do n&#237;vel da discuss&#227;o.
+</I>&gt;<i>
+</I>&gt;<i> Bem, o que escrevi nessa mensagem de onde vc tirou esse trecho, continua
+</I>&gt;<i> valendo:
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/pipermail/gpt-usuarios/2007-September/000047.html">https://lists.berlios.de/pipermail/gpt-usuarios/2007-September/000047.html</A>
+</I>&gt;<i>
+</I>&gt;<i> Aproveitei para dar uma relida em toda essa thread (sugiro que fa&#231;a o mesmo)
+</I>&gt;<i> e me bateu uma d&#250;vida: o que &#233; exatamente que voc&#234;s dois est&#227;o discutindo?
+</I>&gt;<i> At&#233; ent&#227;o eu tava achando que era sobre implementar ou n&#227;o uma VM. Mas
+</I>&gt;<i> relendo esses emails, vi que n&#243;s 3 haviamos concordado em fazer uma VM
+</I>&gt;<i> pr&#243;pria.
+</I>&gt;<i>
+</I>&gt;<i> Ent&#227;o a discuss&#227;o est&#225; no &quot;como&quot;? &#201; isso ent&#227;o?
+</I>&gt;<i>
+</I>
+isso, &quot;como&quot;.
+
+&gt;<i> E sobre isso eu realmente n&#227;o posso dar nenhum opini&#227;o t&#233;cnica, como falei
+</I>&gt;<i> acima.
+</I>&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> minha proposta para este projeto, tentando sintetizar aquilo que venho
+</I>&gt;&gt;<i> seguido desde...sei l&#225;, tempos, ainda seria: fornecer material para
+</I>&gt;&gt;<i> usu&#225;rios de l&#237;ngua portuguesa que permita uma experi&#234;ncia
+</I>&gt;&gt;<i> computacional &quot;qualificda&quot;, com foco primordial na aprendizagem (e
+</I>&gt;&gt;<i> ensino) de programa&#231;&#227;o....ou algo nessas linhas.
+</I>&gt;<i>
+</I>&gt;<i> No fundo, no fundo, voc&#234; est&#225; querendo reviver o CompuClass?
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="http://codigolivre.org.br/projects/compuclass/">http://codigolivre.org.br/projects/compuclass/</A>
+</I>&gt;<i>
+</I>
+rapaz, eu nem lembrava disso.....hehe
+
+Bom, sim e n&#227;o.
+
+-Sim porque &#233; uma inclina&#231;&#227;o que eu tenho desde muito cedo -- uma
+inclina&#231;&#227;o para refletir sobre como &quot;aprender melhor&quot; -- e, na
+gradua&#231;&#227;o, essa inclina&#231;&#227;o tomou uma forma particular: &quot;dado o que
+aprendi e o que observei das minhas dificuldades e dos meus colegas,
+como poderiamos aprender isso melhor -- sem o 'sofrimento e
+respulsa'?&quot;. Eu sabia programar, via muitas pessoas com dificuldade em
+programar, e naturalmente quis explorar o computador para saber como
+fazer isso melhor, incentivado pela minha orientadora na &#233;poca.
+
+
+-N&#227;o porque, com o passar do tempo, as id&#233;ias e reflex&#245;es amadurecem.
+Talvez, a melhor forma de contextualizar seja apontar para dois
+artigos da scientific american (de autoria do Alan Kay): &quot;Computers,
+Networks and Education&quot; e &quot;Computer Software&quot; (coloquei os dois aqui
+[1]. O segundo &#233; scan e n&#227;o est&#225; muito leg&#237;vel, mas h&#225; uma c&#243;pia e
+tradu&#231;&#227;o em um .txt no diret&#243;rio)
+
+[1] - <A HREF="http://thiago.comum.org/stuff">http://thiago.comum.org/stuff</A>
+
+&gt;&gt;<i>
+</I>&gt;&gt;<i> J&#225; se tratando de modelo computacional, acho que a quest&#227;o recai muito
+</I>&gt;&gt;<i> sobre quanto do mist&#233;rio e &quot;lacre&quot; do baixo n&#237;vel se consegue eliminar
+</I>&gt;&gt;<i> e, ao mesmo tempo, permitir modificar em termos de um n&#237;vel mais alto.
+</I>&gt;&gt;<i> Me refiro as &quot;fronteiras artificiais&quot;: &#233; natural que alunos comessem a
+</I>&gt;&gt;<i> se perguntar como algumas instru&#231;&#245;es funcionam (digamos, printf(), ou
+</I>&gt;&gt;<i> while)...mas muitas delas est&#227;o, em sua forma concreta, inacess&#237;veis,
+</I>&gt;&gt;<i> n&#227;o porque &#233; a natureza complexa delas que impede o estudante de
+</I>&gt;&gt;<i> aprend&#234;-las naquele momento, mas porque existe todo um &quot;aparato
+</I>&gt;&gt;<i> acidental&quot; (n&#227;o-intr&#237;nseco) que envolve sua implementa&#231;&#227;o concreta,
+</I>&gt;&gt;<i> complexo pra ded&#233;u, e este aparato manifesta toda uma &quot;barreira
+</I>&gt;&gt;<i> artificial&quot;. &#160;O resultado disso n&#227;o &#233; que coisas f&#225;ceis s&#227;o f&#225;ceis e
+</I>&gt;&gt;<i> coisas dif&#237;ceis s&#227;o dif&#237;ceis de aprender...&#233; que coisas f&#225;ceis s&#227;o
+</I>&gt;&gt;<i> dif&#237;ceis (e pior, muitas s&#227;o levadas &quot;na f&#233;&quot;, &quot;&#233; complicado eu te
+</I>&gt;&gt;<i> mostrar, mas confia em mim&quot;), e isso n&#227;o deve acontecer. Olhando por
+</I>&gt;&gt;<i> outro ponto, muito das aulas de introdu&#231;&#227;o a programa&#231;&#227;o e computa&#231;&#227;o
+</I>&gt;&gt;<i> s&#227;o processos de desmistifica&#231;&#227;o da m&#225;quina (algo &quot;m&#225;gico&quot; e
+</I>&gt;&gt;<i> misterioso para a maioria das pessoas), e creio que essa
+</I>&gt;&gt;<i> desmistifica&#231;&#227;o dificilmente acontece a contento (pode at&#233;, por
+</I>&gt;&gt;<i> exemplo, ter ficado um pouco pior com a propaganda popular de alguns
+</I>&gt;&gt;<i> proponentes de OO de que &quot;vc n&#227;o precisa saber como algo &#233; feito para
+</I>&gt;&gt;<i> usar&quot;), t&#227;o pouco tem envergadura -- novamente, os alunos precisam
+</I>&gt;&gt;<i> saber muito para fazer pouco, e n&#227;o o contr&#225;rio...ao meu ver, um
+</I>&gt;&gt;<i> sintoma de linguagens, ambientes, &#160;ferramentas e abordagens
+</I>&gt;&gt;<i> inadequadas &#160;-- ainda, com a analogia do sistema romano em mente. [A
+</I>&gt;&gt;<i> prop&#243;sito, eu posso estar usando o termo &quot;aluno&quot;, mas muito do que
+</I>&gt;&gt;<i> digo reflete no nosso uso pessoal dos computadores no dia a dia.]
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Rpz, talvez por n&#227;o ter ido nas entranhas do SOs e depois no n&#237;vel dos
+</I>&gt;<i> circuitos el&#233;tricos ainda acho esse neg&#243;cio de computador algo muito m&#237;stico
+</I>&gt;<i> mesmo. :p
+</I>&gt;<i>
+</I>
+hehe, bom, &#233; m&#237;stico tamb&#233;m pra mim em v&#225;rios aspectos.
+
+&gt;<i> Se formos querer deixar as coisas &#224;s vistas dos usu&#225;rios, at&#233; onde iremos?
+</I>
+Fundamentalmente, acredito que seja importante ir &quot;at&#233; o metal&quot;, que
+n&#227;o pode ser modificado. A parte que eu friso na palavra &quot;software&quot; &#233;
+o &quot;soft&quot;, que denota que, em princp&#237;pio, podemos visualizar essa coisa
+como quisermos e podemos manipular essa coisa como quisermos.
+
+Agora, onde n&#243;s, eu voc&#234; e cia. iremos....n&#227;o sei, mas a VM da forma
+como est&#225; sendo discutida j&#225; acho um imenso avan&#231;o.
+
+
+&gt;<i> Tamb&#233;m n&#227;o &#233; algo que eu goste, mas at&#233; aceito isso de &quot;&#233; complicado eu te
+</I>&gt;<i> mostrar, mas confia em mim&quot;  neste momento, visto que o objetivo das aulas de
+</I>&gt;<i> algoritmos &#233; o desenvolvimento do racioc&#237;nio l&#243;gico. Talvez eu tenha sido
+</I>&gt;<i> bem doutrinado nas aulas de Java. :p
+</I>&gt;<i>
+</I>
+hahaha. Eu acredito que h&#225; momentos muito propicios para &quot;&#233; complicado
+eu te mostrar, mas confia em mim&quot;. Momentos em que a complexidade seja
+pr&#243;pria da natureza daquilo que se questiona, e n&#227;o de aspectos
+perif&#233;ricos. Caso contr&#225;rio, vc deixa de aprender profundamente algo,
+n&#227;o porque voc&#234; &#233; incapaz naquele momento, mas porque o seu ambiente
+(sua linguagem, ferramentas, etc) interfere e cria dificuldades
+adicionais, sendo incapaz de se adequar &#224;quilo que voc&#234; se prop&#245;e:
+aprender.
+
+[]'s
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000116.html">[gpt-devel] sobre os objetivos do projeto g-portugol (era: Formato (gram&#225;tica) do GptAssembly)
+</A></li>
+	<LI>Next message: <A HREF="000122.html">[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#119">[ date ]</a>
+              <a href="thread.html#119">[ thread ]</a>
+              <a href="subject.html#119">[ subject ]</a>
+              <a href="author.html#119">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

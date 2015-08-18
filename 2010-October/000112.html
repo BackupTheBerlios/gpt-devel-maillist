@@ -1,0 +1,242 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] sobre os objetivos do projeto g-portugol (era: Formato (gram&#225;tica) do GptAssembly)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%0A%09%3D%3Fiso-8859-1%3Fq%3Fsobre_os_objetivos_do_projeto_g-portug%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Fol_%3D28era%3D3A_Formato_%3D28gram%3DE1tica%3D29_do_GptAssemb%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Fly%3D29%3F%3D&In-Reply-To=%3CAANLkTikc7cpeoHUZTMUWiN2WMo-T5RWcoGSuTgqt_XGJ%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000111.html">
+   <LINK REL="Next"  HREF="000113.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] sobre os objetivos do projeto g-portugol (era: Formato (gram&#225;tica) do GptAssembly)</H1>
+    <B>Thiago Silva</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%0A%09%3D%3Fiso-8859-1%3Fq%3Fsobre_os_objetivos_do_projeto_g-portug%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Fol_%3D28era%3D3A_Formato_%3D28gram%3DE1tica%3D29_do_GptAssemb%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Fly%3D29%3F%3D&In-Reply-To=%3CAANLkTikc7cpeoHUZTMUWiN2WMo-T5RWcoGSuTgqt_XGJ%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] sobre os objetivos do projeto g-portugol (era: Formato (gram&#225;tica) do GptAssembly)">tsilva at sourcecraft.info
+       </A><BR>
+    <I>Mon Oct 11 21:53:35 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000111.html">[gpt-devel] sobre os objetivos do projeto g-portugol (era: Formato (gram&#225;tica) do GptAssembly)
+</A></li>
+        <LI>Next message: <A HREF="000113.html">[gpt-devel] sobre os objetivos do projeto g-portugol (era: Formato (gram&#225;tica) do GptAssembly)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#112">[ date ]</a>
+              <a href="thread.html#112">[ thread ]</a>
+              <a href="subject.html#112">[ subject ]</a>
+              <a href="author.html#112">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>2010/10/11 Alex Garzao &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">alexgarzaol at gmail.com</A>&gt;:
+&gt;<i> Acho que concordo 100% com o que voc&#234; disse hehehe. At&#233; relembrei a minha
+</I>&gt;<i> &#233;poca do &quot;poxa, o que faz esse writeln deste tal pascal???&quot; hehehe
+</I>&gt;<i>
+</I>
+hehe....pois &#233;. Eu passei muito perrengue com isso quando estava
+aprendendo Java. Foi a primeira linguagem que aprendi e o livro
+insistia que eu n&#227;o precisava saber como as janelas eram
+desenhadas....e eu queria porque queria saber como, em seus minimos
+detalhes, a tal da janela &quot;surgia&quot;.
+
+&gt;<i> Hehehe. Talvez, pelos &#250;ltimos e-mails que trocamos, esteja parecendo que eu
+</I>&gt;<i> &quot;sou contra&quot; estas id&#233;ias ou acho que &quot;n&#227;o s&#227;o v&#225;idas&quot; ou &quot;n&#227;o vai dar
+</I>&gt;<i> certo&quot;. N&#227;o &#233; isso.
+</I>&gt;<i>
+</I>
+n&#227;o n&#227;o, de forma alguma. Eu &#233; que as vezes me sinto petulante, hehehe.
+
+
+&gt;<i> Eu gostei mesmo da abordagem da VM, das suas id&#233;ias, etc e tal. Mas, como
+</I>&gt;<i> disse, para o G-Portugol parece que n&#227;o precisamos tanto. G-Portugol nem tem
+</I>&gt;<i> suporte a OO (pelo que eu saiba).
+</I>&gt;<i>
+</I>
+&#233;, atualmente n&#227;o tem suporte a OO. E creio que esse &#233; justamente um
+ponto central nesta discuss&#227;o. (Eu vou falar mais um monte de lero
+lero a seguir, talvez at&#233; chova no molhado, mas n&#227;o quero dar a
+entender que estou te contra-argumentando...s&#243; quero deixar registrado
+na lista muito do que penso a respeito deste projeto. Assim fica f&#225;cil
+me explicar pras pessoas no futuro, basta mandar um link, hehehe).
+
+Veja, por exemplo, esse artigo recente que saiu na Communication of
+the ACM: Objects Never? Well, Hardly Ever!.
+
+(eis uma c&#243;pia)
+<A HREF="http://stwww.weizmann.ac.il/g-cs/benari/articles/object-never-well-hardly-ever.pdf">http://stwww.weizmann.ac.il/g-cs/benari/articles/object-never-well-hardly-ever.pdf</A>
+
+Esse artigo come&#231;a falando das discuss&#245;es sobre ensinar objetos
+&quot;antes&quot; ou &quot;depois&quot; no ensino de computa&#231;&#227;o e levanta um conjunto de
+pontos cr&#237;ticos sobre as implementa&#231;&#245;es de OO nas linguagens,
+questionando o pr&#243;prio lugar e import&#226;ncia de OO no curriculum.
+
+E fica melhor. Veja essa discuss&#227;o, neste blog, sobre o artigo onde o
+pr&#243;prio autor e at&#233; o Alan Kay (que cunhou o termo &quot;orienta&#231;&#227;o a
+objeto&quot;) participaram:
+
+<A HREF="http://computinged.wordpress.com/2010/09/11/moti-asks-objects-never-well-hardly-ever/">http://computinged.wordpress.com/2010/09/11/moti-asks-objects-never-well-hardly-ever/</A>
+
+O que estou levantando &#233; que acho insuficiente dizermos &quot;vamos
+implementar OO&quot;, onde implicitamente isso significa adicionar um
+modelo OO nos espelhando no modelo de alguma linguagem popular, tendo
+em vista que eu n&#227;o acho que devemos ser trampolim para as pessoas
+aprenderem as &quot;linguagens populares de verdade&quot; (primordialmente
+porque acho muitas delas muito ruins!). Corremos o risco de escolher
+implementar algo limitado n&#227;o porque h&#225; uma limita&#231;&#227;o t&#233;cnica ou
+porque fazer melhor seria inviavelmente mais dif&#237;cil, mas basear a
+escolha no fato de que &#233; um recurso popular.
+
+Um por&#233;m: acho que que existe o espa&#231;o para a preocupa&#231;&#227;o de que a
+linguagem deve favorecer o aprendizado das linguagens populares sendo
+utilizadas atualmente. Acho que deve haver flexibilidade para
+considerar isso, mas esse ponto n&#227;o deve ser o norte.
+
+Seja como for, n&#227;o h&#225; defini&#231;&#227;o rigorosa de OO e as implementa&#231;&#245;es
+ditas &quot;OO&quot; divergem consideravelmente. Tipagem &#233; expl&#237;cita? Impl&#237;cita?
+Existe o conceito de classe? Existe o conceito de heran&#231;a? H&#225;
+polimorfismo autom&#225;tico? O polimorfismo &#233; computado em fun&#231;&#227;o do
+receptor ou de todos os argumentos? Existem valores que n&#227;o s&#227;o
+objetos? Existem fun&#231;&#245;es que n&#227;o pertencem a objetos? Fun&#231;&#245;es s&#227;o
+objetos? Existem closures como first-class values? H&#225; chamada de
+m&#233;todos determinada em tempo de compila&#231;&#227;o? Chamadas de m&#233;todos s&#227;o
+s&#237;ncronas ou ass&#237;ncronas?
+
+Estas poucas quest&#245;es n&#227;o-exaustivas alteram a natureza da linguagem
+e, creio, afetam consideravelmente a qualidade da aprendizagem (n&#227;o s&#243;
+a quest&#227;o &quot;essa linguagem &#233; f&#225;cil de aprender&quot;, mas a quest&#227;o &quot;essa
+linguagem fornece um ambiente onde insights e id&#233;ias 'boas' aparecem e
+podem ser expressadas mais naturalmente&quot;, e acho que isso faz uma
+diferen&#231;a enorme). Dois pontos que acho fundamentais nesta quest&#227;o
+dizem respeito a curva inicial de aprendizagem (o qu&#227;o cedo as pessoas
+conseguem &quot;fazer coisas&quot; com esta linguagem) e a &quot;profundidade e
+abrangencia de possibilidades&quot; (o qu&#227;o fundo e o quanto as pessoas
+conseguem explorar e criar dentro do contexto da linguagem).
+
+Se um desses modelos arbitr&#225;rios &#233; escolhido para a nova linguagem
+G-portugol, eu n&#227;o vejo muitos problemas (considerando-se que ser&#225;
+muito f&#225;cil modificar a linguagem, criar uma nova, etc). J&#225; guiar o
+modelo da VM tendo como base um desses modelos que a linguagem venha a
+adotar me pareceu arriscado, da&#237; considerei os seguintes pontos:
+
+1) Como levantado no in&#237;cio, muitos desses modelos possuem
+caracteristicas de qualidade duvidosa;
+2) Definir a plataforma em termos de um modelo espec&#237;fico que &quot;assume
+muita coisa&quot; (ie: exist&#234;ncia de classes) &#233; um comprometimento muito
+forte
+3) O &quot;ideal&quot; seria implementar uma plataforma que &quot;assumisse o m&#237;nimo
+poss&#237;vel&quot; e manter aberto as possibilidades
+
+Ent&#227;o, me perguntei: o &quot;caminho ideal&quot; d&#225; mais trabalho e &#233; mais
+complexo do que o &quot;caminho tradicional&quot;?
+
+O motivo que me levou a colocar esses assuntos nos &#250;ltimos emails foi
+acreditar que a resposta &#233; &quot;n&#227;o&quot;. Caso contr&#225;rio, eu n&#227;o teria nenhuma
+ressalva em seguir um caminho mais tradicional....
+
+
+&gt;<i> Como eu disse em outro e-mail, eu tenho a sensa&#231;&#227;o de que temos uma bazuca
+</I>&gt;<i> para matar uma mosca, onde a mosca seria o G-Portugol hehehe. E tenho quase
+</I>&gt;<i> a impress&#227;o de que esta VM, por si s&#243;, seria um projeto &quot;a parte&quot;. N&#227;o digo
+</I>&gt;<i> por ser (ou n&#227;o) complexa, mas por ela servir a v&#225;rios fins, inclusive para
+</I>&gt;<i> o projeto do G-Portugol entende?
+</I>
+Se considerarmos uma &quot;vis&#227;o humilde do g-portugol&quot;, de linguagem
+&quot;normal&quot; em portugu&#234;s, entendo e concordo, hehe... Mas se olharmos o
+problema da aprendizagem de programa&#231;&#227;o (um godzilla por si s&#243;), todo
+o aparato da VM discutido se justifica e &#233; altamente relevante neste
+contexto -- n&#227;o h&#225; nada que foi inserido tendo em mente prop&#243;sitos
+secund&#225;rios; tudo foi discutido em fun&#231;&#227;o de aprendizagem, acesso e
+apropria&#231;&#227;o. Ent&#227;o, acho que &#233; uma bazuca para matar o godzilla....
+hehehe.
+
+&gt;<i>
+</I>&gt;<i> Quanto a cativar o interesse, sim, voc&#234; conseguiu tranq&#252;ilamente hehehe.
+</I>
+\o/
+
+&gt;<i> Acho que o meu dilema &#233; que estou tentando manter o foco no G-Portugol, e
+</I>&gt;<i> n&#227;o na VM, porque por ser uma VM para a Gepeto, eu tenho essa sensa&#231;&#227;o de
+</I>&gt;<i> que ela deveria servir (primariamente) para o projeto, e n&#227;o para qualquer
+</I>&gt;<i> prop&#243;sito.
+</I>
+Hmm. Bom, n&#227;o &#233; preocupa&#231;&#227;o nossa se algu&#233;m vai querer criar e usar um
+servidor http usando nossa plataforma que aguente o tranco. Eu
+concordo plenamente; n&#227;o acho de forma alguma que devemos nos
+preocupar com rigor em rela&#231;&#227;o a performance ou uso de mem&#243;ria.
+
+Mas tem um ponto: acho que, no fundo, se isso for &quot;apenas uma
+ferramenta de aprendizagem&quot;, ela ser&#225; sempre um &quot;brinquedinho falso&quot;,
+nunca realizar&#225; fundamentalmente seu prop&#243;sito, pelo mesmo motivo que
+g-portugol 1.x n&#227;o realiza. Para isso ela tem que ser &#250;til. &#218;til para
+explorar, &#250;til para criar. N&#227;o d&#225; pra dissociar sem ter muito a
+perder.
+
+Ent&#227;o, sobre &quot;servir para v&#225;rios fins&quot;, eu acho que isso deve
+acontecer. Ela deve servir livremente ao esp&#237;rito criativo e curioso
+-- programa&#231;&#227;o &#233;, fundamentalmente, criar. Aprender criando coisas
+in&#250;teis numa realidade falsa &#233; meio que ensinar a desenhar com uma
+caneta sem tinta em um papel de mentirinha  -- nesse caminho nem se
+aprende nem se reconhece valor. (essa &#233; a minha aos ambientes de
+aprendizagem que s&#227;o pouco mais que &quot;papel e caneta de mentirinha&quot;).
+
+Pra que permitir acesso aos recursos do SO? Por que, afinal, o gpt 1.x
+&#233; insuficiente?
+
+N&#227;o pode ser um &quot;Pense Bem&quot; [1] (pior, um Pense Bem sobre um
+processador x86). Tem que ser um computador -- n&#227;o um computador
+industrial; um computador _pessoal_.
+
+
+...e posso dizer que eu serei um dos primeiros usu&#225;rios dessa m&#225;quina, heheh
+
+
+[1] - <A HREF="http://www.voceselembra.com/2007/05/pense-bem.html">http://www.voceselembra.com/2007/05/pense-bem.html</A>
+
+&gt;<i>
+</I>&gt;<i> Mas, a&#237; entra a quest&#227;o que, como voc&#234; falou, qualquer um poder olhar o tal
+</I>&gt;<i> do &quot;imprima&quot; e poder ver como ele funciona &quot;por baixo dos panos&quot; hehehe.
+</I>&gt;<i>
+</I>&gt;<i> Bom, tamb&#233;m entra a quest&#227;o (que voc&#234; j&#225; comentou) das expectativas pessoais
+</I>&gt;<i> de cada um. Para &quot;rolar legal&quot; um projeto open-source, quem trabalha nele
+</I>&gt;<i> tem que estar motivado, e para isso, nada melhor do que estar fazendo o que
+</I>&gt;<i> acha ser legal :-)
+</I>&gt;<i>
+</I>&gt;<i> Bom, eu acho que trabalho &#233; o que n&#227;o falta, e trabalho muito legal (em sua
+</I>&gt;<i> maioria). Se voc&#234; acha melhor montarmos uma VM mais gen&#233;rica, &quot;bora ent&#227;o&quot;.
+</I>&gt;<i> Tocamos o baile assim hehehe.
+</I>
+Ent&#227;o, acho que ajudaria muito saber se essa abordagem para a VM te
+frustra de alguma forma, ou se vc discorda e ainda acha que essa linha
+dar&#225; mais trabalho e n&#227;o &#233; uma boa id&#233;ia. Pois se eu estiver
+equivocado, no fim, ser&#227;o dois frustrados :)
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000111.html">[gpt-devel] sobre os objetivos do projeto g-portugol (era: Formato (gram&#225;tica) do GptAssembly)
+</A></li>
+	<LI>Next message: <A HREF="000113.html">[gpt-devel] sobre os objetivos do projeto g-portugol (era: Formato (gram&#225;tica) do GptAssembly)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#112">[ date ]</a>
+              <a href="thread.html#112">[ thread ]</a>
+              <a href="subject.html#112">[ subject ]</a>
+              <a href="author.html#112">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

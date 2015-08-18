@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Como implementar estruturas de controle
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Como%20implementar%20estruturas%20de%20controle&In-Reply-To=%3CAANLkTik1n0f6ax%2BU54Ad-EceiZ%3DfK9Ct3NPWaHVn4Zmx%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000134.html">
+   <LINK REL="Next"  HREF="000141.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Como implementar estruturas de controle</H1>
+    <B>Thiago Silva</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Como%20implementar%20estruturas%20de%20controle&In-Reply-To=%3CAANLkTik1n0f6ax%2BU54Ad-EceiZ%3DfK9Ct3NPWaHVn4Zmx%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Como implementar estruturas de controle">tsilva at sourcecraft.info
+       </A><BR>
+    <I>Mon Oct 18 06:47:38 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000134.html">[gpt-devel] Como implementar estruturas de controle
+</A></li>
+        <LI>Next message: <A HREF="000141.html">[gpt-devel] Como implementar estruturas de controle
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#135">[ date ]</a>
+              <a href="thread.html#135">[ thread ]</a>
+              <a href="subject.html#135">[ subject ]</a>
+              <a href="author.html#135">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>2010/10/18 Thiago Silva &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">tsilva at sourcecraft.info</A>&gt;:
+&gt;<i> Boa noite!
+</I>&gt;<i>
+</I>&gt;<i> 2010/10/17 Alex Garzao &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">alexgarzaol at gmail.com</A>&gt;:
+</I>&gt;&gt;<i> Bom dia senhores :-)
+</I>&gt;&gt;<i> Colo abaixo um trecho de outro e-mail, escrito pelo Thiago:
+</I>&gt;&gt;<i> &quot;Podemos tratar fun&#231;&#245;es e closures como valores, objetos. E com&#160;closures,
+</I>&gt;&gt;<i> podemos implementar condi&#231;&#227;o e repeti&#231;&#227;o apenas enviando&#160;mensagens. Basta o
+</I>&gt;&gt;<i> objeto da fun&#231;&#227;o/closure responder a uma mensagem&#160;executando-se e retornando
+</I>&gt;&gt;<i> o valor de sua execu&#231;&#227;o.&quot;
+</I>&gt;&gt;<i> Eu fiquei com v&#225;rias d&#250;vidas neste ponto.
+</I>&gt;&gt;<i> Imaginando os seguintes exemplos:
+</I>&gt;&gt;<i> 1) Uma fun&#231;&#227;o com um if apenas
+</I>&gt;&gt;<i> 2) Uma fun&#231;&#227;o com um if e um for
+</I>&gt;&gt;<i> Que c&#243;digo GptAssembly seria gerado para estas fun&#231;&#245;es?
+</I>
+
+Outra coisa, a implementa&#231;&#227;o de um &quot;for&quot; pode ser bastante variada. S&#243;
+para ilustrar, suponha que &quot;para_cada()&quot; seja um m&#233;todo de arrays.
+Poderiamos implementar assim (pseudo-codigo):
+
+Array:para_cada(f) {
+  tamanho = this.tamanho();
+  i = 0;
+
+  [tamanho &lt;= indice].enquanto([
+    f.execute(this.indice(i));
+    indice = indice + 1;
+  ]);
+}
+
+E o enquanto:
+
+Fun&#231;&#227;o:enquanto(f) {
+  this.execute().se([ f.execute(); this.enquanto(f)], [])
+}
+
+---
+
+...considerando que, neste pseudo-c&#243;digo, &quot;this&quot; seja sempre associado
+ao receptor no contexto do m&#233;todo.
+
+Seja como for, o c&#243;digo (e a linguagem) aqui s&#227;o s&#243; ilustrativos. Eu
+ainda n&#227;o tenho muita sugest&#227;o de linguagem bacana em portugu&#234;s para
+representar legal esse modelo sem que seja uma &quot;tradu&#231;&#227;o&quot; do
+smalltalk...
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000134.html">[gpt-devel] Como implementar estruturas de controle
+</A></li>
+	<LI>Next message: <A HREF="000141.html">[gpt-devel] Como implementar estruturas de controle
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#135">[ date ]</a>
+              <a href="thread.html#135">[ thread ]</a>
+              <a href="subject.html#135">[ subject ]</a>
+              <a href="author.html#135">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

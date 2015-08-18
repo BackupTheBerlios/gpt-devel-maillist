@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] sobre os objetivos do projeto g-portugol (era: Formato (gram&#225;tica) do GptAssembly)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%0A%09%3D%3Fiso-8859-1%3Fq%3Fsobre_os_objetivos_do_projeto_g-portug%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Fol_%3D28era%3D3A_Formato_%3D28gram%3DE1tica%3D29_do_GptAssemb%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Fly%3D29%3F%3D&In-Reply-To=%3CAANLkTimvLfdPveSK0J33MHbo1HqrX2Ltvhv9HadOqt-E%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000117.html">
+   <LINK REL="Next"  HREF="000121.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] sobre os objetivos do projeto g-portugol (era: Formato (gram&#225;tica) do GptAssembly)</H1>
+    <B>Thiago Silva</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%0A%09%3D%3Fiso-8859-1%3Fq%3Fsobre_os_objetivos_do_projeto_g-portug%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Fol_%3D28era%3D3A_Formato_%3D28gram%3DE1tica%3D29_do_GptAssemb%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Fly%3D29%3F%3D&In-Reply-To=%3CAANLkTimvLfdPveSK0J33MHbo1HqrX2Ltvhv9HadOqt-E%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] sobre os objetivos do projeto g-portugol (era: Formato (gram&#225;tica) do GptAssembly)">tsilva at sourcecraft.info
+       </A><BR>
+    <I>Thu Oct 14 17:56:03 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000117.html">[gpt-devel] sobre os objetivos do projeto g-portugol (era: Formato (gram&#225;tica) do GptAssembly)
+</A></li>
+        <LI>Next message: <A HREF="000121.html">[gpt-devel] sobre os objetivos do projeto g-portugol (era: Formato (gram&#225;tica) do GptAssembly)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#120">[ date ]</a>
+              <a href="thread.html#120">[ thread ]</a>
+              <a href="subject.html#120">[ subject ]</a>
+              <a href="author.html#120">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>2010/10/12 Eleandro Alberche &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">eleandro.alberche at gmail.com</A>&gt;:
+&gt;<i> Vou tentar contribuir um pouco, mas vou por o texto separado pois n&#227;o quero
+</I>&gt;<i> que seja parte da thread e sim um apenas um ponto a ser lido para
+</I>&gt;<i> complementar a discuss&#227;o.
+</I>&gt;<i> N&#227;o me sinto ainda a vontade para dar pitaco sobre implementar ou n&#227;o uma
+</I>&gt;<i> VM, mas acho que posso ajudar na discuss&#227;o em geral.
+</I>&gt;<i> Acredito que um dos pilares do projeto &#233; a id&#233;ia do aprendizado de l&#243;gica de
+</I>&gt;<i> programa&#231;&#227;o e afirmo que o g-portugol atual atende sim a parte desta id&#233;ia.
+</I>&gt;<i> Tanto que j&#225; estou na 4a. turma de algoritmo usando ela e com certeza usarei
+</I>&gt;<i> com as pr&#243;ximas turmas.
+</I>
+legal :D
+
+&gt;<i> Mas n&#227;o sei por quanto tempo seguir&#225; atendendo, explico abaixo.
+</I>&gt;<i> Se paramos para pensar quem s&#227;o os &quot;novos programadores&quot;, veremos que em sua
+</I>&gt;<i> maioria s&#227;o oper&#225;rios, est&#227;o deixando de ser cabe&#231;as pensantes para serem
+</I>&gt;<i> empilhadores de objetos. A &#225;rea paga bem em rela&#231;&#227;o a outras, ent&#227;o tem
+</I>&gt;<i> muita gente que nem gosta de programar, nada contra pois &#233; apenas mais uma
+</I>&gt;<i> profiss&#227;o. O mercado, tirando nichos mais especializados, contratam horas de
+</I>&gt;<i> programa&#231;&#227;o e n&#227;o programadores, a qualidade est&#225; sendo deixada de lado,
+</I>&gt;<i> fucionou t&#225; bom.
+</I>&gt;<i> Al&#233;m disto, hoje o contato das crian&#231;as com o computador se d&#225; muito cedo,
+</I>&gt;<i> quando chegarem a cursar uma cadeira de algoritmo ser&#225; frustante para a
+</I>&gt;<i> maioria. Pois est&#227;o acostumados com a velocidade de fazer coisas, clicks de
+</I>&gt;<i> mouse, tela bonitas, objeto para eles n&#227;o ser&#225; novidade j&#225; conhecem sem
+</I>&gt;<i> saber muitos dos conceitos.
+</I>&gt;<i> Com estes dois fatores podemos notar que teremos diversos tipos de
+</I>&gt;<i> programadores, cada um encarando problemas diferentes e com objetivos
+</I>&gt;<i> diferentes.&#160;Mas uma certeza temos, vari&#225;veis, la&#231;os, condi&#231;&#245;es, express&#245;es,
+</I>&gt;<i> a base da programa&#231;&#227;o atual ainda estar&#225; l&#225;.
+</I>&gt;<i> Da&#237; eu me pergunto, que tipo de g-portugol ser&#225; &#250;til nos pr&#243;ximos 5, 10 ou
+</I>&gt;<i> 20 anos?
+</I>
+excelente pergunta.
+
+&gt;<i> Quem sabe podemos ter um core que permita criar deriva&#231;&#245;es do g-portugol
+</I>&gt;<i> para cada tipo de programador/paradigma/idade?
+</I>
+Acho que a id&#233;ia &#233; justamente flexibilizar todos os aspectos que
+sabemos como flexibilizar (mantendo sempre os crit&#233;rios de
+simplicidade)
+
+&gt;<i> S&#243; para viajar mais um pouco, imaginem um g-portugol para crian&#231;as? Uma
+</I>&gt;<i> ferramenta visual com uso de mouse que permita entender os conceitos
+</I>&gt;<i> b&#225;sicos. Aonde cada elemento da programa&#231;&#227;o teria uma representa&#231;&#227;o gr&#225;fica
+</I>&gt;<i> que permitiria numa esp&#233;cie de fluxograma criar um programa e v&#234;-lo
+</I>&gt;<i> funcionando, similar ao que temos em ferramentas de que simulam filas.
+</I>&gt;<i> Bom, a id&#233;ia era jogar algumas quest&#245;es para pensarmos, fiquem a vontade
+</I>&gt;<i> para me criticar..hehehe
+</I>
+isso. Diversas ferramentas foram criadas ao longo dos anos nessas
+linhas, uma atual que est&#225; fazendo sucesso &#233; o Scratch
+(<A HREF="http://scratch.mit.edu/">http://scratch.mit.edu/</A>). E eu acho ele limitado da mesma forma que
+acho outros ambientes de aprendizagem limitados: se limitam a ser
+ambientes de &quot;aprendizagem limitada&quot;. Cedo ou tarde o usu&#225;rio vai
+querer fazer algo e vai dar de cara na parede.
+
+Acho muitissimo melhor assumir que o usu&#225;rio seja livre para escolher
+as situa&#231;&#245;es e cria&#231;&#245;es que ele quer experimentar e aprender. Ou seja,
+fornecer a m&#225;quina dele inteira a disposi&#231;&#227;o.
+
+[]'s
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000117.html">[gpt-devel] sobre os objetivos do projeto g-portugol (era: Formato (gram&#225;tica) do GptAssembly)
+</A></li>
+	<LI>Next message: <A HREF="000121.html">[gpt-devel] sobre os objetivos do projeto g-portugol (era: Formato (gram&#225;tica) do GptAssembly)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#120">[ date ]</a>
+              <a href="thread.html#120">[ thread ]</a>
+              <a href="subject.html#120">[ subject ]</a>
+              <a href="author.html#120">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Vamos dar prosseguimento a V2 ???
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Vamos%20dar%20prosseguimento%20a%20V2%20%3F%3F%3F&In-Reply-To=%3CAANLkTimTeS0wRAiYkQz95J-S-AGtibyOoCZ%2BmKTyUa4b%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000050.html">
+   <LINK REL="Next"  HREF="000052.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Vamos dar prosseguimento a V2 ???</H1>
+    <B>Thiago Silva</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Vamos%20dar%20prosseguimento%20a%20V2%20%3F%3F%3F&In-Reply-To=%3CAANLkTimTeS0wRAiYkQz95J-S-AGtibyOoCZ%2BmKTyUa4b%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Vamos dar prosseguimento a V2 ???">tsilva at sourcecraft.info
+       </A><BR>
+    <I>Wed Aug 11 06:19:54 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000050.html">[gpt-devel] Vamos dar prosseguimento a V2 ???
+</A></li>
+        <LI>Next message: <A HREF="000052.html">[gpt-devel] Vamos dar prosseguimento a V2 ???
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#51">[ date ]</a>
+              <a href="thread.html#51">[ thread ]</a>
+              <a href="subject.html#51">[ subject ]</a>
+              <a href="author.html#51">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>2010/8/7 Thiago Silva &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">tsilva at sourcecraft.info</A>&gt;:
+&gt;<i> 2010/8/5 Alex Garzao &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">alexgarzaol at gmail.com</A>&gt;:
+</I>&gt;&gt;<i> A id&#233;ia me parece interessante. De qualquer forma, eu n&#227;o tenho experi&#234;ncia
+</I>&gt;&gt;<i> com isso, nem como &quot;usu&#225;rio&quot;. Voc&#234; poderia comentar o que poder&#237;amos fazer
+</I>&gt;&gt;<i> de interessante com este recurso? Ali&#225;s, isso seria quase como eu definir
+</I>&gt;&gt;<i> uma string (contendo um c&#243;digo v&#225;lido), &quot;compil&#225;-lo&quot; durante a execu&#231;&#227;o e
+</I>&gt;&gt;<i> rod&#225;-lo como se fizesse parte do programa?
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> no aspecto t&#233;cnico, &#233; exatamente isso. O benef&#237;cio maior est&#225; na
+</I>&gt;<i> intera&#231;&#227;o. Se temos ferramentas que permitem manipular o c&#243;digo em
+</I>&gt;<i> tempo de execu&#231;&#227;o, n&#243;s nos comunicamos com o software em quest&#227;o
+</I>&gt;<i> diretamente, evoluindo-o e depurando-o. Acho que o ambiente mais
+</I>&gt;<i> popular que representa isso hoje &#233; o Squeak smalltalk
+</I>&gt;<i> (www.squeak.org).
+</I>&gt;<i>
+</I>&gt;<i> Linguagens como python de certa forma tamb&#233;m possibilitam isso, mas a
+</I>&gt;<i> aus&#234;ncia de ferramentas de desenvolvimento que permitem e incentivam
+</I>&gt;<i> esse tipo de intera&#231;&#227;o durante a programa&#231;&#227;o faz com que programadores
+</I>&gt;<i> de &quot;linguagens din&#226;micas&quot; como esta programem via arquivos de c&#243;digo
+</I>&gt;<i> fonte, no ciclo tradicional.
+</I>&gt;<i>
+</I>
+Complementando, acabei de ler o seguinte post de um blog:
+<A HREF="http://www.loper-os.org/?p=202">http://www.loper-os.org/?p=202</A>
+
+Contextualizando, Symbolics machine (Lisp Machines ou lispm's) eram
+computadores desenvolvidos at&#233; a d&#233;cada de 90 e possuiam todo o
+aparato de software (do sistema operacional at&#233; programas de usu&#225;rio)
+escrito em Lisp, com c&#243;digo escancarado, pronto pra ser imediatamente
+modificado (caracteristica as vezes referida como &quot;turtles all the way
+down&quot;).
+
+tangente: a hist&#243;ria do stallman no AI labs do MIT e a origem do GNU e
+Free Software est&#227;o ligados a hist&#243;ria dessas m&#225;quinas.
+
+&#201; poss&#237;vel, por exemplo, no terminal, escrever algo como &quot;edit
+definition print&quot;, ver o sistema abrir o zemacs com o cursor sobre a
+defini&#231;&#227;o da fun&#231;&#227;o &quot;print&quot;, modificar a fun&#231;&#227;o, salvar, e ter todo o
+sistema imediatamente usando essa nova vers&#227;o da fun&#231;&#227;o print
+(independente da &quot;biblioteca&quot; em que ela se encontra, ou se &#233; driver
+ou se &#233; fun&#231;&#227;o do compilador, ou do SO...). Da mesma forma, os erros
+de software que ocorrem podem ser inspecionados, corrigidos, e a
+execu&#231;&#227;o pode ser resumida normalmente sem que pra isso vc tenha que
+estar &quot;depurando&quot; o sistema. Enfim, n&#227;o acho muito f&#225;cil descrever
+isso, e infelizmente n&#227;o achei rapidamente nenhum texto bom
+descrevendo em detalhes...
+
+Mas, no post acima, al&#233;m da met&#225;fora do Paul Graham distinguindo as
+duas formas de programa&#231;&#227;o/depura&#231;&#227;o, o que me chamou aten&#231;&#227;o foi o
+autor ter denunciado a diferen&#231;a /qualitativa/ no processo. O que
+associei a outro texto que li hoje a tarde:
+
+&quot;An increase in speed may even represent a qualitative improvement.
+Consider how speeding up a film from two frames per second to 20 (a
+mere order of magnitude) makes a remarkable difference: it leads to
+the subjective perception of continuous movement. Much of the 'life'
+of visual and auditory interaction depends on its pace.&quot; - Alan Kay,
+&quot;Computer Software&quot;, Scientific American, 1984
+
+Neste caso, acho que poderiamos sintetizar o efeito qualitativo
+reescrevendo um trecho do texto acima:
+
+&quot;...it leads to the subjective perception of continuous
+/conversation/&quot; [entre usu&#225;rio/programador e computador].
+
+[]'s
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000050.html">[gpt-devel] Vamos dar prosseguimento a V2 ???
+</A></li>
+	<LI>Next message: <A HREF="000052.html">[gpt-devel] Vamos dar prosseguimento a V2 ???
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#51">[ date ]</a>
+              <a href="thread.html#51">[ thread ]</a>
+              <a href="subject.html#51">[ subject ]</a>
+              <a href="author.html#51">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

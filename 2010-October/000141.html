@@ -1,0 +1,226 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Como implementar estruturas de controle
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Como%20implementar%20estruturas%20de%20controle&In-Reply-To=%3CAANLkTikdg3Qx-St0MwhzkMfErRjuB34aJOxBAToHf0Rs%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000135.html">
+   <LINK REL="Next"  HREF="000129.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Como implementar estruturas de controle</H1>
+    <B>Alex Garzao</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Como%20implementar%20estruturas%20de%20controle&In-Reply-To=%3CAANLkTikdg3Qx-St0MwhzkMfErRjuB34aJOxBAToHf0Rs%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Como implementar estruturas de controle">alexgarzaol at gmail.com
+       </A><BR>
+    <I>Tue Oct 19 04:06:32 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000135.html">[gpt-devel] Como implementar estruturas de controle
+</A></li>
+        <LI>Next message: <A HREF="000129.html">[gpt-devel] Vamos ter o conceito de m&#233;todos ou apenas fun&#231;&#245;es?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#141">[ date ]</a>
+              <a href="thread.html#141">[ thread ]</a>
+              <a href="subject.html#141">[ subject ]</a>
+              <a href="author.html#141">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Boa noite :-)
+
+&gt;<i> 1) Suponha:
+</I>&gt;<i>
+</I>&gt;<i> -que objetos boolean (&quot;verdadeiro&quot; e &quot;falso&quot;) possuem em sua vtable o
+</I>&gt;<i> m&#233;todo &quot;se&quot; que recebe dois objetos como par&#226;metro.
+</I>&gt;<i> -que a sintaxe &quot;[...]&quot; cria um objeto que denota uma fun&#231;&#227;o literal
+</I>&gt;<i> an&#244;nima (lambda/closure) e tais objeto possuem m&#233;todos, como por
+</I>&gt;<i> exemplo, &quot;execute&quot;.
+</I>
+Esta &#233; a minha d&#250;vida. O que eu chamei de sub-fun&#231;&#245;es (nome horr&#237;vel) seriam
+os closures gerados para cada lambda. Isto quer dizer que uma fun&#231;&#227;o, com um
+if, gera pelo menos 3 closures certo? Um closure para a fun&#231;&#227;o, um para o
+&quot;ent&#227;o&quot; e outro para o &quot;sen&#227;o&quot; correto?
+
+&gt;<i> Ent&#227;o, o seguinte pseudo-c&#243;digo do corpo de um m&#233;todo qualquer (em uma
+</I>&gt;<i> sintaxe feia de OO), em alto n&#237;vel, imprime se x &#233; par ou impar:
+</I>&gt;<i>
+</I>&gt;<i> v = [ imprima(&quot;par&quot;); ];
+</I>&gt;<i> f = [ imprima(&quot;impar&quot;); ];
+</I>&gt;<i>
+</I>&gt;<i> x.par().se(v, f);
+</I>&gt;<i> ----
+</I>&gt;<i>
+</I>&gt;<i> O c&#243;digo acima geraria algo similar ao seguinte (suponha que o
+</I>&gt;<i> receptor &#233; o primeiro argumento):
+</I>&gt;<i>
+</I>&gt;<i> carobj x        //receptor
+</I>&gt;<i> carconst 10  //argumento
+</I>&gt;<i> invoca &quot;==&quot;
+</I>&gt;<i> carobj  v
+</I>&gt;<i> carobj  f
+</I>&gt;<i> invoca &quot;se&quot;
+</I>&gt;<i>
+</I>&gt;<i> ----
+</I>&gt;<i>
+</I>&gt;<i> Omiti a atribui&#231;&#227;o de v e f por n&#227;o saber bem como definir, na
+</I>&gt;<i> linguagem gptasembly, fun&#231;&#245;es an&#244;nimas...
+</I>&gt;<i>
+</I>&gt;<i> A implementa&#231;&#227;o de &quot;se&quot; em um pseudo-c&#243;digo ilustrativo:
+</I>&gt;<i>
+</I>&gt;<i> verdadeiro:se(v,f) {
+</I>&gt;<i>  return v.execute();
+</I>&gt;<i> }
+</I>&gt;<i>
+</I>&gt;<i> falso:se(v,f) {
+</I>&gt;<i>  return f.execute();
+</I>&gt;<i> }
+</I>&gt;<i> --
+</I>&gt;<i>
+</I>&gt;<i> De forma que &quot;verdadeiro&quot; e &quot;falso&quot; representam objetos, e as
+</I>&gt;<i> opera&#231;&#245;es l&#243;gicas resultam em um destes dois objetos. Ent&#227;o, a
+</I>&gt;<i> compila&#231;&#227;o do seguinte c&#243;digo g-portugol 1.x ....
+</I>&gt;<i>
+</I>&gt;<i> se x = 10 ent&#227;o
+</I>&gt;<i>  imprima(&quot;igual a dez&quot;);
+</I>&gt;<i> sen&#227;o
+</I>&gt;<i>  imprima(&quot;diferente de dez&quot;);
+</I>&gt;<i> fim
+</I>&gt;<i>
+</I>&gt;<i> ... geraria o mesmo gptassembly acima.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> 2) Suponha:
+</I>&gt;<i>
+</I>&gt;<i> -que o m&#233;todo de n&#250;meros inteiros &quot;at&#233;(x)&quot; crie um array de n&#250;meros.
+</I>&gt;<i> -que o m&#233;todo &quot;para_cada(f)&quot; de objetos-array itera sobre seus valores
+</I>&gt;<i> executando e passando para f o valor atual da itera&#231;&#227;o.
+</I>&gt;<i> -que o m&#233;todo &quot;par()&quot; dos n&#250;meros retorne verdadeiro ou falso.
+</I>&gt;<i> -que a sintaxe &quot;[ a b c | ... ]&quot; cria uma fun&#231;&#227;o literal de tr&#234;s
+</I>par&#226;metros.
+&gt;<i> -que &quot;imprima()&quot; receba varargs
+</I>&gt;<i>
+</I>&gt;<i> Ent&#227;o, o seguinte pseudo-c&#243;digo (em um formato mais direto, mas ainda
+</I>&gt;<i> assim, feio) itera de 0 &#224; 10 e imprime, para cada n&#250;mero, se ele &#233; par
+</I>&gt;<i> ou impar:
+</I>&gt;<i>
+</I>&gt;<i> 0.at&#233;(10).para_cada([ x |
+</I>&gt;<i>  x.par().se([ imprima(x, &quot; &#233; par&quot;)], [ imprima(x, &quot; &#233; impar&quot;])
+</I>&gt;<i> ])
+</I>&gt;<i>
+</I>&gt;<i> em gptassembly:
+</I>&gt;<i>
+</I>&gt;<i> carconst 0
+</I>&gt;<i> carconst 10
+</I>&gt;<i> invoca &quot;at&#233;&quot;
+</I>&gt;<i> carobj xxx //endere&#231;o do closure (1)
+</I>&gt;<i> invoca &quot;para_cada&quot;
+</I>&gt;<i>
+</I>&gt;<i> .... // c&#243;digo do closure (1)
+</I>&gt;<i> carobj x
+</I>&gt;<i> invoca &quot;par&quot;
+</I>&gt;<i> carobj yyy //endere&#231;o do closure (2)
+</I>&gt;<i> carobj zzz //endere&#231;o do closure (3)
+</I>&gt;<i> invoca &quot;se&quot;
+</I>
+Quando voc&#234; diz &quot;endere&#231;o do closure&quot;, seria algum tipo de identifica&#231;&#227;o,
+quase como um nome de fun&#231;&#227;o certo?
+
+
+&gt;&gt;<i> Se cada estrutura de
+</I>&gt;&gt;<i> controle &#233; uma mensagem, isto quer dizer que ter&#237;amos que ter
+</I>&quot;sub-fun&#231;&#245;es&quot;,
+&gt;&gt;<i> onde cada fun&#231;&#227;o sub-fun&#231;&#227;o trataria uma mensagem espec&#237;fica?
+</I>&gt;<i>
+</I>&gt;<i> Essa parte eu n&#227;o entendi, hehe..
+</I>
+Como eu disse acima, eu chamei de sub-fun&#231;&#245;es, mas o correto seria closures.
+Enfim, eu entendi sim o pseudo-c&#243;digo, sem problemas. Mas eu achei um
+assembly bem &quot;complicado&quot; para algo que deveria ser simples. Imagine uma
+fun&#231;&#227;o com um for encadeado dentro de outro, com um if, mas um outro for no
+mesmo n&#237;vel do primeiro. Ok, gerar este c&#243;digo, a partir do GptC, depois de
+feitas as regras de tradu&#231;&#227;o de AST para GptAssembly, n&#227;o ser&#225; problema. Mas
+para gerar este GptAssembly &quot;na munheca&quot;, o cara vai ter que suar a camiseta
+hehehe.
+
+Bom, fica a d&#250;vida ent&#227;o sobre o n&#250;mero de closures.
+
+Se realmente existe esta quest&#227;o de um (ou mais) closures para cada
+estrutura de controle, talvez at&#233; seja poss&#237;vel &quot;contornar&quot;, mas n&#227;o sei se
+&#233; uma boa abordagem.
+
+Bom, eu vou colocar a minha sugest&#227;o. No pior dos casos, entendi errado e o
+problema n&#227;o existe, ent&#227;o descartasse a sugest&#227;o e pronto :-)
+
+A primeira op&#231;&#227;o (mais &#243;bvia) &#233; termos os opcodes tradicionais (como a JVM,
+DotNet, Parrot, LuaVM e afins).
+
+Ent&#227;o, um for de 1 a 10 seria algo como:
+
+
+              // Inicializa X com 1
+              carconst 1
+              armvar X
+:<i>teste_for    // Verifica se X &#233; &lt;= 10
+</I>              carvar X
+              meoi 10 // meoi = menor ou igual
+              sefalso fim
+              carvar X
+              carconst 1
+              invoca imprima
+              // Soma +1 em X
+              carvar X
+              carconst 1
+              adc
+              armvar X
+              salta teste_for
+:<i>fim
+</I>
+A outra op&#231;&#227;o &#233; a seguinte. Seguindo esta sua abordagem, e se o closure
+&quot;verdadeiro:se&quot; recebesse tamb&#233;m como argumento o closure que cont&#233;m o
+c&#243;digo a ser executado, o endere&#231;o inicial de execu&#231;&#227;o dentro deste closure
+e o n&#250;mero de opcodes que devem ser executados? Pelo tardar da hora, me
+parece que isto quebra alguns encapsulamentos e conceitos da OO, e me
+pareceu meio &quot;gambiarra&quot;, mas fica como sugest&#227;o (pelo menos at&#233; amanh&#227;
+hehehe). Talvez amanh&#227; eu acorde e diga &quot;que horror isso que eu disse&quot;
+hehehe.
+
+Abra&#231;os!
+
+-- 
+[]'s
+Alex Sandro Garz&#227;o
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/gpt-devel/attachments/20101019/ed86b414/attachment.html">https://lists.berlios.de/pipermail/gpt-devel/attachments/20101019/ed86b414/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000135.html">[gpt-devel] Como implementar estruturas de controle
+</A></li>
+	<LI>Next message: <A HREF="000129.html">[gpt-devel] Vamos ter o conceito de m&#233;todos ou apenas fun&#231;&#245;es?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#141">[ date ]</a>
+              <a href="thread.html#141">[ thread ]</a>
+              <a href="subject.html#141">[ subject ]</a>
+              <a href="author.html#141">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

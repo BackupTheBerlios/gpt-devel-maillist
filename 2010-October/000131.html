@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Como%20funcionaria%20o%20%22imprima%22%20na%20VM%3F&In-Reply-To=%3CAANLkTimQR2UwxRqM8SiYKdXx-4DyYFF129paDbTVTjhA%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000126.html">
+   <LINK REL="Next"  HREF="000132.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?</H1>
+    <B>Adorilson Bezerra de Araujo</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Como%20funcionaria%20o%20%22imprima%22%20na%20VM%3F&In-Reply-To=%3CAANLkTimQR2UwxRqM8SiYKdXx-4DyYFF129paDbTVTjhA%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?">adorilson at gmail.com
+       </A><BR>
+    <I>Sun Oct 17 16:21:23 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000126.html">[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?
+</A></li>
+        <LI>Next message: <A HREF="000132.html">[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#131">[ date ]</a>
+              <a href="thread.html#131">[ thread ]</a>
+              <a href="subject.html#131">[ subject ]</a>
+              <a href="author.html#131">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Em 16 de outubro de 2010 00:01, Alex Garzao &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">alexgarzaol at gmail.com</A>&gt;escreveu:
+
+&gt;<i>  Acrescento que, vendo agora, achei muito estranho utilizarmos invoca tanto
+</I>&gt;&gt;&gt;<i> para m&#233;todos como para fun&#231;&#245;es do SO. &#201; bem prov&#225;vel que teremos que
+</I>&gt;&gt;&gt;<i> diferenciar, ou seja, um mnem&#244;nico para cada.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;<i> Estranho em que sentido? Do ponto de vista do usu&#225;rio (abstraindo qualquer
+</I>&gt;&gt;<i> aspectos da implementa&#231;&#227;o disso) eu acho bastante natural que seja dessa
+</I>&gt;&gt;<i> forma. &#201; muito mais simples voc&#234; ter de aprender uma &#250;nica fun&#231;&#227;o (no caso o
+</I>&gt;&gt;<i> invoca) do que duas, por exemplo, invoca_funcao e invoca_metodo.
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Entendi. Voc&#234; esta analisando do ponto de vista do usu&#225;rio, e eu da VM
+</I>&gt;<i> hehehe. Para a VM seria mais l&#243;gico (no meu ponto de vista) serem mnem&#244;nicos
+</I>&gt;<i> separados, porque a funcionalidade &#233; distinda. Mas do ponto de vista do
+</I>&gt;<i> usu&#225;rio &#233; valido sim o que voc&#234; disse.
+</I>&gt;<i>
+</I>
+Mas aqui o usu&#225;rio seria quem vai escrever algo cujo alvo seja essa VM. N&#227;o
+&#233; esse o plano? Que outras ferramentas possam compilador uma linguagem
+qualquer para roda na GptVM?
+
+Eu compreendo sua coloca&#231;&#227;o/preocupa&#231;&#227;o quando pensamos em termos de
+Assembly/bin&#225;rio. Exemplificando: para atribuir um valor de um registrador
+para a mem&#243;ria, e atribuir um valor da mem&#243;ria para o registrador, ser&#227;o
+necess&#225;rio dois mnem&#244;nicos, porque em bin&#225;rio n&#227;o haver&#225; distin&#231;&#227;o. Se
+quiser, posso detalhar isso mais.
+
+A menos que a GptVM tamb&#233;m n&#227;o seja capaz de fazer essa distin&#231;&#227;o no
+GptAssembly. Olhando meio que de fora, acho que ela deveria ser capaz disso
+sim.
+
+Alguma defini&#231;&#227;o quanto a isso j&#225;?
+
+
+&gt;<i>
+</I>&gt;<i> S&#243; ressaltando que a id&#233;ia n&#227;o era ter invoca_funcao e invoca_metodo, mas
+</I>&gt;<i> sim invoca_metodo e invoca_lib (ou algo do g&#234;nero).
+</I>&gt;<i>
+</I>
+U&#233;, pra mim &#233; a mesma coisa. hehheheh
+De qualquer forma teremos duas fun&#231;&#245;es para fazer a mesma opera&#231;&#227;o.
+
+
+&gt;<i>
+</I>&gt;<i> De qualquer forma, acho que voc&#234; tem raz&#227;o. Para o usu&#225;rio &#233; mais simples
+</I>&gt;<i> ter uma fun&#231;&#227;o s&#243;, e ela que se vire hehehe.
+</I>&gt;<i>
+</I>&gt;<i> Abra&#231;os!
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i> []'s
+</I>&gt;<i> Alex Sandro Garz&#227;o
+</I>&gt;<i>
+</I>
+
+-- 
+Adorilson Bezerra
+IV ENSL / IV EPSL - <A HREF="http://www.ensl.org.br">http://www.ensl.org.br</A>
+Natal/Rio Grande do Norte, 05 e 06 de Novembro/2010
+<A HREF="http://identi.ca/ensl">http://identi.ca/ensl</A>  <A HREF="http://twitter.com/ensl_oficial">http://twitter.com/ensl_oficial</A>
+
+Aten&#231;&#227;o: Este e-mail pode conter anexos no formato ODF (Open Document
+Format)/ABNT (extens&#245;es odt, ods, odp, odb, odg). Antes de pedir os anexos
+em outro formato, voc&#234; pode instalar gratuita e livremente o BrOffice (
+<A HREF="http://www.broffice.org">http://www.broffice.org</A>) ou o seguinte Plugin para Microsoft Office (
+<A HREF="http://www.sun.com/software/star/odf_plugin/get.jsp">http://www.sun.com/software/star/odf_plugin/get.jsp</A>).
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/gpt-devel/attachments/20101017/df018f40/attachment.html">https://lists.berlios.de/pipermail/gpt-devel/attachments/20101017/df018f40/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000126.html">[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?
+</A></li>
+	<LI>Next message: <A HREF="000132.html">[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#131">[ date ]</a>
+              <a href="thread.html#131">[ thread ]</a>
+              <a href="subject.html#131">[ subject ]</a>
+              <a href="author.html#131">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

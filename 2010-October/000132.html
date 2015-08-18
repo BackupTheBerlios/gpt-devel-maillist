@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Como%20funcionaria%20o%20%22imprima%22%20na%20VM%3F&In-Reply-To=%3CAANLkTik4x2q0876v3FzBcOOC2c36MSVE2UbrcJWrmFFp%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000131.html">
+   <LINK REL="Next"  HREF="000136.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?</H1>
+    <B>Thiago Silva</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Como%20funcionaria%20o%20%22imprima%22%20na%20VM%3F&In-Reply-To=%3CAANLkTik4x2q0876v3FzBcOOC2c36MSVE2UbrcJWrmFFp%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?">tsilva at sourcecraft.info
+       </A><BR>
+    <I>Mon Oct 18 05:34:17 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000131.html">[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?
+</A></li>
+        <LI>Next message: <A HREF="000136.html">[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#132">[ date ]</a>
+              <a href="thread.html#132">[ thread ]</a>
+              <a href="subject.html#132">[ subject ]</a>
+              <a href="author.html#132">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>2010/10/17 Adorilson Bezerra de Araujo &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">adorilson at gmail.com</A>&gt;:
+&gt;<i> Em 16 de outubro de 2010 00:01, Alex Garzao &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">alexgarzaol at gmail.com</A>&gt;
+</I>&gt;<i> escreveu:
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> Acrescento que, vendo agora, achei muito estranho utilizarmos invoca
+</I>&gt;&gt;&gt;&gt;<i> tanto para m&#233;todos como para fun&#231;&#245;es do SO. &#201; bem prov&#225;vel que teremos que
+</I>&gt;&gt;&gt;&gt;<i> diferenciar, ou seja, um mnem&#244;nico para cada.
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Estranho em que sentido? Do ponto de vista do usu&#225;rio (abstraindo
+</I>&gt;&gt;&gt;<i> qualquer aspectos da implementa&#231;&#227;o disso) eu acho bastante natural que seja
+</I>&gt;&gt;&gt;<i> dessa forma. &#201; muito mais simples voc&#234; ter de aprender uma &#250;nica fun&#231;&#227;o (no
+</I>&gt;&gt;&gt;<i> caso o invoca) do que duas, por exemplo, invoca_funcao e invoca_metodo.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Entendi. Voc&#234; esta analisando do ponto de vista do usu&#225;rio, e eu da VM
+</I>&gt;&gt;<i> hehehe. Para a VM seria mais l&#243;gico (no meu ponto de vista) serem mnem&#244;nicos
+</I>&gt;&gt;<i> separados, porque a funcionalidade &#233; distinda. Mas do ponto de vista do
+</I>&gt;&gt;<i> usu&#225;rio &#233; valido sim o que voc&#234; disse.
+</I>&gt;<i>
+</I>&gt;<i> Mas aqui o usu&#225;rio seria quem vai escrever algo cujo alvo seja essa VM. N&#227;o
+</I>&gt;<i> &#233; esse o plano? Que outras ferramentas possam compilador uma linguagem
+</I>&gt;<i> qualquer para roda na GptVM?
+</I>&gt;<i>
+</I>&gt;<i> Eu compreendo sua coloca&#231;&#227;o/preocupa&#231;&#227;o quando pensamos em termos de
+</I>&gt;<i> Assembly/bin&#225;rio. Exemplificando: para atribuir um valor de um registrador
+</I>&gt;<i> para a mem&#243;ria, e atribuir um valor da mem&#243;ria para o registrador, ser&#227;o
+</I>&gt;<i> necess&#225;rio dois mnem&#244;nicos, porque em bin&#225;rio n&#227;o haver&#225; distin&#231;&#227;o. Se
+</I>&gt;<i> quiser, posso detalhar isso mais.
+</I>&gt;<i>
+</I>&gt;<i> A menos que a GptVM tamb&#233;m n&#227;o seja capaz de fazer essa distin&#231;&#227;o no
+</I>&gt;<i> GptAssembly. Olhando meio que de fora, acho que ela deveria ser capaz disso
+</I>&gt;<i> sim.
+</I>&gt;<i>
+</I>&gt;<i> Alguma defini&#231;&#227;o quanto a isso j&#225;?
+</I>&gt;<i>
+</I>
+Acho que me perdi nessa discuss&#227;o....hehehe
+
+
+&gt;&gt;<i> S&#243; ressaltando que a id&#233;ia n&#227;o era ter invoca_funcao e invoca_metodo, mas
+</I>&gt;&gt;<i> sim invoca_metodo e invoca_lib (ou algo do g&#234;nero).
+</I>&gt;<i>
+</I>&gt;<i> U&#233;, pra mim &#233; a mesma coisa. hehheheh
+</I>&gt;<i> De qualquer forma teremos duas fun&#231;&#245;es para fazer a mesma opera&#231;&#227;o.
+</I>&gt;<i>
+</I>
+N&#227;o se &quot;invoca_lib&quot; possui uma sem&#226;ntica distinta de execu&#231;&#227;o, que
+acho que &#233; a preocupa&#231;&#227;o do alex. Eu sugiro que, no momento, n&#227;o
+exista distin&#231;&#227;o, a n&#237;vel de gptassembly: que todas as invoca&#231;&#245;es
+sejam uniformes e por meio de envio de mensagens -- e casos especiais
+sejam tratados internamente/transparentemente.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000131.html">[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?
+</A></li>
+	<LI>Next message: <A HREF="000136.html">[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#132">[ date ]</a>
+              <a href="thread.html#132">[ thread ]</a>
+              <a href="subject.html#132">[ subject ]</a>
+              <a href="author.html#132">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

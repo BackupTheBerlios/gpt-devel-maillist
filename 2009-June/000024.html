@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Incompatilidade com Nasm
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2009-June/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Incompatilidade%20com%20Nasm&In-Reply-To=%3C76152eba0906231849t7f4aef07p570d5b98eb5bc4b3%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000023.html">
+   <LINK REL="Next"  HREF="000026.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Incompatilidade com Nasm</H1>
+    <B>Adorilson Bezerra de Araujo</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Incompatilidade%20com%20Nasm&In-Reply-To=%3C76152eba0906231849t7f4aef07p570d5b98eb5bc4b3%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Incompatilidade com Nasm">adorilson at gmail.com
+       </A><BR>
+    <I>Wed Jun 24 03:49:05 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000023.html">[gpt-devel] Incompatilidade com Nasm
+</A></li>
+        <LI>Next message: <A HREF="000026.html">[gpt-devel] deb's do gpt 1.1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#24">[ date ]</a>
+              <a href="thread.html#24">[ thread ]</a>
+              <a href="subject.html#24">[ subject ]</a>
+              <a href="author.html#24">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>2009/6/10 Adorilson Bezerra de Araujo &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">adorilson at gmail.com</A>&gt;
+
+&gt;<i> Ol&#225; Thiago e demais,
+</I>&gt;<i>
+</I>&gt;<i> tava fazendo testes em outros ambientes e confirmei um erro que j&#225; tinha
+</I>&gt;<i> visto mas nao investigado o que era.
+</I>&gt;<i>
+</I>&gt;<i> O modulo compilador n&#227;o estava gerando a saida, ent&#227;o converti para
+</I>&gt;<i> Assembly e  executei o Nasm manualmente.
+</I>&gt;<i> Ele n&#227;o compila e d&#225; duas saidas:
+</I>&gt;<i>
+</I>&gt;<i> $ nasm -f elf olamundo.asm
+</I>&gt;<i> olamundo.asm:9: error: parser: instruction expected
+</I>&gt;<i> olamundo.asm:802: warning: label alone on a line without a colon might be
+</I>&gt;<i> in error
+</I>&gt;<i>
+</I>&gt;<i> A linha 9 &#233;
+</I>&gt;<i> ORG     orgno
+</I>&gt;<i>
+</I>&gt;<i> Eu comentei essa linha e passou. Mas pode ficar sem?
+</I>
+
+Depois de outros testes deu segfault sem essa linha. Isso diz respeito ao
+endere&#231;amento de memoria inicial do  programa (ou coisa assim).
+
+Mas deve ter sido alguma barbeiragem minha, apesar de ter testado em mais de
+uma m&#225;quina, pq do mesmo jeito que esse problema apareceu, ele sumiu.
+
+
+-- 
+Adorilson Bezerra
+-------------------------------------------
+Forum Internacional Software Livre
+24 a 27 de junho de 2009 - Porto Alegre-RS
+Participe!
+<A HREF="http://fisl.org.br">http://fisl.org.br</A>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/gpt-devel/attachments/20090623/fe79131d/attachment.html">https://lists.berlios.de/pipermail/gpt-devel/attachments/20090623/fe79131d/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000023.html">[gpt-devel] Incompatilidade com Nasm
+</A></li>
+	<LI>Next message: <A HREF="000026.html">[gpt-devel] deb's do gpt 1.1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#24">[ date ]</a>
+              <a href="thread.html#24">[ thread ]</a>
+              <a href="subject.html#24">[ subject ]</a>
+              <a href="author.html#24">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

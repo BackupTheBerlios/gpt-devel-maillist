@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Formato (gram&#225;tica) do GptAssembly
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%0A%09%3D%3Fiso-8859-1%3Fq%3FFormato_%3D28gram%3DE1tica%3D29_do_GptAssemb%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Fly%3F%3D&In-Reply-To=%3CAANLkTikGOWc_ShEoir5bKx-xR0%3DMHoB4xY4ntmxYz7ji%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000090.html">
+   <LINK REL="Next"  HREF="000093.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Formato (gram&#225;tica) do GptAssembly</H1>
+    <B>Thiago Silva</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%0A%09%3D%3Fiso-8859-1%3Fq%3FFormato_%3D28gram%3DE1tica%3D29_do_GptAssemb%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Fly%3F%3D&In-Reply-To=%3CAANLkTikGOWc_ShEoir5bKx-xR0%3DMHoB4xY4ntmxYz7ji%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Formato (gram&#225;tica) do GptAssembly">tsilva at sourcecraft.info
+       </A><BR>
+    <I>Wed Oct  6 18:04:25 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000090.html">[gpt-devel] Formato (gram&#225;tica) do GptAssembly
+</A></li>
+        <LI>Next message: <A HREF="000093.html">[gpt-devel] Formato (gram&#225;tica) do GptAssembly
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#92">[ date ]</a>
+              <a href="thread.html#92">[ thread ]</a>
+              <a href="subject.html#92">[ subject ]</a>
+              <a href="author.html#92">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>2010/10/6 Alex Garzao &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">alexgarzaol at gmail.com</A>&gt;:
+&gt;&gt;<i> Neste caso, uma unidade compilada poderia ser um conjunto de
+</I>&gt;&gt;<i> defini&#231;&#245;es de objetos e defini&#231;&#245;es de m&#233;todos associados a objetos.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Por exemplo, suponha que a seguinte defini&#231;&#227;o crie um objeto prot&#243;tipo
+</I>&gt;&gt;<i> Pessoa, com atributos &quot;nome&quot; e &quot;idade&quot;, que delega/herda de Objeto:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Pessoa : Objeto[nome, idade];
+</I>&gt;<i>
+</I>&gt;<i> A tipagem seria din&#226;mica?
+</I>&gt;<i>
+</I>
+isso!
+
+&gt;&gt;<i>
+</I>&gt;&gt;<i> E a seguinte defini&#231;&#227;o crie um m&#233;todo para o objeto Pessoa:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Pessoa maiorDeIdade()
+</I>&gt;&gt;<i> &#160; retorne .idade &gt; 18;
+</I>&gt;&gt;<i> fim
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Imagino, ent&#227;o, que uma unidade compilada seria formada por um
+</I>&gt;&gt;<i> conjunto de defini&#231;&#245;es de objetos e m&#233;todos associados a objetos.
+</I>&gt;<i>
+</I>&gt;<i> Ok.
+</I>&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Talvez com tabelas de objetos, m&#233;todos e mapeamento entre nomes,
+</I>&gt;&gt;<i> objetos e m&#233;todos.
+</I>&gt;<i>
+</I>&gt;<i> Aqui eu n&#227;o acompanhei o seu racioc&#237;cio. Poderia explicar melhor? Qual seria
+</I>&gt;<i> o uso destas tabelas e mapeamentos?
+</I>&gt;<i>
+</I>
+Hmm, eu estava fantasiando sobre o formato bin&#225;rio e acho que dei
+alguns &quot;pulos&quot; criando buracos..
+
+Vejamos o caso do java, especificamente, do arquivo .class. Uma vez
+que uma unidade de compila&#231;&#227;o pode gerar v&#225;rios arquivos .class, e
+cada .class representa uma classe apenas, todos os m&#233;todos em um
+arquivo .class ser&#227;o da tal classe.
+
+Agora, explicando a minha confus&#227;o, hehe, eu estava imaginando que, se
+uma unidade de compila&#231;&#227;o definisse v&#225;rios objetos e m&#233;todos de v&#225;rios
+objetos e a compila&#231;&#227;o desse source gerasse um arquivo.X bin&#225;rio, este
+arquivo teria se&#231;&#245;es para constantes literais, para os m&#233;todos
+compilados, para os objetos definidos, e alguma forma de associar os
+m&#233;todos aos objetos.
+
+Por exemplo, dado o seguinte c&#243;digo:
+
+Foo : Objeto[...];
+Bar : Objeto[...];
+Bla : Objeto[...];
+
+Foo x():
+   ....corpo do m&#233;todo
+fim
+
+Bar y():
+  ...corpo do m&#233;todo
+fim
+
+Se a compila&#231;&#227;o gerasse um &#250;nico arquivo bin&#225;rio, imagino que ele
+teria que ter as defini&#231;&#245;es dos 3 objetos (seus nomes, atributos, e de
+quem herdam), os c&#243;digos dos 2 m&#233;todos (x e y), seus nomes (&quot;x&quot; e &quot;y&quot;)
+e uma forma de associ&#225;-los a quem pertencem (&quot;Foo&quot; e &quot;Bar&quot;,
+respectivamente).
+
+N&#227;o sei se ficou claro, mas espero que esteja claro que s&#227;o
+elocubra&#231;&#245;es minhas mesmo :). Infelizmente eu n&#227;o conhe&#231;o nenhuma
+linguagem OO baseada em prot&#243;tipos que gere um arquivo compilado para
+que eu estude seu formato...
+
+
+&gt;&gt;<i>
+</I>&gt;&gt;<i> Ent&#227;o, uma linguagem de &quot;baixo&quot; n&#237;vel poderia ser
+</I>&gt;&gt;<i> algo como a nota&#231;&#227;o acima, exceto pelo corpo dos m&#233;todos, que
+</I>&gt;&gt;<i> utilizariam mnem&#244;nicos dos bytecodes e, talvez, operariam
+</I>&gt;&gt;<i> explicitamente com o prologo e epilogo das fun&#231;&#245;es (criando espa&#231;o na
+</I>&gt;&gt;<i> pilha para os parametros, e coisas do tipo).
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Se, por outro lado, fomos tocar um modelo baseado em classes, eu
+</I>&gt;&gt;<i> sugiro nos livrar da tipagem. Neste caso, a nota&#231;&#227;o que vc sugeriu,
+</I>&gt;&gt;<i> pra mim, est&#225; boa, com excess&#227;o do &quot;nulo&quot; na defini&#231;&#227;o do m&#233;todo.
+</I>&gt;<i>
+</I>&gt;<i> Eu gostei da sua abordagem :-)
+</I>&gt;<i>
+</I>&gt;<i> A minha opini&#227;o &#233; a seguinte. N&#243;s tentamos evoluir confome a sua sugest&#227;o.
+</I>&gt;<i> Se a gente achar que vai complicar muito ou vai ser invi&#225;vel por algum
+</I>&gt;<i> motivo, a gente volta para a minha sugest&#227;o (mais tradicional), mas que
+</I>&gt;<i> tenho certeza (quase que absoluta) que vai funcionar para o que a gente
+</I>&gt;<i> precisa.
+</I>&gt;<i>
+</I>&gt;<i> Pode ser?
+</I>&gt;<i>
+</I>
+Por mim, beleza. Concordo que a estrada mais tradicional parece melhor
+iluminada :)
+
+[]'s
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000090.html">[gpt-devel] Formato (gram&#225;tica) do GptAssembly
+</A></li>
+	<LI>Next message: <A HREF="000093.html">[gpt-devel] Formato (gram&#225;tica) do GptAssembly
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#92">[ date ]</a>
+              <a href="thread.html#92">[ thread ]</a>
+              <a href="subject.html#92">[ subject ]</a>
+              <a href="author.html#92">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

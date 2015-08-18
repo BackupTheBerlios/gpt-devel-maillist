@@ -1,0 +1,324 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Formato (gram&#225;tica) do GptAssembly
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%0A%09%3D%3Fiso-8859-1%3Fq%3FFormato_%3D28gram%3DE1tica%3D29_do_GptAssemb%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Fly%3F%3D&In-Reply-To=%3CAANLkTikF-m1EJKObTWEWk_BuNQ1x4uWmz_cHShDFYSLk%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000104.html">
+   <LINK REL="Next"  HREF="000106.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Formato (gram&#225;tica) do GptAssembly</H1>
+    <B>Thiago Silva</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%0A%09%3D%3Fiso-8859-1%3Fq%3FFormato_%3D28gram%3DE1tica%3D29_do_GptAssemb%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Fly%3F%3D&In-Reply-To=%3CAANLkTikF-m1EJKObTWEWk_BuNQ1x4uWmz_cHShDFYSLk%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Formato (gram&#225;tica) do GptAssembly">tsilva at sourcecraft.info
+       </A><BR>
+    <I>Sun Oct 10 00:18:25 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000104.html">[gpt-devel] Formato (gram&#225;tica) do GptAssembly
+</A></li>
+        <LI>Next message: <A HREF="000106.html">[gpt-devel] Formato (gram&#225;tica) do GptAssembly
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#105">[ date ]</a>
+              <a href="thread.html#105">[ thread ]</a>
+              <a href="subject.html#105">[ subject ]</a>
+              <a href="author.html#105">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>2010/10/9 Alex Garzao &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">alexgarzaol at gmail.com</A>&gt;:
+&gt;&gt;<i> hmmm, me ajuda aqui, hehe... Digamos que estamos em um m&#233;todo x() e
+</I>&gt;&gt;<i> dentro dele chamamos super(). Como isso expande para gptassembly?
+</I>&gt;<i>
+</I>&gt;<i> Acredito que expande para
+</I>&gt;<i> ...
+</I>&gt;<i> careu // ldself
+</I>&gt;<i> invoca super // acredito que super seria uma implementa&#231;&#227;o nativa
+</I>&gt;<i>
+</I>&gt;<i> A implementa&#231;&#227;o de super sim verificaria se o m&#233;todo atual sobrescreveu
+</I>&gt;<i> outro m&#233;todo (vendo se tem pointer em data do closure do m&#233;todo), e neste
+</I>&gt;<i> caso invocaria o anterior carregando parent e depois chamando &quot;invoca
+</I>&gt;<i> nome_metodo&quot;.
+</I>&gt;<i> Mas j&#225; adianto que n&#227;o tenho certeza se &quot;&#233; s&#243; isso&quot; :-)
+</I>
+Ah, agora entendi. Neste caso, h&#225; um cen&#225;rio em que ter o closure com
+um ponteiro para o &quot;super&quot; pode dar trabalho: quanto o m&#233;todo no
+objeto &quot;parent&quot; mudar (algo bastante comum num &quot;ambiente de
+desenvolvimento interativo&quot;). Sempre que isso ocorrer, todos os
+&quot;m&#233;todos filhos&quot; ter&#227;o que ter o seu ponteiro atualizado para o novo
+&quot;super&quot;. Por isso que, inicialmente, eu tenho preferencia por um
+lookup().
+
+
+&gt;&gt;<i> &gt;&gt; que para m&#233;todos, realmente fica melhor. Mas e o &quot;principal&quot;?
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; Acho que a&#237; entramos na discuss&#227;o de tudo ter como base a OO (ou n&#227;o)
+</I>&gt;&gt;<i> &gt; :-/
+</I>&gt;&gt;<i> &gt; Eu conhe&#231;o poucas linguagens OO e, das que eu conhe&#231;o, ou elas tem uma
+</I>&gt;&gt;<i> &gt; fun&#231;&#227;o que inicia a aplica&#231;&#227;o (main de C++) ou possuem um m&#233;todo
+</I>&gt;&gt;<i> &gt; espec&#237;fico
+</I>&gt;&gt;<i> &gt; em uma classe que determina o ponto de inicio da execu&#231;&#227;o (java).
+</I>&gt;&gt;<i> &gt; Pelo que eu me lembre (n&#227;o tenho certeza) no DotNet qualquer m&#233;todo de
+</I>&gt;&gt;<i> &gt; uma
+</I>&gt;&gt;<i> &gt; classe pode ser o ponto de in&#237;cio da execu&#231;&#227;o. As linguagens que geram
+</I>&gt;&gt;<i> &gt; c&#243;digo para o Dotnet tem as suas regras, mas o que interessa para o
+</I>&gt;&gt;<i> &gt; dotnet &#233;
+</I>&gt;&gt;<i> &gt; o m&#233;todo que &#233; sinalizado como ponto de in&#237;cio.
+</I>&gt;&gt;<i> &gt; Eu sugiro termos uma abordagem similar. N&#227;o podemos ter fun&#231;&#245;es, mas
+</I>&gt;&gt;<i> &gt; apenas
+</I>&gt;&gt;<i> &gt; m&#233;todos. Por&#233;m, apenas um dos m&#233;todos de todas as classes carregadas
+</I>&gt;&gt;<i> &gt; pode
+</I>&gt;&gt;<i> &gt; ser sinalizado como ponto de in&#237;cio da execu&#231;&#227;o.
+</I>&gt;&gt;<i> &gt; Acredito que voc&#234; conhe&#231;a bem mais linguagens OO do que eu. Que
+</I>&gt;&gt;<i> &gt; abordagens
+</I>&gt;&gt;<i> &gt; voc&#234; viu e achou interessante?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Ent&#227;o. Podemos tratar fun&#231;&#245;es e closures como valores, objetos. E com
+</I>&gt;&gt;<i> closures, podemos implementar condi&#231;&#227;o e repeti&#231;&#227;o apenas enviando
+</I>&gt;&gt;<i> mensagens. Basta o objeto da fun&#231;&#227;o/closure responder a uma mensagem
+</I>&gt;&gt;<i> executando-se e retornando o valor de sua execu&#231;&#227;o.
+</I>&gt;<i>
+</I>&gt;<i> Entendi. Mas n&#227;o sei dizer se uma abordagem &quot;mais tradicional&quot; n&#227;o ficaria
+</I>&gt;<i> mais clara. Me parece que esta abordagem &#233; uma bazuca para matar uma mosca
+</I>&gt;<i> hehe.
+</I>
+Hehe....porque vc acha uma bazuca?
+
+No que diz respeito a natureza das fun&#231;&#245;es, eu acho essencial ter elas
+como objetos e poder &quot;plugar&quot; e &quot;desplugar&quot; elas de objetos em tempo
+de execu&#231;&#227;o, especialmente por ser um requisito de um &quot;ambiente de
+desenvolvimento interativo&quot;.
+
+Quanto a implementa&#231;&#227;o de opera&#231;&#245;es de controle (condi&#231;&#227;o, repeti&#231;&#227;o,
+etc), eu acho que podemos seguir uma linha tradicional, oferecendo os
+opcodes ncess&#225;rios.
+
+&gt;<i> Mas podemos avaliar melhor. Eu achei interessante a sua abordagem. Eu at&#233;
+</I>&gt;<i> imagino como seria um for que engloba todo um m&#233;todo, mas como seria um for
+</I>&gt;<i> em um trecho de c&#243;digo? E um if? E se houvesse dois for's em um mesmo
+</I>&gt;<i> m&#233;todo?
+</I>&gt;<i> Ok, se eu entendi direito, essa mensagem poderia receber qual trecho do
+</I>&gt;<i> m&#233;todo deve ser executado, mas me parece exagerado.
+</I>&gt;<i>
+</I>
+Considere Smalltalk. Closures (chamados de Blocks) s&#227;o c&#243;digos entre
+[] (e s&#227;o objetos literais). Parenteses fazem o usual. Chamada de
+m&#233;todos podem ser escritas com tr&#234;s sintaxes diferentes:
+
+-receptor mensagem (equivalente &#224; sintaxe receptor.mensagem())
+
+-receptor key1: arg1 key2: arg2    .... keyn: argn
+
+-receptor &lt;simbolo&gt; argumento (ie. 1 + 2)
+
+-- Condicional em smalltalk:
+
+//a classe Boolean tem os m&#233;todos #ifTrue: e #ifTrue:ifFalse:
+
+(x even)
+  ifTrue: [Transcript show: 'x eh par']
+  ifFalse: [Transcript show: 'x eh impar'].
+
+-- &quot;for&quot; em smalltalk:
+
+//a classe Integer tem o m&#233;todo #to:do:
+
+0 to: 10 do: [ :n | Transcript show: n ].
+
+0 to: 10 do:
+  [ :m |
+    0 to: 10 do:
+      [ :n | Transcript show: m+n; cr] ]
+
+-- &quot;while&quot; em smalltalk:
+
+//closures s&#227;o objetos e possuem o m&#233;todo whileFalse:
+
+[n = 0]
+  whileFalse:
+    [n := n - 1].
+
+---
+
+Para facilitar, em termos de sintaxe, eis (+/-) o mesmo, em javascript
+(supondo que n&#250;meros e booleanos sejam objetos reais):
+
+-- Condicional
+
+x.isEven().ifTrue(function() { print(&quot;x eh par&quot;) })
+
+--for, while ...
+
+0.to(10, function(x) { print(x) })
+
+x.whileTrue(function(x) { .... })
+
+----------------
+
+Mas veja, eu n&#227;o estou advogando pelo uso dessas sintaxes. Em
+portugol, podemos tranquilamente ter:
+
+para x de 0 at&#233; 10 fa&#231;a .... fim-para
+
+
+Meu ponto &#233; que eu acho importante ter uma m&#225;quina virtual gen&#233;rica o
+suficiente para implementar, sem impedimentos ou grandes dores de
+cabe&#231;a, diversos conceitos. Acho que enquanto esse objetivo n&#227;o ferir
+a complexidade da implementa&#231;&#227;o (e at&#233; agora, acho que est&#225; tudo
+dentro dos meus crit&#233;rios de simplicidade, pelo menos), vale a pena
+seguir esse caminho.
+
+Algo que me vem a cabe&#231;a &#233; o livro de Abelson e Sussman, Structure and
+Interpretation of Computer Programs [1]. Em apenas um livro eles
+percorreram uma diversidade imensa de conceitos de computa&#231;&#227;o e
+t&#233;cnicas de programa&#231;&#227;o utilizando apenas Scheme (e terminando o livro
+com um capitulo sobre register machines, implementando Scheme, usando
+Scheme).
+
+Por exemplo, eles n&#227;o precisaram adotar uma linguagem de programa&#231;&#227;o
+com suporte a lazy evaluation para ensinar o conceito. Ensinaram como
+escrever a fun&#231;&#227;o &quot;eval&quot; em Scheme e mostraram como modific&#225;-la para
+ter um interpretador com lazy evaluation.
+
+Fizeram o mesmo para mostrar computa&#231;&#227;o n&#227;o-determin&#237;stica e
+programa&#231;&#227;o l&#243;gica. Ao inv&#233;s de adotar algo como Prolog, eles
+mostraram como implementar os recursos necess&#225;rios na linguagem e
+usaram Scheme como usariam Prolog. Eles n&#227;o adotaram Java, C++ nem
+nada disso pra ensinar OO...ensinaram como criar modelos de objetos
+usando Scheme (em uma ou duas p&#225;ginas), e como programar e investigar
+o conceito usando esse modelo. Scheme foi a &#250;nica linguagem usada no
+livro inteiro, e como &#233; uma linguagem que permite c&#243;digo sucinto e
+compacto, todas as implementa&#231;&#245;es s&#227;o relativamente simples (n&#227;o h&#225;
+aqueles dumps rid&#237;culos de c&#243;digos que alguns autores colocam em seus
+livros e vc tem que &quot;confiar&quot; que o c&#243;digo faz o que o autor diz).
+Isso permite que o leitor n&#227;o tenha que parar para aprender coisas
+secund&#225;rias (como uma sintaxe diferente, ou uma ferramenta/linguagem
+diferente) antes de voltar ao assunto principal. N&#227;o s&#243; isso, o leitor
+aprende _criando_ o pr&#243;prio mecanismo que ele est&#225; estudando. Claro
+que a obra n&#227;o &#233; m&#233;rito da linguagem que eles adotaram, mas acho que
+sua simplicidade e flexibilidade tem um papel fundamental em permitir
+que o livro &quot;trate de muitas coisas importantes, usando pouco
+material&quot;, e de forma focada, sem grandes barreiras e sem se perder
+muito em &quot;conhecimentos secund&#225;rios&quot;.
+
+Ent&#227;o, se escolhemos um conjunto de mecanismos &quot;simples&quot; e gen&#233;ricos o
+suficiente para abarcar um conjunto razo&#225;vel de conceitos, podemos
+mostrar esses conceitos de forma simples, sempre em termos deste
+mesmos mecanismos. Uma vez, eu vi uma analogia com o sistema decimal e
+o sistema romano que me causou fortes impress&#245;es: o que &#233; melho?
+Ensinar sistema decimal ou romano? Com o primeiro, conseguimos fazer
+muito mais opera&#231;&#245;es, muito mais complexas, sabendo apenas alguns
+poucos conceitos gerais...j&#225; com o segundo, mal conseguimos
+multiplicar....
+
+
+Voltando ent&#227;o....o ponto de permitir que estruturas de controle e
+repeti&#231;&#227;o possam ser descritas em termos de envio de mensagens apenas
+sugere o tipo de possibilidades que se abrem. A primeira &#233; que o
+n&#250;mero de conceitos da linguagem &quot;escondidos em caixa preta&quot; s&#227;o
+reduzidos: &#233; poss&#237;vel mostrar a implementa&#231;&#227;o de um &quot;if&quot;, &quot;while&quot; e
+&quot;for&quot; apenas em termos de conceitos prim&#225;rios de objeto e mensagem (e
+a implementa&#231;&#227;o deles &#233; muito simples). Ou seja, se os alunos sabem
+operar sobre objetos e mensagens, eles podem ver a implementa&#231;&#227;o
+dessas estruturas nestes termos e entender como elas operam (a
+implementa&#231;&#227;o delas n&#227;o est&#225; &quot;selada&quot; na VM, em uma linguagem
+alien&#237;gena aos estudantes). A segunda possibilidade que se abre &#233; de
+os estudantes poderem ser estimulados a criarem suas pr&#243;prias
+estruturas de controle (sem precisar ensinar eles dez milh&#245;es de
+conceitos e ferramentas como lex e yacc apenas para fazer algo simples
+como isso, por exemplo).
+
+
+[1] - <A HREF="http://en.wikipedia.org/wiki/Structure_and_Interpretation_of_Computer_Programs">http://en.wikipedia.org/wiki/Structure_and_Interpretation_of_Computer_Programs</A>
+       <A HREF="http://mitpress.mit.edu/sicp/">http://mitpress.mit.edu/sicp/</A>
+
+&gt;&gt;<i>
+</I>&gt;&gt;<i> Seja como for, nesse caso, &quot;m&#233;todo&quot; &#233; apenas um nome para um
+</I>&gt;&gt;<i> objeto-fun&#231;&#227;o que pertence a um dicion&#225;rio de m&#233;todos de um objeto.
+</I>&gt;&gt;<i> Por si s&#243;, ele &#233; apenas um objeto que representa c&#243;digo execut&#225;vel.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Quanto ao ponto de entrada, realmente temos algumas op&#231;&#245;es no
+</I>&gt;&gt;<i> card&#225;pio. Duas abordagens me vem a mente agora:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> a) uma simples &#233; fazer como em C, onde a VM procuraria por uma fun&#231;&#227;o
+</I>&gt;&gt;<i> com nome especifico (como &quot;principal&quot;) no m&#243;dulo e executaria ela.
+</I>&gt;<i>
+</I>&gt;<i> Bom, ai a gente vai ouvir aquela cl&#225;ssica &quot;essa VM n&#227;o &#233; OO porque precisa
+</I>&gt;<i> de uma fun&#231;&#227;o que fica fora de um objeto&quot;. O que sempre se ouve de C++.
+</I>&gt;<i>
+</I>
+Hehehe. Se o fulano n&#227;o aceita a id&#233;ia de fun&#231;&#245;es serem objetos
+independentes (algo n&#227;o muito dif&#237;cil, visto que OO &#233; praticamente um
+conceito arbitr&#225;rio), eu at&#233; vejo sentido na afirma&#231;&#227;o dele. Mas n&#227;o
+vejo nenhum benef&#237;cio (pelo contr&#225;rio) que justifique tal restri&#231;&#227;o.
+
+&gt;&gt;<i> Neste caso, faltaria fazer o bind do &quot;this&quot; para esta fun&#231;&#227;o. Mas a&#237;,
+</I>&gt;&gt;<i> nada impede que a VM criasse um objeto derivado de Objeto, adicionasse
+</I>&gt;&gt;<i> a fun&#231;&#227;o &quot;principal&quot; como m&#233;todo e o executasse (derrepente esse
+</I>&gt;&gt;<i> objeto pode ser carregado com diversas informa&#231;&#245;es).
+</I>&gt;<i>
+</I>&gt;<i> Ok. De qq forma, acho que, ao inv&#233;s de ser impl&#237;cito isto na VM, acho que no
+</I>&gt;<i> GptAssembly deveria ser gerado este objeto com um nome de fun&#231;&#227;o
+</I>&gt;<i> pr&#233;-determinada (tipo ao main).
+</I>&gt;<i>
+</I>
+Perfeito.
+
+
+&gt;&gt;<i> b) Outra abordagem, como vc mencionou, seria marcar um m&#233;todo de um
+</I>&gt;&gt;<i> objeto como principal (a forma mais simples, usando um nome padr&#227;o,
+</I>&gt;&gt;<i> novamente, como &quot;principal&quot;). A&#237; precisariamos de uma forma de dizer
+</I>&gt;&gt;<i> que o m&#233;todo principal &#233; de tal objeto, caso contr&#225;rio, a VM teria que
+</I>&gt;&gt;<i> procurar em todos os m&#233;todos dos objetos do m&#243;dulo por um que tenha o
+</I>&gt;&gt;<i> nome &quot;principal&quot;. Acho que se o objeto &#233; uma vtable, podemos confiar
+</I>&gt;&gt;<i> que, ap&#243;s o loading, esse objeto j&#225; est&#225; no pool; basta a vm executar
+</I>&gt;&gt;<i> o m&#233;todo. Caso contr&#225;rio, a VM precisaria instanciar o objeto e chamar
+</I>&gt;&gt;<i> &quot;principal&quot;. Creio que isso afeta as condi&#231;&#245;es de inicializa&#231;&#227;o (por
+</I>&gt;&gt;<i> exemplo, o objeto que tem &quot;principal&quot; deve receber X par&#226;metros no
+</I>&gt;&gt;<i> construtor).
+</I>&gt;<i>
+</I>&gt;<i> No pr&#243;prio bytecode pode ser identificado o objeto/m&#233;todo que deve iniciar a
+</I>&gt;<i> aplica&#231;&#227;o. O assemblador geraria esta informa&#231;&#227;o no bytecode.
+</I>&gt;<i> Outra op&#231;&#227;o seria a gente identificar apenas a classe que deve iniciar a
+</I>&gt;<i> execu&#231;&#227;o. Desta forma o construtor seria o ponto de partida da aplica&#231;&#227;o. A
+</I>&gt;<i> VM, ao iniciar, instanciaria um objeto a partir desta classe e o construtor
+</I>&gt;<i> faria o resto.
+</I>
+
+Beleza.
+
+
+[]'s
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000104.html">[gpt-devel] Formato (gram&#225;tica) do GptAssembly
+</A></li>
+	<LI>Next message: <A HREF="000106.html">[gpt-devel] Formato (gram&#225;tica) do GptAssembly
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#105">[ date ]</a>
+              <a href="thread.html#105">[ thread ]</a>
+              <a href="subject.html#105">[ subject ]</a>
+              <a href="author.html#105">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

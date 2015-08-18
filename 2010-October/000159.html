@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Ordem de empilhamento dos argumentos
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Ordem%20de%20empilhamento%20dos%20argumentos&In-Reply-To=%3CAANLkTim4tMQ7%3D43iL-sGuEOAQJ7zR2pW8i1SHtQ%3D9jgF%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000158.html">
+   <LINK REL="Next"  HREF="000160.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Ordem de empilhamento dos argumentos</H1>
+    <B>Alex Garzao</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Ordem%20de%20empilhamento%20dos%20argumentos&In-Reply-To=%3CAANLkTim4tMQ7%3D43iL-sGuEOAQJ7zR2pW8i1SHtQ%3D9jgF%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Ordem de empilhamento dos argumentos">alexgarzaol at gmail.com
+       </A><BR>
+    <I>Fri Oct 22 12:35:27 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000158.html">[gpt-devel] Opcode &quot;meoi&quot; viola o encapsulamento?
+</A></li>
+        <LI>Next message: <A HREF="000160.html">[gpt-devel] Ordem de empilhamento dos argumentos
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#159">[ date ]</a>
+              <a href="thread.html#159">[ thread ]</a>
+              <a href="subject.html#159">[ subject ]</a>
+              <a href="author.html#159">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bom dia senhores :-)
+
+Outro dia comentamos que, provavelmente, ter&#237;amos que empilhar os argumentos
+na pilha em ordem inversa.
+
+Por exemplo, para &quot;x = 10 + 20&quot; ter&#237;amos o seguinte GptAssembly:
+
+carconst 20
+carconst 10
++
+
+Na &#250;ltima VM que trabalhei eu optei por n&#227;o fazer isso. O assembly ficou
+mais claro, a gera&#231;&#227;o pelo compilador mais direta (n&#227;o precisa inverter
+c&#243;digo nem gerar tempor&#225;rias), e por ai vai.
+
+O que eu fiz foi +- o seguinte. Quando era uma chamada a uma fun&#231;&#227;o, no
+registro de ativa&#231;&#227;o desta fun&#231;&#227;o, ao retirar os argumentos, eu os
+armazenava invertidos. Quando era uma chamada para um opcode, o opcode
+retirava invertido.
+
+N&#227;o sei dizer (ainda) se isto seria poss&#237;vel de ser feito na GptVM. Acho que
+sim, mas entre achar e ter certeza, &#233; um longo caminho hehehe.
+
+A pergunta &#233;: algu&#233;m v&#234; algum problema em investir nesta abordagem?
+
+Abra&#231;os!
+
+-- 
+[]'s
+Alex Sandro Garz&#227;o
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/gpt-devel/attachments/20101022/f2465ffe/attachment.html">https://lists.berlios.de/pipermail/gpt-devel/attachments/20101022/f2465ffe/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000158.html">[gpt-devel] Opcode &quot;meoi&quot; viola o encapsulamento?
+</A></li>
+	<LI>Next message: <A HREF="000160.html">[gpt-devel] Ordem de empilhamento dos argumentos
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#159">[ date ]</a>
+              <a href="thread.html#159">[ thread ]</a>
+              <a href="subject.html#159">[ subject ]</a>
+              <a href="author.html#159">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

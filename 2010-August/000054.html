@@ -1,0 +1,188 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Metas da V2
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Metas%20da%20V2&In-Reply-To=%3CAANLkTi%3DQFnfif-UGvudfvzLQ1XZ09SedH7yP%3Dqr75%3DJE%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000053.html">
+   <LINK REL="Next"  HREF="000055.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Metas da V2</H1>
+    <B>Thiago Silva</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Metas%20da%20V2&In-Reply-To=%3CAANLkTi%3DQFnfif-UGvudfvzLQ1XZ09SedH7yP%3Dqr75%3DJE%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Metas da V2">tsilva at sourcecraft.info
+       </A><BR>
+    <I>Wed Aug 11 16:56:31 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000053.html">[gpt-devel] Metas da V2
+</A></li>
+        <LI>Next message: <A HREF="000055.html">[gpt-devel] Metas da V2
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#54">[ date ]</a>
+              <a href="thread.html#54">[ thread ]</a>
+              <a href="subject.html#54">[ subject ]</a>
+              <a href="author.html#54">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bom dia!
+
+2010/8/11 Alex Garzao &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">alexgarzaol at gmail.com</A>&gt;:
+&gt;<i> Bom dia senhores :-)
+</I>&gt;<i>
+</I>&gt;<i> Colo abaixo o coment&#225;rio do Eleandro:
+</I>&gt;<i>
+</I>&gt;<i> &quot;Sugiro de criar-mos um road-map provis&#243;rio para balizarmos nossas id&#233;ias e
+</I>&gt;<i> objetivos, para que possamos ir avan&#231;ando em pontos aonde j&#225; temos seguran&#231;a
+</I>&gt;<i> de como e o que ser&#225; feito. E tamb&#233;m agregar a este road-map uma descri&#231;&#227;o
+</I>&gt;<i> detalhada das id&#233;ias e objetivos em cada etapa, al&#233;m de definirmos algumas
+</I>&gt;<i> datas para termos uma id&#233;ia de metas.&quot;
+</I>&gt;<i>
+</I>&gt;<i> Como comentou o Thiago, s&#243; &#233; complicado colocarmos datas.
+</I>&gt;<i>
+</I>&gt;<i> Para criarmos o road-map, vamos fechar o escopo/expectativas da V2. Dentro
+</I>&gt;<i> deste escopo, priorizamos o que ser&#225; feito, e ai sim poderemos definir
+</I>&gt;<i> alguns milestones &quot;entreg&#225;veis&quot;.
+</I>&gt;<i>
+</I>&gt;<i> Revisando ent&#227;o a outra thread, o que temos &#233;:
+</I>&gt;<i> - Sintaxe para novas instru&#231;&#245;es (repita, escolha, fa&#231;a enquanto, sair, etc)
+</I>&gt;<i> - Sintaxe para declara&#231;&#227;o e utiliza&#231;&#227;o de estruturas heterog&#234;neas (aka
+</I>&gt;<i> struct)
+</I>&gt;<i> - Sintaxe para passagem de par&#226;metros por refer&#234;ncia
+</I>&gt;<i> - Revis&#227;o geral da sintaxe
+</I>&gt;<i> - Revis&#227;o geral da sem&#226;ntica dos tipos
+</I>&gt;<i> - Revis&#227;o na GptAssembly: (late binding, restri&#231;&#227;o de tipos, polimorfismo,
+</I>&gt;<i> etc..)
+</I>&gt;<i> - Arrays unidimensionais e multidimensionais
+</I>&gt;<i> - Suporte a n&#250;mero de par&#226;metros vari&#225;veis
+</I>&gt;<i> - Uso de m&#243;dulos (aka import/include/use/require/load)
+</I>&gt;<i> - Unicode
+</I>&gt;<i> - Uso de bibliotecas de sistema
+</I>&gt;<i> - M&#243;dulos parametrizados
+</I>&gt;<i> - Source level debugging
+</I>&gt;<i>
+</I>
+ok.
+
+&gt;<i> Eu tenho algumas pondera&#231;&#245;es:
+</I>&gt;<i>
+</I>&gt;<i> 1) Manteremos o GptC e a GptVM. Por&#233;m, acho que, apesar de termos o
+</I>&gt;<i> GptAssembly, n&#227;o precisamos de um assemblador (GptASM). O GptC pode compilar
+</I>&gt;<i> G-Portugol, gerar GptAssembly internamente e assemblar para gerar o bytecode
+</I>&gt;<i> diretamente.
+</I>&gt;<i>
+</I>&gt;<i> Claro que, para estudo e visualiza&#231;&#227;o, o GptAssembly pode ser visto, tanto
+</I>&gt;<i> durante a compila&#231;&#227;o bem como o bytecode pode ser &quot;desassemblado&quot;. E caso
+</I>&gt;<i> seja necess&#225;rio programar em GptAssembly, o pr&#243;rpio GptC pode assemblar
+</I>&gt;<i> isto, tipo a cl&#225;usula &quot;asm&quot; do C.
+</I>&gt;<i>
+</I>&gt;<i> Algu&#233;m v&#234; algum problema em n&#227;o termos o GptASM?
+</I>&gt;<i>
+</I>
+hmm, acho que ter ou n&#227;o o bin&#225;rio do gptasm &#233; s&#243; uma quest&#227;o de
+escrever algumas poucas linha em um Makefile.am (para criar um bin&#225;rio
+a mais). Eu acho interessante ter um gptasm como bin&#225;rio independente
+apenas por refletir a tradi&#231;&#227;o do toolchain. De qualquer forma, n&#227;o
+tenho grandes ressalvas. Podemos seguir nessa linha e, mais pra
+frente, se for desej&#225;vel, escrevemos as &quot;poucas linhas&quot; no Makefile.am
+que geram um gptasm bin&#225;rio...
+
+
+&gt;<i> 2) Como foi comentado na outra thread, nada impede que, a partir do
+</I>&gt;<i> GptAssembly, seja gerado c&#243;digo para outras linguagens ou VMs. Isso
+</I>&gt;<i> facilitaria um pouco as coisas para n&#243;s porque, nas primeiras vers&#245;es, n&#227;o
+</I>&gt;<i> precisamos ter a GptVM funcional.
+</I>&gt;<i>
+</I>&gt;<i> De qualquer forma, como o nosso foco &#233; termos o nosso runtime (GptVM), n&#227;o
+</I>&gt;<i> vamos investir muito tempo nesta tradu&#231;&#227;o. Ser&#225; uma tradu&#231;&#227;o simples e pura,
+</I>&gt;<i> sem se preocupar com libs de sistema, debug interativo e coisas do g&#234;nero.
+</I>&gt;<i> Como eu disse, seria bem para tirarmos (inicialmente) a depend&#234;ncia que
+</I>&gt;<i> temos da GptVM para executar aplicativos em G-Portugol.
+</I>&gt;<i>
+</I>&gt;<i> S&#243; saliento que, talvez, o &quot;custo&quot; de fazer um tradutor para outra linguagem
+</I>&gt;<i> seja similar a fazer uma vers&#227;o b&#225;sica da GptVM. Al&#233;m da vers&#227;o anterior da
+</I>&gt;<i> GptVm, eu tenho duas VMs acad&#234;micas &quot;funcionais&quot;, que s&#227;o GPL, ent&#227;o n&#227;o
+</I>&gt;<i> estaria come&#231;ando a GptVM &quot;do zero&quot;. Vou rever isto com calma.
+</I>&gt;<i>
+</I>
+foi justamente esse custo que me chamou aten&#231;&#227;o. O objetivo de
+implementar um target b&#225;sico para outro runtime &#233; apenas ter algo
+executando os programas da linguagem?
+
+&gt;<i> 3) Thiago, voc&#234; comentou na outra thread: &quot;Por isso que eu acharia
+</I>&gt;<i> interessante criarmos uma plataforma que seja gen&#233;rica, que n&#227;o assuma quase
+</I>&gt;<i> nada sobre a(s) linguagen(s) de alto n&#237;vel que ser&#227;o criadas por cima dela.&quot;
+</I>&gt;<i>
+</I>&gt;<i> Concordo com voc&#234;. Mas relendo a thread, para mim n&#227;o ficou claro se essa
+</I>&gt;<i> sua observa&#231;&#227;o &#233; um argumento quanto a quest&#227;o de termos a GptVM com (ou
+</I>&gt;<i> sem) restri&#231;&#227;o de tipos.
+</I>&gt;<i>
+</I>&gt;<i> Academicamente, eu fiz uma VM simb&#243;lica e uma (+-) tipada. O que eu notei &#233;
+</I>&gt;<i> que tanto o assembly quanto a VM tipada ficaram &quot;mais claras&quot;. Eu
+</I>&gt;<i> sinceramente n&#227;o tenho uma opini&#227;o formada se devemos seguir uma abordagem
+</I>&gt;<i> tipada (ou n&#227;o). O que voc&#234;s acham???
+</I>&gt;<i>
+</I>
+era um argumento a favor de bytecode n&#227;o-tipado e opera&#231;&#245;es
+late-bound. Minha sugest&#227;o inicial seria um modelo onde todos os dados
+fossem objetos, uma m&#225;quina de pilha que, al&#233;m das opera&#231;&#245;es de pilha,
+possuisse uma opera&#231;&#227;o b&#225;sica, al&#225; invokevirtual ou &quot;send&quot;, e todos os
+objetos fossem capazes de receber essa mensagem (e a realiza&#231;&#227;o
+definitiva da opera&#231;&#227;o ficaria a cargo de cada objeto). Isso levado
+alguns passos &#224; frente, pode nos permitir modificar/adaptar o
+comportamento da VM sem precisar modificar a VM. Considere esse texto
+tirado de [1]:
+
+&quot;A new way to construct programming languages, systems, environments
+and applications (herein collectively referred to as &#8216;systems&#8217;) is
+described. The priorities are somewhat different from those of
+conventional systems, emphasising (above all else) simplicity,
+openness, evolution, and pervasive user-centred implementation. The
+goal is that users be able to understand and modify any part of the
+system, and that the system be organised in a way that encourages them
+to do so.&quot;
+
+Uma implementa&#231;&#227;o disso &#233; elaborada em [2]. Embora n&#227;o tratem de
+bytecode, acho que n&#227;o seria dif&#237;cil fazer uma m&#225;quina de pilha (ou de
+registradores..) que incorporasse esses conceitos...
+
+
+[1] - Accessible Language-Based Environments of Recursive Theories
+<A HREF="http://www.vpri.org/pdf/rn2006001a_colaswp.pdf">http://www.vpri.org/pdf/rn2006001a_colaswp.pdf</A>
+
+[2] - Open Reusable Object Models
+<A HREF="http://www.vpri.org/pdf/tr2006003a_objmod.pdf">http://www.vpri.org/pdf/tr2006003a_objmod.pdf</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000053.html">[gpt-devel] Metas da V2
+</A></li>
+	<LI>Next message: <A HREF="000055.html">[gpt-devel] Metas da V2
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#54">[ date ]</a>
+              <a href="thread.html#54">[ thread ]</a>
+              <a href="subject.html#54">[ subject ]</a>
+              <a href="author.html#54">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

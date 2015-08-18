@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Formato (gram&#225;tica) do GptAssembly
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%0A%09%3D%3Fiso-8859-1%3Fq%3FFormato_%3D28gram%3DE1tica%3D29_do_GptAssemb%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Fly%3F%3D&In-Reply-To=%3CAANLkTi%3DsOq1t5LrmsRqKCEcSkBJX1XNWCaQqaaNKegwb%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000092.html">
+   <LINK REL="Next"  HREF="000095.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Formato (gram&#225;tica) do GptAssembly</H1>
+    <B>Alex Garzao</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%0A%09%3D%3Fiso-8859-1%3Fq%3FFormato_%3D28gram%3DE1tica%3D29_do_GptAssemb%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Fly%3F%3D&In-Reply-To=%3CAANLkTi%3DsOq1t5LrmsRqKCEcSkBJX1XNWCaQqaaNKegwb%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Formato (gram&#225;tica) do GptAssembly">alexgarzaol at gmail.com
+       </A><BR>
+    <I>Wed Oct  6 19:40:18 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000092.html">[gpt-devel] Formato (gram&#225;tica) do GptAssembly
+</A></li>
+        <LI>Next message: <A HREF="000095.html">[gpt-devel] Formato (gram&#225;tica) do GptAssembly
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#93">[ date ]</a>
+              <a href="thread.html#93">[ thread ]</a>
+              <a href="subject.html#93">[ subject ]</a>
+              <a href="author.html#93">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i>
+</I>&gt;<i> &gt;&gt; E a seguinte defini&#231;&#227;o crie um m&#233;todo para o objeto Pessoa:
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; Pessoa maiorDeIdade()
+</I>&gt;<i> &gt;&gt;   retorne .idade &gt; 18;
+</I>&gt;<i> &gt;&gt; fim
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; Imagino, ent&#227;o, que uma unidade compilada seria formada por um
+</I>&gt;<i> &gt;&gt; conjunto de defini&#231;&#245;es de objetos e m&#233;todos associados a objetos.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Ok.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; Talvez com tabelas de objetos, m&#233;todos e mapeamento entre nomes,
+</I>&gt;<i> &gt;&gt; objetos e m&#233;todos.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Aqui eu n&#227;o acompanhei o seu racioc&#237;cio. Poderia explicar melhor? Qual
+</I>&gt;<i> seria
+</I>&gt;<i> &gt; o uso destas tabelas e mapeamentos?
+</I>&gt;<i> &gt;
+</I>&gt;<i>
+</I>&gt;<i> Hmm, eu estava fantasiando sobre o formato bin&#225;rio e acho que dei
+</I>&gt;<i> alguns &quot;pulos&quot; criando buracos..
+</I>&gt;<i>
+</I>&gt;<i> Vejamos o caso do java, especificamente, do arquivo .class. Uma vez
+</I>&gt;<i> que uma unidade de compila&#231;&#227;o pode gerar v&#225;rios arquivos .class, e
+</I>&gt;<i> cada .class representa uma classe apenas, todos os m&#233;todos em um
+</I>&gt;<i> arquivo .class ser&#227;o da tal classe.
+</I>&gt;<i>
+</I>&gt;<i> Agora, explicando a minha confus&#227;o, hehe, eu estava imaginando que, se
+</I>&gt;<i> uma unidade de compila&#231;&#227;o definisse v&#225;rios objetos e m&#233;todos de v&#225;rios
+</I>&gt;<i> objetos e a compila&#231;&#227;o desse source gerasse um arquivo.X bin&#225;rio, este
+</I>&gt;<i> arquivo teria se&#231;&#245;es para constantes literais, para os m&#233;todos
+</I>&gt;<i> compilados, para os objetos definidos, e alguma forma de associar os
+</I>&gt;<i> m&#233;todos aos objetos.
+</I>&gt;<i>
+</I>&gt;<i> Por exemplo, dado o seguinte c&#243;digo:
+</I>&gt;<i>
+</I>&gt;<i> Foo : Objeto[...];
+</I>&gt;<i> Bar : Objeto[...];
+</I>&gt;<i> Bla : Objeto[...];
+</I>&gt;<i>
+</I>&gt;<i> Foo x():
+</I>&gt;<i>   ....corpo do m&#233;todo
+</I>&gt;<i> fim
+</I>&gt;<i>
+</I>&gt;<i> Bar y():
+</I>&gt;<i>  ...corpo do m&#233;todo
+</I>&gt;<i> fim
+</I>&gt;<i>
+</I>&gt;<i> Se a compila&#231;&#227;o gerasse um &#250;nico arquivo bin&#225;rio, imagino que ele
+</I>&gt;<i> teria que ter as defini&#231;&#245;es dos 3 objetos (seus nomes, atributos, e de
+</I>&gt;<i> quem herdam), os c&#243;digos dos 2 m&#233;todos (x e y), seus nomes (&quot;x&quot; e &quot;y&quot;)
+</I>&gt;<i> e uma forma de associ&#225;-los a quem pertencem (&quot;Foo&quot; e &quot;Bar&quot;,
+</I>&gt;<i> respectivamente).
+</I>&gt;<i>
+</I>&gt;<i> N&#227;o sei se ficou claro, mas espero que esteja claro que s&#227;o
+</I>&gt;<i> elocubra&#231;&#245;es minhas mesmo :). Infelizmente eu n&#227;o conhe&#231;o nenhuma
+</I>&gt;<i> linguagem OO baseada em prot&#243;tipos que gere um arquivo compilado para
+</I>&gt;<i> que eu estude seu formato...
+</I>&gt;<i>
+</I>
+Ah ok. Agora entendi hehehe.
+
+Quanto ao formato, realmente, temos que associar sim. J&#225; tenho at&#233; uma
+proposta (simples) em mente, algo similar ao que utilizei h&#225; pouco tempo.
+Ali&#225;s, &#233; similar ao class da JVM. No class, pelo que eu me lembre, a classe
+indica quantas propriedades e m&#233;todos possui. Para cada m&#233;todo &#233; informado o
+n&#250;mero de par&#226;metros e o n&#250;mero de opcodes. E por ai vai... O que muda &#233;
+que, no nosso caso, se um arquivo pode conter a defini&#231;&#227;o de v&#225;rias classes,
+provavelmente no header deste arquivo teria uma informa&#231;&#227;o dizendo o n&#250;mero
+de classes, e para cada classe, quantas propriedades e m&#233;todos, para cada
+propriedade o seu nome, para cada m&#233;todo o seu nome, n&#250;mero de par&#226;metros,
+n&#250;mero de resultados e opcodes, e por ai vai...
+
+De qq forma acho que a gente deveria avan&#231;ar um pouco mais as id&#233;ias sobre o
+GptAssembly. Eu &quot;acho&quot; que captei as suas id&#233;ias, mas gostaria (se poss&#237;vel)
+que voc&#234; implementasse os seguintes exemplos completos utilizando as duas
+id&#233;ias:
+
+1) Exemplo &quot;Ol&#225; mundo&quot;
+
+2) Como instanciar novos objetos e enviar mensagens (invocar seus m&#233;todos)
+
+3) Classe com um m&#233;todo sem argumentos e outro com argumentos, e como estes
+m&#233;todos s&#227;o invocados
+
+4) Classe com m&#233;todo do tipo soma(x,y) que retorna a soma destes dois
+valores
+
+Acho que com estes exemplos a gente consegue equalizar as id&#233;ias :-)
+
+Abra&#231;os!
+
+-- 
+[]'s
+Alex Sandro Garz&#227;o
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/gpt-devel/attachments/20101006/ad0cb829/attachment.html">https://lists.berlios.de/pipermail/gpt-devel/attachments/20101006/ad0cb829/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000092.html">[gpt-devel] Formato (gram&#225;tica) do GptAssembly
+</A></li>
+	<LI>Next message: <A HREF="000095.html">[gpt-devel] Formato (gram&#225;tica) do GptAssembly
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#93">[ date ]</a>
+              <a href="thread.html#93">[ thread ]</a>
+              <a href="subject.html#93">[ subject ]</a>
+              <a href="author.html#93">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,169 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Opcode &quot;meoi&quot; viola o encapsulamento?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Opcode%20%22meoi%22%20viola%20o%20encapsulamento%3F&In-Reply-To=%3CAANLkTinxcBeV-vJwHY8twr9ySE1g86y_zWfLe-DZ8DPF%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000152.html">
+   <LINK REL="Next"  HREF="000154.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Opcode &quot;meoi&quot; viola o encapsulamento?</H1>
+    <B>Alex Garzao</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Opcode%20%22meoi%22%20viola%20o%20encapsulamento%3F&In-Reply-To=%3CAANLkTinxcBeV-vJwHY8twr9ySE1g86y_zWfLe-DZ8DPF%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Opcode &quot;meoi&quot; viola o encapsulamento?">alexgarzaol at gmail.com
+       </A><BR>
+    <I>Thu Oct 21 17:54:30 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000152.html">[gpt-devel] Opcode &quot;meoi&quot; viola o encapsulamento?
+</A></li>
+        <LI>Next message: <A HREF="000154.html">[gpt-devel] Opcode &quot;meoi&quot; viola o encapsulamento?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#153">[ date ]</a>
+              <a href="thread.html#153">[ thread ]</a>
+              <a href="subject.html#153">[ subject ]</a>
+              <a href="author.html#153">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Boa tarde :-)
+
+Perai, me explica uma coisa, hehehe. Pelo que entendi, voc&#234;
+&gt;<i> transformou &quot;&lt;=&quot; (meoi) em uma fun&#231;&#227;o &quot;se&lt;=(entao,senao)&quot;. &#201; isso
+</I>&gt;<i> mesmo?
+</I>&gt;<i>
+</I>
+Isso. Era para ser um exemplo. Na &#250;ltima VM eu implementei como opcodes
+distintos pelos mesmos motivos que voc&#234; colocou. Vou tentar transformar o
+nosso exemplo.
+
+Exemplo em G-Portugol:
+
+fun&#231;&#227;o principal
+    se 10 &lt;= 20 ent&#227;o
+        imprima(&quot;10 &lt;= 20&quot;);
+    sen&#227;o
+        imprima(&quot;10 &gt; 20&quot;);
+    fim
+fim
+
+Exemplo traduzido para GptAssembly:
+
+.fun&#231;&#227;o principal
+    carconst 20
+    carconst 10
+    invoca &lt;= // deixa na pilha o resultado
+    .carfun&#231;&#227;o // sen&#227;o
+        carconst &quot;10 &gt; 20&quot;
+        carconst 1
+        invoca imprima
+    .fim_fun&#231;&#227;o
+    .carfun&#231;&#227;o // ent&#227;o
+        carconst &quot;10 &lt;= 20&quot;
+        carconst 1
+        invoca imprima
+    .fim_fun&#231;&#227;o
+    invoca se // executa ent&#227;o se verdadeiro
+.fim_fun&#231;&#227;o
+
+Tanto o m&#233;todo &quot;&lt;=&quot; como o m&#233;todo &quot;se&quot; acredito que ser&#227;o implementa&#231;&#245;es
+nativas da VM.
+
+Esbo&#231;o da fun&#231;&#227;o (nativa) &quot;&lt;=&quot; do Objeto Int:
+
+void ObjetoInt::meoi(Stack stack)
+{
+    ObjetoInt op2 = stack.pop();
+
+    if (getValue() &lt;= op2.getValue()) {
+        stack.push(ObjetoBoleano(true));
+    } else {
+        stack.push(ObjetoBoleano(false));
+    }
+}
+
+Esbo&#231;o da fun&#231;&#227;o (nativa) &quot;se&quot;:
+
+void Objeto::se(Stack stack)
+{
+    ObjetoFuncao  funcaoEntao = stack.pop();
+    ObjetoFuncao  funcaoSenao = stack.pop();
+    ObjetoBoleano teste       = stack.pop();
+
+    if (teste.isTrue()) {
+        runFunction (funcaoEntao);
+    } else {
+         runFunction (funcaoSenao);
+    }
+}
+
+
+Uma d&#250;vida. Qual objeto vai responder pela opera&#231;&#227;o &quot;se&quot; ? O objeto &quot;pai de
+todos&quot; (objeto), como coloquei no exemplo ?
+
+e a opera&#231;&#227;o &quot;&lt;=&quot;? hehehe
+&gt;<i>
+</I>&gt;<i> O que fazer com a express&#227;o &quot;x := a &lt;= b;&quot;?
+</I>&gt;<i>
+</I>
+Vamos a um exemplo...
+
+Exemplo em G-Portugol (se errei a sintaxe, I'm so sorry,,,):
+
+fun&#231;&#227;o principal
+    vari&#225;vel booleana x;
+    x := 10 &lt;= 20;
+fim
+
+Exemplo traduzido para GptAssembly:
+
+.fun&#231;&#227;o principal
+    .vari&#225;vel x
+    carconst 20
+    carconst 10
+    invoca &lt;= // deixa na pilha o resultado
+    armvar x
+.fim_fun&#231;&#227;o
+
+Acredito que seja isso :-)
+
+Abra&#231;os!
+
+-- 
+[]'s
+Alex Sandro Garz&#227;o
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/gpt-devel/attachments/20101021/52bcca56/attachment.html">https://lists.berlios.de/pipermail/gpt-devel/attachments/20101021/52bcca56/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000152.html">[gpt-devel] Opcode &quot;meoi&quot; viola o encapsulamento?
+</A></li>
+	<LI>Next message: <A HREF="000154.html">[gpt-devel] Opcode &quot;meoi&quot; viola o encapsulamento?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#153">[ date ]</a>
+              <a href="thread.html#153">[ thread ]</a>
+              <a href="subject.html#153">[ subject ]</a>
+              <a href="author.html#153">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

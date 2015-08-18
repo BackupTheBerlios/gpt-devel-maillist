@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Impress&#227;o de tipo l&#243;gico
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2009-February/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20%3D%3Fiso-8859-1%3Fq%3FImpress%3DE3o_de_tipo_l%3DF3gico%3F%3D&In-Reply-To=%3C76152eba0902151135g695001e6r4a84557421055d1c%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000004.html">
+   <LINK REL="Next"  HREF="000008.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Impress&#227;o de tipo l&#243;gico</H1>
+    <B>Adorilson Bezerra de Araujo</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20%3D%3Fiso-8859-1%3Fq%3FImpress%3DE3o_de_tipo_l%3DF3gico%3F%3D&In-Reply-To=%3C76152eba0902151135g695001e6r4a84557421055d1c%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Impress&#227;o de tipo l&#243;gico">adorilson at gmail.com
+       </A><BR>
+    <I>Sun Feb 15 20:35:07 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000004.html">[gpt-devel] Impress&#227;o de tipo l&#243;gico
+</A></li>
+        <LI>Next message: <A HREF="000008.html">[gpt-devel] Impress&#227;o de tipo l&#243;gico
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5">[ date ]</a>
+              <a href="thread.html#5">[ thread ]</a>
+              <a href="subject.html#5">[ subject ]</a>
+              <a href="author.html#5">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>2009/2/15 Thiago Silva &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">tsilva at sourcecraft.info</A>&gt;
+
+&gt;<i> Fala adorilson,
+</I>&gt;<i> &#233; um bug. Pelo que me lembro, a impress&#227;o de um valor l&#243;gico deve ser
+</I>&gt;<i> a string &quot;verdadeiro&quot; ou &quot;falso&quot;. Acho que vc pode ver se existe
+</I>&gt;<i> diferen&#231;a entre a execu&#231;&#227;o do mesmo c&#243;digo de forma interpretada,
+</I>&gt;<i> compilada e traduzida. Se houver diferen&#231;a, h&#225; bug.
+</I>
+
+H&#225; diferen&#231;a.
+A impress&#227;o de &quot;verdadeiro&quot; ou &quot;falso&quot; s&#243; acontece no execut&#225;vel gerado a
+partir da forma traduzida.
+
+Mas isso n&#227;o &#233; tudo.
+
+Se vc executar o algoritmo idade.gpt, do jeito que est&#225;, as tres formas
+ter&#227;o o mesmo (correto e esperado) comportamento.
+Mas se invertermos as leituras:
+
+imprima(nome, &quot;, digite sua idade:&quot;);
+idade := leia();
+imprima(&quot;Digite seu nome:&quot;);
+nome := leia();
+
+o comportamento ser&#225; diferente. Veja:
+
+$ gpt -i idade.gpt
+, digite sua idade:
+39
+Digite seu nome:
+adorilson
+adulto!
+
+O compilado tem essa mesma execu&#231;&#227;o.
+
+Execu&#231;&#227;o do traduzido:
+
+$ gpt -t idade.c idade.gpt
+$ gcc idade.c -o idade.gcc
+$ ./idade.gcc
+(nulo), digite sua idade:
+23
+Digite seu nome:
+adulto!
+
+Atente que na vers&#227;o traduzido ele imprimiu &quot;(nulo)&quot; quando a vari&#225;vel  nome
+n&#227;o tinha sido setado. Correto.
+Mas o nome := leia(); n&#227;o foi executado.
+
+Outro teste que fiz foi executando o io.gpt sem as leituras, apenas com o
+&#250;ltimo imprima.
+$ gpt -t io.c io.gpt
+$ gcc io.c -o io.gcc
+$ ./io.gcc
+caractere: , inteiro: 0, real: 0.00, texto: (nulo), l&#243;gico: falso
+
+$ gpt -i io.gpt
+caractere: , inteiro: 0, real: 0.00, texto: , l&#243;gico:
+
+Compilado idem.
+
+
+&gt;<i>
+</I>&gt;<i> Agora n&#227;o estou no meu computador, mas amanh&#227; posso dar uma olhada.
+</I>&gt;<i>
+</I>&gt;<i> []'s
+</I>&gt;<i> --
+</I>&gt;<i> Thiago Silva,
+</I>&gt;<i> mailto: tsilva at sourcecraft info
+</I>&gt;<i> jabber/gtalk: <A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">tsilva at jabber-br.org</A>
+</I>&gt;<i> <A HREF="http://blog.sourcecraft.info">http://blog.sourcecraft.info</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>-- 
+Adorilson Bezerra
+-------------------------------------------
+Agende-se! fisl10 Edi&#231;&#227;o Especial
+PUCRS, 24 a 27 de junho de 2009
+Porto Alegre, RS - Brasil
+<A HREF="http://fisl.softwarelivre.org">http://fisl.softwarelivre.org</A>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/gpt-devel/attachments/20090215/3eda431b/attachment.html">https://lists.berlios.de/pipermail/gpt-devel/attachments/20090215/3eda431b/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000004.html">[gpt-devel] Impress&#227;o de tipo l&#243;gico
+</A></li>
+	<LI>Next message: <A HREF="000008.html">[gpt-devel] Impress&#227;o de tipo l&#243;gico
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5">[ date ]</a>
+              <a href="thread.html#5">[ thread ]</a>
+              <a href="subject.html#5">[ subject ]</a>
+              <a href="author.html#5">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

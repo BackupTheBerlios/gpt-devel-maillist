@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Como%20funcionaria%20o%20%22imprima%22%20na%20VM%3F&In-Reply-To=%3CAANLkTimrcT8AwqJ7RADKWoBk1y77XTNxwv9nn0dQRz%2Bu%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000119.html">
+   <LINK REL="Next"  HREF="000123.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?</H1>
+    <B>Alex Garzao</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Como%20funcionaria%20o%20%22imprima%22%20na%20VM%3F&In-Reply-To=%3CAANLkTimrcT8AwqJ7RADKWoBk1y77XTNxwv9nn0dQRz%2Bu%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?">alexgarzaol at gmail.com
+       </A><BR>
+    <I>Fri Oct 15 21:52:37 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000119.html">[gpt-devel] sobre os objetivos do projeto g-portugol (era: Formato (gram&#225;tica) do GptAssembly)
+</A></li>
+        <LI>Next message: <A HREF="000123.html">[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#122">[ date ]</a>
+              <a href="thread.html#122">[ thread ]</a>
+              <a href="subject.html#122">[ subject ]</a>
+              <a href="author.html#122">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Boa tarde senhores :-)
+
+Hoje de manh&#227; estava refletindo sobre como funcionaria a invoca&#231;&#227;o de um
+m&#233;todo qualquer na nossa VM.
+
+Conforme j&#225; hav&#237;amos conversado, seria, em GptAssembly, algo como:
+
+.objeto X:Objeto
+
+.m&#233;todo X:imprime_oi
+    carstr &quot;oi&quot;
+   carconst_1
+   invoca imprima
+.fim_m&#233;todo
+
+.m&#233;todo principal // &#233; a fun&#231;&#227;o principal onde inicia a execu&#231;&#227;o das
+aplica&#231;&#245;es
+   .var obj
+    carobj X
+   invoca novo //novo() &#233; definido em Objeto
+    armobj obj
+   carobj obj
+    invoca imprime_oi
+   sai_0
+.fim_m&#233;todo
+
+Ressalto que n&#227;o me preocupei quanto a quest&#227;o de como ser&#225; identificada a
+fun&#231;&#227;o (ou m&#233;todo) principal. Tamb&#233;m n&#227;o me preocupei com a quest&#227;o se vamos
+(ou n&#227;o) termos m&#233;todos, ou tudo ser&#227;o fun&#231;&#245;es.  Fica a discuss&#227;o para uma
+pr&#243;xima thread :-)
+
+O &quot;invoca novo&quot; e o &quot;invoca imprime_oi&quot; eu imagino como iram funcionar. O
+invoca executar&#225; um lookup, que busca o nome do m&#233;todo na vtable. O &quot;novo&quot;,
+que far&#225; parte da classe &quot;pai de todas&quot; (Objeto), ser&#225; encontrado e
+executado. O &quot;imprime_oi&quot; ser&#225; encontrado na vtable do objeto. Ok, posso ter
+esquecido de detalhes, mas acho que seria algo assim. Se eu estiver errado,
+corrijam :-)
+
+A d&#250;vida que eu tenho &#233; quanto ao invoca &quot;imprima&quot;. O imprima, na teoria,
+faz parte da biblioteca do gpt, assim como o leia e outras do g&#234;nero. Como a
+VM saber&#225; onde est&#225; imprima, visto que ela n&#227;o faz parte da vtable do
+Objeto?
+
+Eu pensei (rapidamente) em duas possibilidades:
+
+1) &quot;imprima&quot; ser&#225; um m&#233;todo est&#225;tico de uma classe que ser&#225; invocado, algo
+como &quot;es.imprima&quot;, onde es poderia ser a classe de &quot;entrada/sa&#237;da&quot; com todas
+as rotinas que necessitamos.
+
+2) Ao inv&#233;s de invoca, poder&#237;amos utilizar outro mnem&#244;nico, que este sim
+saberia que n&#227;o &#233; um m&#233;todo da classe.
+
+Se poss&#237;vel gostaria de ler suas considera&#231;&#245;es :-)
+
+Acrescento que, vendo agora, achei muito estranho utilizarmos invoca tanto
+para m&#233;todos como para fun&#231;&#245;es do SO. &#201; bem prov&#225;vel que teremos que
+diferenciar, ou seja, um mnem&#244;nico para cada.
+
+Abra&#231;os!!!!
+
+-- 
+[]'s
+Alex Sandro Garz&#227;o
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/gpt-devel/attachments/20101015/ea7cdb25/attachment.html">https://lists.berlios.de/pipermail/gpt-devel/attachments/20101015/ea7cdb25/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000119.html">[gpt-devel] sobre os objetivos do projeto g-portugol (era: Formato (gram&#225;tica) do GptAssembly)
+</A></li>
+	<LI>Next message: <A HREF="000123.html">[gpt-devel] Como funcionaria o &quot;imprima&quot; na VM?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#122">[ date ]</a>
+              <a href="thread.html#122">[ thread ]</a>
+              <a href="subject.html#122">[ subject ]</a>
+              <a href="author.html#122">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

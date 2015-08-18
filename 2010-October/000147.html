@@ -1,0 +1,194 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Fwd: Como implementar estruturas de controle
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Fwd%3A%20Como%20implementar%20estruturas%20de%20controle&In-Reply-To=%3CAANLkTikjTeOrWLmxPw-8UUaRyeAL8Zp_ZE%2BD87r-pS4_%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000146.html">
+   <LINK REL="Next"  HREF="000148.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Fwd: Como implementar estruturas de controle</H1>
+    <B>Alex Garzao</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Fwd%3A%20Como%20implementar%20estruturas%20de%20controle&In-Reply-To=%3CAANLkTikjTeOrWLmxPw-8UUaRyeAL8Zp_ZE%2BD87r-pS4_%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Fwd: Como implementar estruturas de controle">alexgarzaol at gmail.com
+       </A><BR>
+    <I>Thu Oct 21 00:19:02 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000146.html">[gpt-devel] Fwd:  Como implementar estruturas de controle
+</A></li>
+        <LI>Next message: <A HREF="000148.html">[gpt-devel] Vantagens/desvantagens de obrigatoriamente gerarmos	GptAssembly
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#147">[ date ]</a>
+              <a href="thread.html#147">[ thread ]</a>
+              <a href="subject.html#147">[ subject ]</a>
+              <a href="author.html#147">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Boa tarde senhores :-)
+
+
+&gt;<i> &gt;&gt; Agora eis que pergunto: qual a import&#226;ncia que vc atribui para uma
+</I>&gt;<i> &gt;&gt; leitura mais &quot;fluente&quot; e edi&#231;&#227;o de gptassembly?
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Pensei em lhe fazer a mesma pergunta :-)
+</I>&gt;<i> &gt; Bom, se a id&#233;ia &#233; que os usu&#225;rios consigam ver o c&#243;digo em gptassembly
+</I>&gt;<i> para
+</I>&gt;<i> &gt; entender como as coisas funcionam, ent&#227;o acredito que ela deve ser de
+</I>&gt;<i> &quot;f&#225;cil
+</I>&gt;<i> &gt; leitura&quot;, dentro das possibilidades claro (acredito que milagre n&#227;o &#233; bem
+</I>&gt;<i> a
+</I>&gt;<i> &gt; nossa praia hehehe). Se ela n&#227;o deve ser para usu&#225;rios, bom, a&#237; questiono
+</I>&gt;<i> o
+</I>&gt;<i> &gt; porque de termos a possibilidade de programar neste assembly.
+</I>&gt;<i>
+</I>&gt;<i> pois &#233;. Em termos gerais, pelo menos o gptassembly tem servido para
+</I>&gt;<i> conversarmos sobre o modelo de execu&#231;&#227;o. Acho que ele vai ser &#250;til tbm
+</I>&gt;<i> na hora de tratar do formato bin&#225;rio...
+</I>&gt;<i>
+</I>
+Vou abrir outra thread...
+
+
+&gt;<i> &gt;&gt; Eu vejo alguns aspectos nesta quest&#227;o. Eu acho que o gptassembly deve
+</I>&gt;<i> &gt;&gt; ser &quot;entend&#237;vel&quot;.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Isso. Se &#233; para facilitar para que entendam como as coisas funcionam
+</I>&gt;<i> &gt; internamente, acredito que temos que investir mais entende?
+</I>&gt;<i>
+</I>&gt;<i> deixa eu s&#243; esclarecer o que eu quis dizer hehe....pensei em
+</I>&gt;<i> &quot;entendivel&quot; como algo diferente de &quot;legivel&quot;. Entendivel no sentido
+</I>&gt;<i> de n&#227;o haver coisas obscuras e magia negra...de bater o olho e saber o
+</I>&gt;<i> que aquele mnemonico ou sintaxe faz. Legivel no sentido de vc se
+</I>&gt;<i> sentir confort&#225;vel lendo o c&#243;digo e entendendo sua estrutura, seu
+</I>&gt;<i> algoritmo. Eu me contento muito bem com &quot;entendivel&quot;.
+</I>&gt;<i>
+</I>
+Eu prefiro as duas coisas, leg&#237;vel e entend&#237;vel hahaha. Ok, ok, o mundo n&#227;o
+&#233; perfeito hehehe.
+
+
+&gt;<i> &gt;&gt; O que mais me preocupa, neste momento, &#233; o encapsulamento. Se vc tiver
+</I>&gt;<i> &gt;&gt; id&#233;ias para opcodes que n&#227;o violem o encapsulamento, pode sugerir.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Para meu entendimento, me esclarece uma coisa. Naquele exemplo
+</I>&gt;<i> &quot;tradicional&quot;
+</I>&gt;<i> &gt; de la&#231;o, porque os opcodes violam o encapsulamento?
+</I>&gt;<i>
+</I>&gt;<i> No caso, opcodes como &quot;meoi&quot;.
+</I>&gt;<i>
+</I>&gt;<i> Dando um passo pra traz, eu disse que viola supondo que este opcode &#233;
+</I>&gt;<i> respons&#225;vel por &quot;destilar&quot; os inteiros dos objetos na pilha e realizar
+</I>&gt;<i> a compara&#231;&#227;o. Se for o caso, ele viola o encapsulamento, porque assume
+</I>&gt;<i> que os argumentos s&#227;o objetos que representam inteiros e possui
+</I>&gt;<i> conhecimento sobre a estrutura destes objetos -- para saber como
+</I>&gt;<i> acessar estes inteiros. O encapsulamento &#233; preservado se todas as
+</I>&gt;<i> opera&#231;&#245;es s&#227;o feitas via protocolo/interface e se as informa&#231;&#245;es sobre
+</I>&gt;<i> a estrutura do objeto e sobre o algoritmo de suas opera&#231;&#245;es somente o
+</I>&gt;<i> pr&#243;prio objeto sabe.
+</I>&gt;<i>
+</I>
+Entendi a quest&#227;o. A minha id&#233;ia n&#227;o era violar o encapsulamento, mas
+realmente n&#227;o sentei e pensei &quot;seriamente&quot; sobre como seria o funcionamento
+do &quot;meoi&quot;.
+
+Vou divagar sobre isso em outra thread...
+
+
+&gt;<i> &gt; De qualquer forma, a minha proposta n&#227;o &#233; abandonarmos as id&#233;ias
+</I>&gt;<i> propostas,
+</I>&gt;<i> &gt; mas sim investir mais nelas para que o gptassembly fique mais &quot;alto
+</I>&gt;<i> n&#237;vel&quot;.
+</I>&gt;<i> &gt; Lembra quando eu queria colocar opcodes para &quot;adicionar&quot; os m&#233;todos aos
+</I>&gt;<i> &gt; objetos, e voc&#234; sugeriu deixar isso expl&#237;cito na sintaxe com algo como
+</I>&gt;<i> &gt; &quot;.fun&#231;&#227;o nome_objeto:nome_fun&#231;&#227;o&quot;? &#201; neste sentido que devemos investir,
+</I>&gt;<i> na
+</I>&gt;<i> &gt; minha opini&#227;o.
+</I>&gt;<i> &gt; Vou tentar rever o exemplo gerado a partir do G-Portugol abaixo:
+</I>&gt;<i> &gt; fun&#231;&#227;o principal
+</I>&gt;<i> &gt;     para cada X de 1 at&#233; 10 fa&#231;a
+</I>&gt;<i> &gt;         se X &lt;= 5 ent&#227;o
+</I>&gt;<i> &gt;             imprima(X, &quot;eh &lt;= 5&quot;);
+</I>&gt;<i> &gt;         sen&#227;o
+</I>&gt;<i> &gt;             imprima(X, &quot;eh &gt;= 6&quot;);
+</I>&gt;<i> &gt;         fim
+</I>&gt;<i> &gt;     fim
+</I>&gt;<i> &gt; fim
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Equivalente em GptAssembly, tentando colocar as fun&#231;&#245;es &quot;an&#244;nimas&quot;
+</I>&gt;<i> digamos
+</I>&gt;<i> &gt; assim &quot;embutidas&quot; na fun&#231;&#227;o original:
+</I>&gt;<i> &gt; .fun&#231;&#227;o principal
+</I>&gt;<i> &gt;     .vari&#225;vel X
+</I>&gt;<i> &gt;     carvar X
+</I>&gt;<i> &gt;     carconst 1
+</I>&gt;<i> &gt;     carconst 10
+</I>&gt;<i> &gt;     carfun&#231;&#227;o (X) // era corpo_for
+</I>&gt;<i> &gt;         carpar X
+</I>&gt;<i> &gt;         carconst 5
+</I>&gt;<i> &gt;         carfun&#231;&#227;o (X) // era se_verdadeiro
+</I>&gt;<i> &gt;             carpar X
+</I>&gt;<i> &gt;             carconst &quot;eh &lt;= 5&quot;
+</I>&gt;<i> &gt;             carconst 2
+</I>&gt;<i> &gt;             invoca imprima
+</I>&gt;<i> &gt;         fimcarfun&#231;&#227;o
+</I>&gt;<i> &gt;         carfun&#231;&#227;o (X) // era se_falso
+</I>&gt;<i> &gt;             carpar X
+</I>&gt;<i> &gt;             carconst &quot;eh &gt;= 6&quot;
+</I>&gt;<i> &gt;             carconst 2
+</I>&gt;<i> &gt;             invoca imprima
+</I>&gt;<i> &gt;         fimcarfun&#231;&#227;o
+</I>&gt;<i> &gt;         meoi
+</I>&gt;<i> &gt;     fimcarfun&#231;&#227;o
+</I>&gt;<i> &gt;     invoca at&#233;
+</I>&gt;<i> &gt; .fim_fun&#231;&#227;o
+</I>&gt;<i> &gt; Ok, acho que n&#227;o ficou o &quot;&#243;&quot; do &quot;bor&#243;&quot;, mas vamos tentando evoluir na
+</I>&gt;<i> id&#233;ia
+</I>&gt;<i> &gt; :-)
+</I>&gt;<i>
+</I>&gt;<i> uai, gostei muito!! hehe :)
+</I>&gt;<i>
+</I>&gt;<i> ficou um assembly bem altonivelzinho, hehehe
+</I>&gt;<i>
+</I>
+Eu achei meio estranho, mas enfim... Vamos tentar evoluir mais...
+
+-- 
+[]'s
+Alex Sandro Garz&#227;o
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/gpt-devel/attachments/20101020/a2fc218b/attachment.html">https://lists.berlios.de/pipermail/gpt-devel/attachments/20101020/a2fc218b/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000146.html">[gpt-devel] Fwd:  Como implementar estruturas de controle
+</A></li>
+	<LI>Next message: <A HREF="000148.html">[gpt-devel] Vantagens/desvantagens de obrigatoriamente gerarmos	GptAssembly
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#147">[ date ]</a>
+              <a href="thread.html#147">[ thread ]</a>
+              <a href="subject.html#147">[ subject ]</a>
+              <a href="author.html#147">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

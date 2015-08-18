@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Fwd:  Como implementar estruturas de controle
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Fwd%3A%20%20Como%20implementar%20estruturas%20de%20controle&In-Reply-To=%3CAANLkTimL6CH3nJb0Z%3DBpDxGp%2BErrgmBfJp7q1sOxGiyF%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000143.html">
+   <LINK REL="Next"  HREF="000145.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Fwd:  Como implementar estruturas de controle</H1>
+    <B>Thiago Silva</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Fwd%3A%20%20Como%20implementar%20estruturas%20de%20controle&In-Reply-To=%3CAANLkTimL6CH3nJb0Z%3DBpDxGp%2BErrgmBfJp7q1sOxGiyF%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Fwd:  Como implementar estruturas de controle">tsilva at sourcecraft.info
+       </A><BR>
+    <I>Wed Oct 20 16:02:02 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000143.html">[gpt-devel] Fwd:  Como implementar estruturas de controle
+</A></li>
+        <LI>Next message: <A HREF="000145.html">[gpt-devel] Fwd:  Como implementar estruturas de controle
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#144">[ date ]</a>
+              <a href="thread.html#144">[ thread ]</a>
+              <a href="subject.html#144">[ subject ]</a>
+              <a href="author.html#144">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>---------- Forwarded message ----------
+From: Thiago Silva &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">tsilva at sourcecraft.info</A>&gt;
+Date: 2010/10/19
+Subject: Re: [gpt-devel] Como implementar estruturas de controle
+To: Alex Garzao &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">alexgarzaol at gmail.com</A>&gt;
+
+
+2010/10/19 Alex Garzao &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">alexgarzaol at gmail.com</A>&gt;:
+&gt;<i> Boa tarde :-)
+</I>&gt;<i>
+</I>&gt;&gt;<i> &gt;&gt; 1) Suponha:
+</I>&gt;&gt;<i> &gt;&gt;
+</I>&gt;&gt;<i> &gt;&gt; -que objetos boolean (&quot;verdadeiro&quot; e &quot;falso&quot;) possuem em sua vtable o
+</I>&gt;&gt;<i> &gt;&gt; m&#233;todo &quot;se&quot; que recebe dois objetos como par&#226;metro.
+</I>&gt;&gt;<i> &gt;&gt; -que a sintaxe &quot;[...]&quot; cria um objeto que denota uma fun&#231;&#227;o literal
+</I>&gt;&gt;<i> &gt;&gt; an&#244;nima (lambda/closure) e tais objeto possuem m&#233;todos, como por
+</I>&gt;&gt;<i> &gt;&gt; exemplo, &quot;execute&quot;.
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; Esta &#233; a minha d&#250;vida. O que eu chamei de sub-fun&#231;&#245;es (nome horr&#237;vel)
+</I>&gt;&gt;<i> &gt; seriam
+</I>&gt;&gt;<i> &gt; os closures gerados para cada lambda. Isto quer dizer que uma fun&#231;&#227;o,
+</I>&gt;&gt;<i> &gt; com um
+</I>&gt;&gt;<i> &gt; if, gera pelo menos 3 closures certo? Um closure para a fun&#231;&#227;o, um para
+</I>&gt;&gt;<i> &gt; o
+</I>&gt;&gt;<i> &gt; &quot;ent&#227;o&quot; e outro para o &quot;sen&#227;o&quot; correto?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> acho que n&#227;o entendi o &quot;gera, pelo menos 3 closures&quot;. Estritamente
+</I>&gt;&gt;<i> falando, neste caso, h&#225; o m&#233;todo &quot;se&quot; nesses booleans, que recebe dois
+</I>&gt;&gt;<i> objetos como par&#226;metros que devem saber responder ao m&#233;todo &quot;execute&quot;.
+</I>&gt;&gt;<i> Naturalmente, o caso comum &#233; que estes dois par&#226;metros seriam
+</I>&gt;&gt;<i> closures.
+</I>&gt;<i>
+</I>&gt;<i> Ent&#227;o teremos um closure para a fun&#231;&#227;o, outro para o &quot;se&quot; e outro para o
+</I>&gt;<i> &quot;sen&#227;o&quot; correto? Ou seja, um closure para cada bloco de c&#243;digo certo?
+</I>
+&#233;....isso....
+
+
+&gt;&gt;<i> S&#233;rio? O do &quot;se&quot; eu achei t&#227;o simples...os mesmos mnemonicos usados em
+</I>&gt;&gt;<i> todo o sistema s&#227;o usados para o &quot;se&quot;; n&#227;o h&#225; necessidade de saber
+</I>&gt;&gt;<i> nenhum outro opcode.
+</I>&gt;<i>
+</I>&gt;<i> Talvez a palavra &quot;complicado&quot; foi exagerado. Pode at&#233; ser f&#225;cil, mas me
+</I>&gt;<i> parece que o assembly gerado vai ficar grande e de dif&#237;cil leitura para
+</I>&gt;<i> humanos :-)
+</I>
+acho que...definitivamente :)
+
+&gt;<i> &#201;&#160;esta a sensa&#231;&#227;o que fiquei ao imaginar o assembly gerado a partir do
+</I>&gt;<i> c&#243;digo em G-portugol abaixo (se errei a sintaxe do G-portugol,
+</I>&gt;<i> desculpem-me):
+</I>&gt;<i> ...
+</I>&gt;<i> At&#233; aqui temos 4 closures, um para cada bloco de c&#243;digo.
+</I>&gt;<i> Neste caso, meoi (opera&#231;&#227;o menor ou igual) e at&#233; (do la&#231;o do for) ser&#227;o
+</I>&gt;<i> implementa&#231;&#245;es &quot;nativas&quot; na VM.&#160;Um poss&#237;vel pseudo-c&#243;digo deles (ignorando
+</I>&gt;<i> tipagem, passagem por refer&#234;ncia, etc.) seria:
+</I>&gt;<i> function meoi(op1, op2, funcao_se_verdadeiro, funcao_se_falso)
+</I>&gt;<i> {
+</I>&gt;<i> &#160;&#160; &#160;if (op1 &lt;= op1)
+</I>&gt;<i> &#160;&#160; &#160; &#160; &#160;run_function(funcao_se_verdadeiro, op1)
+</I>&gt;<i> &#160;&#160; &#160;else
+</I>&gt;<i> &#160;&#160; &#160; &#160; &#160;run_function(funcao_se_falso, op1)
+</I>&gt;<i> }
+</I>&gt;<i> function ate(variavel_laco,&#160;inicio_laco, final_laco, funcao_corpo_for)
+</I>&gt;<i> &#160;&#160; &#160;for(variavel_laco = inicio_laco; variavel_laco &lt;= final_laco;
+</I>&gt;<i> variavel_laco++) {
+</I>&gt;<i> &#160;&#160; &#160; &#160; &#160;run_function(funcao_corpo_for, variavel_laco)
+</I>&gt;<i> &#160;&#160; &#160;}
+</I>&gt;<i> }
+</I>&gt;<i> Vendo este exemplo, a sensa&#231;&#227;o que eu fiquei &#233; a de que o c&#243;digo esta muito
+</I>&gt;<i> segmentado em fun&#231;&#245;es, o que dificulta a leitura.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> O que observo no caso do &quot;for&quot; &#233; que ele distribui mais as partes --
+</I>&gt;&gt;<i> um estilo caracteristicamente funcional -- ent&#227;o certamente dificulta
+</I>&gt;&gt;<i> uma leitura linear (que &#233; uma caracter&#237;stica mais imperativa). Mas
+</I>&gt;&gt;<i> queria saber o que vc acha mais complicado...
+</I>&gt;<i>
+</I>&gt;<i> Acho que &#233; este o ponto sim. Para ler o c&#243;digo acima (meu exemplo) j&#225; &#233;
+</I>&gt;<i> tortuoso (pelo n&#250;mero de closures). Imagina um exemplo mais real, com v&#225;rias
+</I>&gt;<i> fun&#231;&#245;es com in&#250;meros blocos de c&#243;digo?
+</I>&gt;<i>
+</I>
+Agora eis que pergunto: qual a import&#226;ncia que vc atribui para uma
+leitura mais &quot;fluente&quot; e edi&#231;&#227;o de gptassembly?
+
+Eu vejo alguns aspectos nesta quest&#227;o. Eu acho que o gptassembly deve
+ser &quot;entend&#237;vel&quot;.
+
+&gt;&gt;<i>
+</I>&gt;&gt;<i> Sei que h&#225; formas de gerar um c&#243;digo mais tradicional com condicionais
+</I>&gt;&gt;<i> e jumps (sei que isso &#233; feito como otimiza&#231;&#227;o em m&#225;quinas OO puras)
+</I>&gt;&gt;<i> sem violar o modelo, mas n&#227;o &#233; algo que eu investiguei muito...
+</I>&gt;<i>
+</I>&gt;<i> Eu nunca investiguei m&#225;quinas OO puras. Ok, sei que voc&#234; mandou at&#233; o link
+</I>&gt;<i> de um livro, mas como eu ainda n&#227;o li, lhe pergunto: voc&#234; sabe dar mais
+</I>&gt;<i> informa&#231;&#245;es sobre como estas m&#225;quinas implementam estes recursos? Como seria
+</I>&gt;<i> o assembly de uma VM de smalltalk, por exemplo?
+</I>
+O assembly do smalltalk &#233; bem parecido com estamos discutindo aqui.
+Ela s&#243; tem opcodes de push, pop, envio de mensagens e retorno, mais
+opcodes de popAndJump que s&#243; checam pelos valores &quot;true&quot; e &quot;false&quot; na
+pilha.
+
+Com otimiza&#231;&#227;o &#233; outra hist&#243;ria pois em tempo de execu&#231;&#227;o se faz
+inlining das fun&#231;&#245;es, criando blocos de c&#243;digo para casos
+particulares, compilando-as novamente e, em seguida, rodando um JIT.
+Ent&#227;o, nas particularidades, certamente podemos utilizar opcodes mais
+especificos, mas sempre h&#225; o fallback para o envio de mensagens. Acho
+que n&#227;o h&#225; nada a ganhar em termos de simplicidade fazendo isso.
+
+O que mais me preocupa, neste momento, &#233; o encapsulamento. Se vc tiver
+id&#233;ias para opcodes que n&#227;o violem o encapsulamento, pode sugerir
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000143.html">[gpt-devel] Fwd:  Como implementar estruturas de controle
+</A></li>
+	<LI>Next message: <A HREF="000145.html">[gpt-devel] Fwd:  Como implementar estruturas de controle
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#144">[ date ]</a>
+              <a href="thread.html#144">[ thread ]</a>
+              <a href="subject.html#144">[ subject ]</a>
+              <a href="author.html#144">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

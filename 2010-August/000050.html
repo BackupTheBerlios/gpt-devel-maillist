@@ -1,0 +1,179 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Vamos dar prosseguimento a V2 ???
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Vamos%20dar%20prosseguimento%20a%20V2%20%3F%3F%3F&In-Reply-To=%3CAANLkTi%3DxnQE0g7a-YR8vV56zJoHTxNxWdjE7gw%2Bd3ifG%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000049.html">
+   <LINK REL="Next"  HREF="000051.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Vamos dar prosseguimento a V2 ???</H1>
+    <B>Thiago Silva</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Vamos%20dar%20prosseguimento%20a%20V2%20%3F%3F%3F&In-Reply-To=%3CAANLkTi%3DxnQE0g7a-YR8vV56zJoHTxNxWdjE7gw%2Bd3ifG%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Vamos dar prosseguimento a V2 ???">tsilva at sourcecraft.info
+       </A><BR>
+    <I>Sat Aug  7 19:49:10 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000049.html">[gpt-devel] Vamos dar prosseguimento a V2 ???
+</A></li>
+        <LI>Next message: <A HREF="000051.html">[gpt-devel] Vamos dar prosseguimento a V2 ???
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#50">[ date ]</a>
+              <a href="thread.html#50">[ thread ]</a>
+              <a href="subject.html#50">[ subject ]</a>
+              <a href="author.html#50">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>2010/8/5 Alex Garzao &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">alexgarzaol at gmail.com</A>&gt;:
+&gt;&gt;<i> Se eu tivesse conseguido implementar na &#233;poca um bom mecanismo de
+</I>&gt;&gt;<i> reportagem de erros no ometa, eu acho at&#233; que investiria em criar um
+</I>&gt;&gt;<i> parser pro portugol inicialmente nessa linguagem e escrever uma GLR
+</I>&gt;&gt;<i> pra algo como o antlr em um momento posterior. Mas parei no meio do
+</I>&gt;&gt;<i> caminho e n&#227;o sei quando poderia retomar. Um plano B que pensei seria
+</I>&gt;&gt;<i> usar o antlr para criar uma segunda meta-linguagem, baseada no antlr,
+</I>&gt;&gt;<i> que extendesse a linguagem de gram&#225;tica para permitir especificar
+</I>&gt;&gt;<i> mensagens de erros mais facilmente.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Agora, considerando cronograma, acho que isso poderia ser secund&#225;rio.
+</I>&gt;&gt;<i> Podemos ter um parser completo sem nos importarmos muito com mensagens
+</I>&gt;&gt;<i> de erro em um primeiro momento.
+</I>&gt;<i>
+</I>&gt;<i> &#201; uma abordagem. N&#243;s estavamos utilizando AntLR vers&#227;o 2, mas lembro de ter
+</I>&gt;<i> lido algo sobre a vers&#227;o 3 onde eles facilitam um pouco o report de erros.
+</I>&gt;<i> Quando poss&#237;vel eu investigo melhor...
+</I>&gt;<i>
+</I>
+ok
+
+
+&gt;&gt;<i> o que eu queria provocar era uma discuss&#227;o sobre gera&#231;&#227;o de c&#243;digo
+</I>&gt;&gt;<i> (n&#227;o necessariamente de m&#225;quina) em tempo de execu&#231;&#227;o, de forma a
+</I>&gt;&gt;<i> permitir um processo de programa&#231;&#227;o mais explorat&#243;rio (al&#225; lisp,
+</I>&gt;&gt;<i> smalltalk e outros ambientes din&#226;micos), ao inv&#233;s de restringir
+</I>&gt;&gt;<i> somente ao ciclo compile-&gt;execute-&gt;kill-&gt;write. Isso tem um apelo
+</I>&gt;&gt;<i> did&#225;tico muito grande e creio que trabalhar no gptassembly e runtime
+</I>&gt;&gt;<i> com isso em mente seria importante.
+</I>&gt;<i>
+</I>&gt;<i> A id&#233;ia me parece interessante. De qualquer forma, eu n&#227;o tenho experi&#234;ncia
+</I>&gt;<i> com isso, nem como &quot;usu&#225;rio&quot;. Voc&#234; poderia comentar o que poder&#237;amos fazer
+</I>&gt;<i> de interessante com este recurso? Ali&#225;s, isso seria quase como eu definir
+</I>&gt;<i> uma string (contendo um c&#243;digo v&#225;lido), &quot;compil&#225;-lo&quot; durante a execu&#231;&#227;o e
+</I>&gt;<i> rod&#225;-lo como se fizesse parte do programa?
+</I>&gt;<i>
+</I>
+no aspecto t&#233;cnico, &#233; exatamente isso. O benef&#237;cio maior est&#225; na
+intera&#231;&#227;o. Se temos ferramentas que permitem manipular o c&#243;digo em
+tempo de execu&#231;&#227;o, n&#243;s nos comunicamos com o software em quest&#227;o
+diretamente, evoluindo-o e depurando-o. Acho que o ambiente mais
+popular que representa isso hoje &#233; o Squeak smalltalk
+(www.squeak.org).
+
+Linguagens como python de certa forma tamb&#233;m possibilitam isso, mas a
+aus&#234;ncia de ferramentas de desenvolvimento que permitem e incentivam
+esse tipo de intera&#231;&#227;o durante a programa&#231;&#227;o faz com que programadores
+de &quot;linguagens din&#226;micas&quot; como esta programem via arquivos de c&#243;digo
+fonte, no ciclo tradicional.
+
+
+&gt;&gt;<i> Eu vou tentar ver com cuidado mais isso....acredito
+</I>&gt;&gt;<i> que seria interessante ter o gptassembly sem &quot;tipos fortes&quot;.
+</I>&gt;<i>
+</I>&gt;<i> Sinceramente, no momento, n&#227;o sei lhe dizer muito a respeito. O que sei
+</I>&gt;<i> dizer &#233; que j&#225; implementei (academicamente) linguagens intermedi&#225;ria tipadas
+</I>&gt;<i> e n&#227;o tipadas. No meu caso, essas linguagens intermedi&#225;rias representavam
+</I>&gt;<i> &quot;um pra um&quot; as instru&#231;&#245;es das minhas VMs.
+</I>&gt;<i> No geral, implementar VMs n&#227;o tipadas &#233; &quot;mais f&#225;cil&quot;, at&#233; porque o conjunto
+</I>&gt;<i> de instru&#231;&#245;es fica BEM menor. Mas, de qualquer forma, a cada instru&#231;&#227;o a VM
+</I>&gt;<i> tem que testar com que tipo est&#225; trabalhando (estou somando strings ou
+</I>&gt;<i> n&#250;meros?). Se bem que as VMs tipadas tamb&#233;m validam os dados que est&#227;o
+</I>&gt;<i> processando. Al&#233;m disso, no geral, VMs tipadas s&#227;o mais r&#225;pidas que n&#227;o
+</I>&gt;<i> tipadas.
+</I>
+
+Eu tenho alguma familiaridade com a literatura de t&#233;cnicas de
+otimiza&#231;&#227;o de c&#243;digos din&#226;micos / late bound, embora s&#243; tenha
+realizado implementa&#231;&#245;es corriqueiras de brinquedo. Eu acho que ia
+gostar de experimentar com essas coisas...
+
+
+
+&gt;&gt;<i> Talvez
+</I>&gt;&gt;<i> isso permita que tenhamos linguagem com tipagem forte e fraca em alto
+</I>&gt;&gt;<i> n&#237;vel, sem termos grandes problemas em baixo n&#237;vel (at&#233; onde entendo,
+</I>&gt;&gt;<i> ter tipagem forte no bytecode dificulta implementar gera&#231;&#227;o de c&#243;digo
+</I>&gt;&gt;<i> de uma linguagem de alto n&#237;vel com tipagem fraca).
+</I>&gt;<i>
+</I>&gt;<i> Quanto a quest&#227;o de facilitar, n&#227;o sei dizer muito, mas pelo que eu saiba,
+</I>&gt;<i> os compiladores de linguagens n&#227;o tipadas &quot;assumem&quot; um tipo conforme a
+</I>&gt;<i> vari&#225;vel &#233; inicializada. Por exemplo &quot;x = 12&quot; assumem int e geram bytecode
+</I>&gt;<i> indicando que x &#233; um int. Al&#233;m disso, caso x troque de tipo, internamente
+</I>&gt;<i> estes compiladores criar outra vari&#225;vel conforme o novo tipo. Mas n&#227;o sou
+</I>&gt;<i> nenhum especialista no assunto hehehe.
+</I>
+Um exemplo de abacaxi &#233; o caso do mozilla rhino, uma implementa&#231;&#227;o de
+javascript sobre a JVM. O problema ocorre porque javascript n&#227;o possui
+o conceito de classe:  existe uma hierarquia de objetos (que regula o
+lookup de atributos e dispatch de m&#233;todos), e essa hierarquia &#233;
+dinamica (objetos podem mudar seus respectivos &quot;prot&#243;tipos&quot; [mais ou
+menos o que seriam classes] em tempo de execu&#231;&#227;o). J&#225; a JVM faz uso
+intr&#237;nseco de classe como parte de um objeto e n&#227;o admite que esse
+objeto mude de classe.
+
+A&#237;, aja voodoo. No pior dos casos, vc acaba tendo que fazer (dentre
+outras coisas) o lookup e dispatch no n&#237;vel acima da VM, na unha,
+porque n&#227;o pode usar o invokevirtual. E isso implica, al&#233;m de tudo, em
+n&#227;o poder tirar benef&#237;cios das otimiza&#231;&#245;es que a VM realiza com o
+invokevirtual.
+
+Por isso que eu acharia interessante criarmos uma plataforma que seja
+gen&#233;rica, que n&#227;o assuma quase nada sobre a(s) linguagen(s) de alto
+n&#237;vel que ser&#227;o criadas por cima dela.
+
+
+&gt;&gt;<i> &#201;, eu tbm n&#227;o sou nenhum entendido do assunto...Eu acho que seria
+</I>&gt;&gt;<i> bastante importante termos debugger do pr&#243;prio gpt e da gptvm que
+</I>&gt;&gt;<i> permitam depurar na linguagem de alto n&#237;vel. Eu sugeriria ignorarmos a
+</I>&gt;&gt;<i> depura&#231;&#227;o em alto n&#237;vel para outros targets.
+</I>&gt;<i>
+</I>&gt;<i> &#201; uma abordagem. Com o tempo a gente v&#234; se d&#225; para estender para outros
+</I>&gt;<i> targets. Enfim...
+</I>
+
+Blz
+
+[]'s
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000049.html">[gpt-devel] Vamos dar prosseguimento a V2 ???
+</A></li>
+	<LI>Next message: <A HREF="000051.html">[gpt-devel] Vamos dar prosseguimento a V2 ???
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#50">[ date ]</a>
+              <a href="thread.html#50">[ thread ]</a>
+              <a href="subject.html#50">[ subject ]</a>
+              <a href="author.html#50">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

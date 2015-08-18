@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Checagem do nasm pelo configure
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-May/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Checagem%20do%20nasm%20pelo%20configure&In-Reply-To=%3CAANLkTil_S-Vk7lGgJRqdi58Ca9nL1ROIoTvKK-vkB32j%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000033.html">
+   <LINK REL="Next"  HREF="000035.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Checagem do nasm pelo configure</H1>
+    <B>Thiago Silva</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%20Checagem%20do%20nasm%20pelo%20configure&In-Reply-To=%3CAANLkTil_S-Vk7lGgJRqdi58Ca9nL1ROIoTvKK-vkB32j%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Checagem do nasm pelo configure">tsilva at sourcecraft.info
+       </A><BR>
+    <I>Thu May 27 04:25:42 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000033.html">[gpt-devel] Checagem do nasm pelo configure
+</A></li>
+        <LI>Next message: <A HREF="000035.html">[gpt-devel] Checagem do nasm pelo configure
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#34">[ date ]</a>
+              <a href="thread.html#34">[ thread ]</a>
+              <a href="subject.html#34">[ subject ]</a>
+              <a href="author.html#34">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Opa,
+
+2010/5/26 Adorilson Bezerra de Araujo &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">adorilson at gmail.com</A>&gt;:
+&gt;<i> Thiago,
+</I>&gt;<i>
+</I>&gt;<i> tava aqui verificando a instala&#231;&#227;o do gpt no Ubuntu 10.04 e me percebi que o
+</I>&gt;<i> configure nao testa se o nasm est&#225; instalado.
+</I>&gt;<i>
+</I>
+correto.
+
+&gt;<i> Algum motivo em especial para isso ser assim mesmo? N&#227;o ser necess&#225;rio para
+</I>&gt;<i> a compila&#231;&#227;o do gpt seria um bom motivo...
+</I>&gt;<i>
+</I>
+&#233; exatamente por isso que n&#227;o h&#225; checagem do nasm durante a
+compila&#231;&#227;o: n&#227;o &#233; necess&#225;rio.
+
+
+&gt;<i> Eu mesmo acrescentaria essa checagem se soubesse fazer isso. :(
+</I>&gt;<i> Mas se &#233; pra ficar mesmo assim, acho que na execu&#231;&#227;o do gpt deveria ter uma
+</I>&gt;<i> mensagem amig&#225;vel da necessidade do nasm.
+</I>
+Acho que poderia haver uma checagem em runtime, verificando se o nasm
+est&#225; no $PATH antes de execut&#225;-lo. Se ele n&#227;o tiver, terminar a
+execu&#231;&#227; com uma mensagem de erro e error code.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000033.html">[gpt-devel] Checagem do nasm pelo configure
+</A></li>
+	<LI>Next message: <A HREF="000035.html">[gpt-devel] Checagem do nasm pelo configure
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#34">[ date ]</a>
+              <a href="thread.html#34">[ thread ]</a>
+              <a href="subject.html#34">[ subject ]</a>
+              <a href="author.html#34">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>

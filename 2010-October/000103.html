@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [gpt-devel] Formato (gram&#225;tica) do GptAssembly
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/gpt-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%0A%09%3D%3Fiso-8859-1%3Fq%3FFormato_%3D28gram%3DE1tica%3D29_do_GptAssemb%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Fly%3F%3D&In-Reply-To=%3CAANLkTin8fV%3DKsv3mE%3Db4L9p1Covefy0ms97i-SXgt0k1%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000102.html">
+   <LINK REL="Next"  HREF="000104.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[gpt-devel] Formato (gram&#225;tica) do GptAssembly</H1>
+    <B>Thiago Silva</B> 
+    <A HREF="mailto:gpt-devel%40lists.berlios.de?Subject=Re%3A%20%5Bgpt-devel%5D%0A%09%3D%3Fiso-8859-1%3Fq%3FFormato_%3D28gram%3DE1tica%3D29_do_GptAssemb%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Fly%3F%3D&In-Reply-To=%3CAANLkTin8fV%3DKsv3mE%3Db4L9p1Covefy0ms97i-SXgt0k1%40mail.gmail.com%3E"
+       TITLE="[gpt-devel] Formato (gram&#225;tica) do GptAssembly">tsilva at sourcecraft.info
+       </A><BR>
+    <I>Sat Oct  9 17:29:43 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000102.html">[gpt-devel] Formato (gram&#225;tica) do GptAssembly
+</A></li>
+        <LI>Next message: <A HREF="000104.html">[gpt-devel] Formato (gram&#225;tica) do GptAssembly
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#103">[ date ]</a>
+              <a href="thread.html#103">[ thread ]</a>
+              <a href="subject.html#103">[ subject ]</a>
+              <a href="author.html#103">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>2010/10/9 Alex Garzao &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/gpt-devel">alexgarzaol at gmail.com</A>&gt;:
+&gt;&gt;<i> &gt; &quot;Acho&quot; que self pode ser um m&#233;todo invocado com o &quot;invoca&quot; mesmo. E ele
+</I>&gt;&gt;<i> &gt; v&#234;
+</I>&gt;&gt;<i> &gt; se tem um ponteiro para o m&#233;todo pai na &#225;rea de dados.
+</I>&gt;&gt;<i> &gt; De qq forma, a gente avalia quando necess&#225;rio a melhor abordagem. Pelo
+</I>&gt;&gt;<i> &gt; tardar da hora, n&#227;o tenho muita opini&#227;o formada :-D
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Eu n&#227;o entendi: &quot;self pode ser um m&#233;todo invocado com 'invoca'&quot;. Mas
+</I>&gt;&gt;<i> podemos continuar andando :)
+</I>&gt;<i>
+</I>&gt;<i> Errei hehehe. &quot;super&quot; pode ser um m&#233;todo invocado com &quot;invoca&quot;. Se tem um
+</I>&gt;<i> pointer para super, ele invoca o m&#233;todo do pai. Sen&#227;o, acho que gera uma
+</I>&gt;<i> exception.
+</I>&gt;<i>
+</I>
+hmmm, me ajuda aqui, hehe... Digamos que estamos em um m&#233;todo x() e
+dentro dele chamamos super(). Como isso expande para gptassembly?
+
+
+&gt;&gt;<i> que para m&#233;todos, realmente fica melhor. Mas e o &quot;principal&quot;?
+</I>&gt;<i>
+</I>&gt;<i> Acho que a&#237; entramos na discuss&#227;o de tudo ter como base a OO (ou n&#227;o) :-/
+</I>&gt;<i> Eu conhe&#231;o poucas linguagens OO e, das que eu conhe&#231;o, ou elas tem uma
+</I>&gt;<i> fun&#231;&#227;o que inicia a aplica&#231;&#227;o (main de C++) ou possuem um m&#233;todo espec&#237;fico
+</I>&gt;<i> em uma classe que determina o ponto de inicio da execu&#231;&#227;o (java).
+</I>&gt;<i> Pelo que eu me lembre (n&#227;o tenho certeza) no DotNet qualquer m&#233;todo de uma
+</I>&gt;<i> classe pode ser o ponto de in&#237;cio da execu&#231;&#227;o. As linguagens que geram
+</I>&gt;<i> c&#243;digo para o Dotnet tem as suas regras, mas o que interessa para o dotnet &#233;
+</I>&gt;<i> o m&#233;todo que &#233; sinalizado como ponto de in&#237;cio.
+</I>&gt;<i> Eu sugiro termos uma abordagem similar. N&#227;o podemos ter fun&#231;&#245;es, mas apenas
+</I>&gt;<i> m&#233;todos. Por&#233;m, apenas um dos m&#233;todos de todas as classes carregadas pode
+</I>&gt;<i> ser sinalizado como ponto de in&#237;cio da execu&#231;&#227;o.
+</I>&gt;<i> Acredito que voc&#234; conhe&#231;a bem mais linguagens OO do que eu. Que abordagens
+</I>&gt;<i> voc&#234; viu e achou interessante?
+</I>
+Ent&#227;o. Podemos tratar fun&#231;&#245;es e closures como valores, objetos. E com
+closures, podemos implementar condi&#231;&#227;o e repeti&#231;&#227;o apenas enviando
+mensagens. Basta o objeto da fun&#231;&#227;o/closure responder a uma mensagem
+executando-se e retornando o valor de sua execu&#231;&#227;o. Fica f&#225;cil,
+tamb&#233;m, em tempo de execu&#231;&#227;o, remover e adicionar m&#233;todos de objetos,
+j&#225; que s&#227;o &quot;cidad&#227;os de primeira classe&quot;. Isso permite criar ambientes
+de desenvolvimento bastante interativos.
+
+Seja como for, nesse caso, &quot;m&#233;todo&quot; &#233; apenas um nome para um
+objeto-fun&#231;&#227;o que pertence a um dicion&#225;rio de m&#233;todos de um objeto.
+Por si s&#243;, ele &#233; apenas um objeto que representa c&#243;digo execut&#225;vel.
+
+Quanto ao ponto de entrada, realmente temos algumas op&#231;&#245;es no
+card&#225;pio. Duas abordagens me vem a mente agora:
+
+a) uma simples &#233; fazer como em C, onde a VM procuraria por uma fun&#231;&#227;o
+com nome especifico (como &quot;principal&quot;) no m&#243;dulo e executaria ela.
+Neste caso, faltaria fazer o bind do &quot;this&quot; para esta fun&#231;&#227;o. Mas a&#237;,
+nada impede que a VM criasse um objeto derivado de Objeto, adicionasse
+a fun&#231;&#227;o &quot;principal&quot; como m&#233;todo e o executasse (derrepente esse
+objeto pode ser carregado com diversas informa&#231;&#245;es).
+
+b) Outra abordagem, como vc mencionou, seria marcar um m&#233;todo de um
+objeto como principal (a forma mais simples, usando um nome padr&#227;o,
+novamente, como &quot;principal&quot;). A&#237; precisariamos de uma forma de dizer
+que o m&#233;todo principal &#233; de tal objeto, caso contr&#225;rio, a VM teria que
+procurar em todos os m&#233;todos dos objetos do m&#243;dulo por um que tenha o
+nome &quot;principal&quot;. Acho que se o objeto &#233; uma vtable, podemos confiar
+que, ap&#243;s o loading, esse objeto j&#225; est&#225; no pool; basta a vm executar
+o m&#233;todo. Caso contr&#225;rio, a VM precisaria instanciar o objeto e chamar
+&quot;principal&quot;. Creio que isso afeta as condi&#231;&#245;es de inicializa&#231;&#227;o (por
+exemplo, o objeto que tem &quot;principal&quot; deve receber X par&#226;metros no
+construtor).
+
+Essas foram as que pensei aqui rapid&#227;o (porque estou atrasado para ir
+pro restaurante, hehe). Mas podemos investigar isso melhor.
+
+
+&gt;&gt;<i> &gt; N&#227;o que seja importante agora, mas acho que no lugar de &quot;carprop 2&quot;
+</I>&gt;&gt;<i> &gt; (carrega
+</I>&gt;&gt;<i> &gt; propriedade) seria &quot;carconst 0&quot; (carrega constante 0). Ou voc&#234; imaginou
+</I>&gt;&gt;<i> &gt; outra funcionalidade para &quot;carprop 2&quot;?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> hmm, eu tinha entendido que carprop carregava a propriedade
+</I>&gt;&gt;<i> identificada pelo &#237;ndice num&#233;rico, iniciando em 0. Em objetos vtable
+</I>&gt;&gt;<i> como Objeto e X, temos esta ordem de propriedades: [0] = parent, [1] =
+</I>&gt;&gt;<i> methods, [2] = &quot;payload&quot;. Por isso que escrevi carprop 2. Talvez
+</I>&gt;&gt;<i> pudesse ser &quot;carprop 'payload'&quot;....Enfim n&#227;o sei se entendi errado,
+</I>&gt;&gt;<i> mas a inten&#231;&#227;o era essa.
+</I>&gt;<i>
+</I>&gt;<i> Ah entendi. Quando eu comecei a montar os mnem&#244;nicos eu nem imagina o
+</I>&gt;<i> formato da vtable (se &#233; que a gente teria isso, enfim).
+</I>&gt;<i> Eu n&#227;o tinha &quot;me ligado&quot; que parent, methods e payload j&#225; s&#227;o atributos do
+</I>&gt;<i> objeto vtable. Agora faz sentido sim :-)
+</I>&gt;<i> Vamos revisando os exemplos e os mnem&#244;nicos quando poss&#237;vel... De qq forma,
+</I>&gt;<i> acho que vamos ter alguns mnem&#244;nicos para facilitar a nossa vida. Por
+</I>&gt;<i> exemplo, se a gente quer carregar a propriedade 5 (de nome prop5) do objeto,
+</I>&gt;<i> seria mais f&#225;cil termos um opcode para isso do que termos que carregar o
+</I>&gt;<i> payload e ai gerar outro opcode para carregar a propriedade. Algo como
+</I>&gt;<i> carprop prop5. O carprop sabe onde est&#225; o payload e sabe como buscar a
+</I>&gt;<i> localiza&#231;&#227;o de prop5.&#160;Acredito que o assemblador depois se responsabiliza
+</I>&gt;<i> por traduzir para o endere&#231;o correto.
+</I>
+beleaza.
+
+&gt;&gt;<i>
+</I>&gt;&gt;<i> Lendo novamente, no entanto, talvez vc refira o &quot;0&quot; de &quot;carconst 0&quot; ao
+</I>&gt;&gt;<i> valor do payload de Objeto, que &#233; 0. No entanto, n&#227;o sabemos em tempo
+</I>&gt;&gt;<i> de compila&#231;&#227;o qual o payload do objeto receptor de &quot;novo()&quot;...
+</I>&gt;<i>
+</I>&gt;<i> Entendi. Como eu disse acima, &#160;eu &quot;acho&quot; que isso ser&#225; responsabilidade dos
+</I>&gt;<i> opcodes saberem onde est&#225; payload. Se algu&#233;m quiser mudar a estrutura da
+</I>&gt;<i> vtable, ter&#225; necessariamente que reprogramar estes opcodes. Claro, talvez
+</I>&gt;<i> pensando melhor, a gente consiga generalizar mais, mas por enquanto, sem
+</I>&gt;<i> pensar &quot;com calma&quot;, n&#227;o sei dizer :-)
+</I>
+ok!
+
+[]'s
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000102.html">[gpt-devel] Formato (gram&#225;tica) do GptAssembly
+</A></li>
+	<LI>Next message: <A HREF="000104.html">[gpt-devel] Formato (gram&#225;tica) do GptAssembly
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#103">[ date ]</a>
+              <a href="thread.html#103">[ thread ]</a>
+              <a href="subject.html#103">[ subject ]</a>
+              <a href="author.html#103">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/gpt-devel">More information about the Gpt-devel
+mailing list</a><br>
+</body></html>
